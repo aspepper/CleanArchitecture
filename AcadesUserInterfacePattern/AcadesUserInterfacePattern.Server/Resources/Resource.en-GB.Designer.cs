@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AdviceUserInterfacePattern.Server.Resources {
+namespace AcadesUserInterfacePattern.Server.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AdviceUserInterfacePattern.Server.Resources.ResourceEnGB", typeof(ResourceEnGB).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AcadesUserInterfacePattern.Server.Resources.ResourceEnGB", typeof(ResourceEnGB).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

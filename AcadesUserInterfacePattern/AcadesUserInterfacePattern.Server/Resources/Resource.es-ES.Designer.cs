@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AdviceUserInterfacePattern.Server.Resources {
+namespace AcadesUserInterfacePattern.Server.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace AdviceUserInterfacePattern.Server.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResourcePtBR {
+    internal class ResourceEsES {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourcePtBR() {
+        internal ResourceEsES() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AdviceUserInterfacePattern.Server.Resources.ResourcePtBR", typeof(ResourcePtBR).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AcadesUserInterfacePattern.Server.Resources.ResourceEsES", typeof(ResourceEsES).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Clique-me.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Haz click en mi.
         /// </summary>
         internal static string CounterPageLabelButtonClick {
             get {
@@ -70,7 +70,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Contagem atual.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Recuento actual.
         /// </summary>
         internal static string CounterPageLabelCurrrentCount {
             get {
@@ -79,7 +79,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Contador.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Encimera.
         /// </summary>
         internal static string CounterPageTitle {
             get {
@@ -88,7 +88,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Ola, Mundo!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a ¡Hola, Mundo!.
         /// </summary>
         internal static string Greeting {
             get {
@@ -97,16 +97,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Tema escuro.
-        /// </summary>
-        internal static string HeaderLabelDarkTheme {
-            get {
-                return ResourceManager.GetString("HeaderLabelDarkTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Como o Blazor está funcionando para você? Por favor, responda à nossa breve pesquisa e diga-nos o que você pensa..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a ¿Cómo funciona Blazor para ti? Responda nuestra breve encuesta y díganos lo que piensa..
         /// </summary>
         internal static string HomeText {
             get {
@@ -115,7 +106,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Carregando....
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cargando....
         /// </summary>
         internal static string Loading {
             get {
@@ -124,7 +115,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Contador.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Encimera.
         /// </summary>
         internal static string MenuCounter {
             get {
@@ -133,7 +124,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Obter dados.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Obtener datos.
         /// </summary>
         internal static string MenuFetchData {
             get {
@@ -142,7 +133,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Home.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Hogar.
         /// </summary>
         internal static string MenuHome {
             get {
@@ -151,7 +142,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Desculpe, não há nada neste endereço..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Lo siento, no hay nada en esta dirección..
         /// </summary>
         internal static string RouterNotFound {
             get {
@@ -160,7 +151,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Selecione sua localidade.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Seleccione su localidad.
         /// </summary>
         internal static string SelectLanguage {
             get {
@@ -169,7 +160,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Responda à nossa {0}breve pesquisa{1} e diga-nos o que pensa..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Realice nuestra {0}breve encuesta{1} y díganos lo que piensa..
         /// </summary>
         internal static string SurveyPromptText {
             get {
@@ -178,7 +169,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Como o Blazor está funcionando para você?.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a ¿Cómo funciona Blazor para ti?.
         /// </summary>
         internal static string SurveyPromptTitle {
             get {
@@ -187,7 +178,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Sobre.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Acerca de.
         /// </summary>
         internal static string TopMenuAbout {
             get {
@@ -196,7 +187,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Data.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Fecha.
         /// </summary>
         internal static string WeatherPageBrowserHeaderDate {
             get {
@@ -205,7 +196,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Resumo.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Resumen.
         /// </summary>
         internal static string WeatherPageBrowserHeaderSummary {
             get {
@@ -232,7 +223,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Este componente demonstra a obtenção de dados do servidor..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Este componente demuestra cómo obtener datos del servidor..
         /// </summary>
         internal static string WeatherPageDescription {
             get {
@@ -241,7 +232,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Previsão do tempo.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Pronóstico del tiempo.
         /// </summary>
         internal static string WeatherPageTitlle {
             get {
@@ -250,7 +241,7 @@ namespace AdviceUserInterfacePattern.Server.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Bem-vindo ao seu novo aplicativo..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Bienvenido a tu nueva aplicación..
         /// </summary>
         internal static string Welcome {
             get {

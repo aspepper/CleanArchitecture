@@ -2,7 +2,7 @@
 using Microsoft.JSInterop;
 using System.Globalization;
 
-namespace AdviceUserInterfacePattern.Server.Shared
+namespace AcadesUserInterfacePattern.Server.Shared
 {
     public partial class NavMenu
     {
@@ -27,7 +27,7 @@ namespace AdviceUserInterfacePattern.Server.Shared
         private async Task<CultureInfo> GetCurrentCulture()
         {
             var jsInterop = (IJSInProcessRuntime)JSRuntime;
-            var result = await jsInterop.InvokeAsync<string>("adviceComplianceCurrentCulture.get");
+            var result = await jsInterop.InvokeAsync<string>("AcadesComplianceCurrentCulture.get");
             if (result != null) { return new CultureInfo(result); }
             return new CultureInfo("pt-BR");
         }
@@ -41,7 +41,7 @@ namespace AdviceUserInterfacePattern.Server.Shared
             if (currentInfo.Name != cultureInfo.Name)
             {
                 var js = (IJSInProcessRuntime)JSRuntime;
-                js.InvokeVoid("adviceComplianceCurrentCulture.set", cultureInfo.Name);
+                js.InvokeVoid("AcadesComplianceCurrentCulture.set", cultureInfo.Name);
                 Console.WriteLine($"value.Name = {cultureInfo.Name}");
                 Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
             }
@@ -51,7 +51,7 @@ namespace AdviceUserInterfacePattern.Server.Shared
         {
             isDark = !isDark;
             var js = (IJSInProcessRuntime)JSRuntime;
-            js.InvokeVoid("adviceComplianceCurrentTheme.set", isDark.ToString().ToLower());
+            js.InvokeVoid("AcadesComplianceCurrentTheme.set", isDark.ToString().ToLower());
 
             // Notifica a alteração do modo escuro/claro para o componente pai
             OnDarkModeChanged.InvokeAsync(isDark);

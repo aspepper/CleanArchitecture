@@ -1,4 +1,4 @@
-﻿namespace AdviceUserInterfacePattern.Server.Pages
+﻿namespace AcadesUserInterfacePattern.Server.Pages
 {
     public partial class Counter
     {

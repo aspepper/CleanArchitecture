@@ -1,18 +1,28 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Net.Http.Json;
 
-namespace AdviceUserInterfacePattern.Server.Shared
+namespace AcadesUserInterfacePattern.Server.Pages
 {
-    public partial class SurveyPrompt
+    public partial class FetchData
     {
-        // Demonstrates how a parent component can supply parameters
-        [Parameter]
-        public string? Title { get; set; }
+        private WeatherForecast[]? forecasts;
 
-        [Parameter]
-        public string? Message { get; set; }
+        protected override async Task OnInitializedAsync()
+        {
+            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        }
 
-        public MarkupString HtmlMessage { get { return new(string.Format((Message ?? ""), "<a target=\"_blank\" class=\"font-weight-bold\" href=\"https://go.microsoft.com/fwlink/?linkid=2186157\">", "</a>")); } }
+        public class WeatherForecast
+        {
+            public DateOnly Date { get; set; }
+
+            public int TemperatureC { get; set; }
+
+            public string? Summary { get; set; }
+
+            public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        }
 
         [Inject]
         public required IJSRuntime JSRuntime { get; set; }
@@ -23,7 +33,7 @@ namespace AdviceUserInterfacePattern.Server.Shared
             get
             {
                 var js = (IJSInProcessRuntime)JSRuntime;
-                var result = js.Invoke<string>("adviceComplianceCurrentTheme.get");
+                var result = js.Invoke<string>("AcadesComplianceCurrentTheme.get");
                 _isDarkTheme = bool.Parse(result ?? "false");
                 return _isDarkTheme;
             }
@@ -31,9 +41,10 @@ namespace AdviceUserInterfacePattern.Server.Shared
             {
                 _isDarkTheme = value;
                 var js = (IJSInProcessRuntime)JSRuntime;
-                js.InvokeVoid("adviceComplianceCurrentTheme.set", _isDarkTheme.ToString());
+                js.InvokeVoid("AcadesComplianceCurrentTheme.set", _isDarkTheme.ToString());
             }
         }
+
         private string GetMainCssClass()
         {
             return IsDark ? "dark-mode" : "light-mode";

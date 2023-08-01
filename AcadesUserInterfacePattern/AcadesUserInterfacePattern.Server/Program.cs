@@ -1,4 +1,4 @@
-using AdviceUserInterfacePattern.Server;
+using AcadesUserInterfacePattern.Server;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
@@ -14,7 +14,7 @@ builder.Services.AddLocalization();
 var host = builder.Build();
 
 var jsInterop = host.Services.GetRequiredService<IJSRuntime>();
-var result = await jsInterop.InvokeAsync<string>("adviceComplianceCurrentCulture.get");
+var result = await jsInterop.InvokeAsync<string>("AcadesComplianceCurrentCulture.get");
 CultureInfo culture;
 if (result != null)
 {
@@ -23,7 +23,7 @@ if (result != null)
 else
 {
     culture = new CultureInfo("pt-BR");
-    await jsInterop.InvokeVoidAsync("adviceComplianceCurrentCulture.set", "pt-BR");
+    await jsInterop.InvokeVoidAsync("AcadesComplianceCurrentCulture.set", "pt-BR");
 }
 CultureInfo.DefaultThreadCurrentCulture = culture;
 CultureInfo.DefaultThreadCurrentUICulture = culture;

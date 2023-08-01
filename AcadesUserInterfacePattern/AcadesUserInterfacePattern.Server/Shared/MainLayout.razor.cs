@@ -1,29 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Net.Http.Json;
 
-namespace AdviceUserInterfacePattern.Server.Pages
+namespace AcadesUserInterfacePattern.Server.Shared
 {
-    public partial class FetchData
+    public partial class MainLayout
     {
-        private WeatherForecast[]? forecasts;
-
-        protected override async Task OnInitializedAsync()
-        {
-            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-        }
-
-        public class WeatherForecast
-        {
-            public DateOnly Date { get; set; }
-
-            public int TemperatureC { get; set; }
-
-            public string? Summary { get; set; }
-
-            public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-        }
-
         [Inject]
         public required IJSRuntime JSRuntime { get; set; }
 
@@ -33,7 +14,7 @@ namespace AdviceUserInterfacePattern.Server.Pages
             get
             {
                 var js = (IJSInProcessRuntime)JSRuntime;
-                var result = js.Invoke<string>("adviceComplianceCurrentTheme.get");
+                var result = js.Invoke<string>("AcadesComplianceCurrentTheme.get");
                 _isDarkTheme = bool.Parse(result ?? "false");
                 return _isDarkTheme;
             }
@@ -41,7 +22,7 @@ namespace AdviceUserInterfacePattern.Server.Pages
             {
                 _isDarkTheme = value;
                 var js = (IJSInProcessRuntime)JSRuntime;
-                js.InvokeVoid("adviceComplianceCurrentTheme.set", _isDarkTheme.ToString());
+                js.InvokeVoid("AcadesComplianceCurrentTheme.set", _isDarkTheme.ToString());
             }
         }
 

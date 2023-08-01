@@ -1,0 +1,127 @@
+﻿<div class="row top">
+    <div class="col-6">
+        <div class="borda">
+            <label class="letter ">Finanças</label>
+
+        </div>
+        <div class="space letter-tabela mt-2">
+            <label class=""> Faturamento 2022</label>
+            <label class=""> Faturamento 2021</label>
+            <label class=""> Capital Social</label>
+        </div>
+        <div class="space letter-tabela">
+            <label class="text-center"> R$ 123.124.000.000</label>
+            <label class="text-center"> R$ 12.341.243.000</label>
+            <label class="text-center"> R$ 124.124.000.000</label>
+        </div>
+        <label class="mt-5 letter-saldo">Saldo em Aberto de Operações</label>
+        <hr class="hr">
+        <div class="letter-tabela">
+            <label class="mt-2">Valor em Operações de Crédito Ativas</label>
+        </div>
+        <div class="letter-tabela">
+            <label class="">R$ 850.000.000.000</label>
+        </div>
+        <div class="letter-tabela mt-2">
+            <label class="">Valor em TVM</label>
+        </div>
+        <div class="letter-tabela ">
+            <label class="">R$ 120.000.000</label>
+        </div>
+        <div class="letter-tabela mt-2">
+            <label class="">Proposta de OCA sob Avaliação</label>
+        </div>
+        <div class="letter-tabela">
+            <label class="">R$ 500.000.000.000.000</label>
+        </div>
+
+        @*   <table>
+        <thead class="">
+        <tr>
+        <th></th>
+        <th class="letter">Faturamento 2022</th>
+        <th class="letter text-center">Faturamento 2021</th>
+        <th class="letter text-center">Capital Social</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var itemFinanca in Financeiros)
+        {
+        <tr>
+        <td><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+        <td class="letter-tabela">@itemFinanca.Faturamento2022.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+        <td class="letter-tabela text-center">@itemFinanca.Faturamento2021.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+        <td class="letter-tabela text-center">@itemFinanca.CapitalSocial.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+        </tr>
+        }
+        </tbody>
+        </table>*@
+    </div>
+    <div class="col-6">
+        <div class="borda">
+            <label class="letter ">Sócio/Administradores</label>
+        </div>
+        <table class="tamanho">
+            <thead class="panel">
+                <tr>
+                    <th></th>
+                    <th class="letter">Nome</th>
+                    <th class="letter text-center">Documento</th>
+                    <th class="letter text-center">Tipo</th>
+                    <th class="letter text-center">Particip.</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var socio in Adminis)
+                {
+                    <tr>
+                        <td><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                        <td class="letter-tabela">@socio.Nome</td>
+                        <td class="letter-tabela text-center">@socio.Documento</td>
+                        <td class="letter-tabela text-center">@socio.Tipo</td>
+                        <td class="letter-tabela text-center">@socio.Particip.ToString("0'%", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+        <hr class="hr" >
+        <div class="space">
+            <img src="./assets/socio/Administrador.svg"><label class="">Administrador</label>
+            <img src="./assets/socio/Representante.svg"><label class="">Representante</label>
+            <img src="./assets/socio/Diretor.svg"><label class="">Diretor</label>
+            <img src="./assets/socio/Sócio.svg"><label class="">Sócio</label>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="borda">
+            <label class="letter-table">Participações Societárias e Coligadas  </label>
+        </div>
+    </div>
+    <table class="tamanho">
+        <thead class="">
+            <tr class="">
+                <th></th>
+                <th class="letter">Nome</th>
+                <th class="letter text-center">Relacionamento</th>
+                <th class="letter text-center">Atividade Econômica</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var participacao in Coligada)
+            {
+                <tr>
+                    <td><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                    <td class="letter-tabela">@participacao.Nome</td>
+                    <td class="letter-tabela text-center">@participacao.Relacionamento</td>
+                    <td class="letter-tabela text-center">@participacao.AtividadeEconomica</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,90 @@
+﻿@inject IStringLocalizer<Resource> Loc
+@inject NavigationManager Navigation
+
+@*<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href=""><img src="/images/logo-Acades.png" height="35" /></a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> @Loc["MenuHome"]
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> @Loc["MenuCounter"]
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> @Loc["MenuFetchData"]
+            </NavLink>
+        </div>
+    </nav>
+
+    <div class="fixed-bottom botton-language mb-3">
+        <div class="col-12 d-flex justify-content-center mb-3">
+            <button class="btn btn-dark" @onclick="ToggleDarkMode">
+                Ativar/Desativar DarkMode
+            </button>
+        </div>
+
+        <div class="col-12 row d-flex justify-content-center">
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("pt-BR"))"><img src="images/portugues.png" height="30" alt="" /></a></div>
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("en-US"))"><img src="images/ingles.png" height="30" alt="" /></a></div>
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("es-ES"))"><img src="images/espanhol.png" height="30" alt="" /></a></div>
+        </div>
+    </div>
+</div>*@
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <i class="fa-solid fa-bars fa-2x" style="color: #fff;"></i>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        </button>
+        <img src="" asp-append-version="true">
+
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column pt-3">
+        <div class="nav-item px-3 text-center">
+            <img src="/assets/profile-pic.jpg" class="foto">
+        </div>
+        <div class="nav-item px-3 text-center">
+            <label class="nome-sidebar">Fabiana Santos</label><br>
+            <label class="empresa-sidebar">Empresa Growth</label>
+        </div>
+        <div class="ms-2 mt-5">
+            <img src="./assets/socio/CNAEs.svg"><label class="nome-icon ms-2">CNAEs</label>
+        </div>
+        <div class="ms-2">
+            <img src="./assets/socio/Avaliados.svg"><label class="nome-icon ms-2">Avaliados</label>
+        </div>
+        <div class="ms-2">
+            <img src="./assets/socio/Arvore.svg"><label class="nome-icon ms-2">Modelo de Risco</label>
+        </div>
+        <div class="ms-2">
+            <img src="./assets/socio/Reportes2.svg"><label class="nome-icon ms-2">Reportes</label>
+        </div>
+        <div class="nav-item px-1 text-center">
+        </div>
+    </nav>
+
+    <div class="fixed-bottom botton-language mb-3">
+        <div class="col-12 row d-flex justify-content-center">
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("pt-BR"))"><img src="images/portugues.png" height="30" alt="" /></a></div>
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("en-US"))"><img src="images/ingles.png" height="30" alt="" /></a></div>
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("es-ES"))"><img src="images/espanhol.png" height="30" alt="" /></a></div>
+        </div>
+    </div>
+</div>
+

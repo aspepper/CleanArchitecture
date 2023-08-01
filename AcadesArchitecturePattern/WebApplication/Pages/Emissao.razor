@@ -1,0 +1,113 @@
+﻿@inject IStringLocalizer<Resource> Loc
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row  mt-3">
+            <div class="col-6 space">
+                <label class="historic">Histórico de Absorções e Emissões de GEE</label>
+            </div>
+            <div class="col-6">
+            </div>
+        </div>
+        <hr class=" hr mt-2">
+        <table class="">
+            <thead class="panel alt ">
+                <tr>
+                    <th class=""></th>
+                    <th class="descricao">Descrição</th>
+                    <th class="descricao">Situação</th>
+                    <th class="descricao">Quantidade (ton/ano)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var situacao in Situa)
+                {
+                    <tr >
+                        <td class=""> <i class="fa-regular fa-pen-to-square Btn-cursor" style="color: #16a232;"></i></td>
+                        <td class="letter mt-2">@situacao.descricao</td>
+                        <td class="letter">@situacao.situacao</td>
+                        <td class="letter">@situacao.quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row mt-5">
+            <div class="col-6 ">
+                <label class="historic">Histórico de Absorções e Emissões de GEE</label>
+                            </div>
+            <div class="col-6">
+            </div>
+        </div>
+        <hr class=" hr mt-2">
+        <table class="">
+            <thead class="panel">
+                <tr>
+                    <th class=""></th>
+                    <th class="descricao">Descrição</th>
+                    <th class="descricao">Situação</th>
+                    <th class="descricao">Quantidade (ton/ano)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var emiss in GEE)
+                {
+                    <tr>
+                        <td class=""><i class="fa-regular fa-pen-to-square Btn-cursor" style="color: #16a232;"></i></td>
+                        <td class="letter">@emiss.descricao</td>
+                        <td class="letter">@emiss.situacao</td>
+                        <td class="letter">@emiss.quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row mt-5">
+            <div class="col-6 ">
+                <label class="historic">Compensação de Emissor de GEE</label>
+
+            </div>
+            <div class="col-6">
+            </div>
+        </div>
+        <hr class=" hr mt-2">
+        <table class="">
+            <thead class="panel">
+                <tr>
+                    <th class=""></th>
+                    <th class="descricao">Descrição</th>
+                    <th class="descricao">Situação</th>
+                    <th class="descricao">Quantidade (ton/ano)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var emiss in GEE)
+                {
+                    <tr>
+                        <td class=""><i class="fa-regular fa-pen-to-square Btn-cursor" style="color: #16a232;" id="ModalEmissao" data-bs-toggle="modal" data-bs-target="#ModalEmissao"></i></td>
+                        <td class="letter">@emiss.descricao</td>
+                        <td class="letter">@emiss.situacao</td>
+                        <td class="letter">@emiss.quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<ModalEmissao></ModalEmissao>

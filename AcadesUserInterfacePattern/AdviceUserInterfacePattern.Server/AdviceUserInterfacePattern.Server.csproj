@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<None Remove="Pages\FetchData.razor.css" />
+	<None Remove="Shared\SurveyPrompt.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Content Include="Pages\FetchData.razor.css" />
+	<Content Include="Shared\SurveyPrompt.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="MatBlazor" Version="2.10.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.8" />
+	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.8" PrivateAssets="all" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<EmbeddedResource Update="Resources\Resource.en-GB.resx">
+		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	</EmbeddedResource>
+  </ItemGroup>
+	
+</Project>

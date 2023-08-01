@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AdviceUserInterfacePattern.Server</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="AdviceUserInterfacePattern.Server.styles.css" rel="stylesheet" />
+    <link href="JWT.Auth.BlazorUI.styles.css" rel="stylesheet" />
+    <script src="_content/MatBlazor/dist/matBlazor.js"></script>
+    <link href="_content/MatBlazor/dist/matBlazor.css" rel="stylesheet" />
+    <script src="_framework/blazor.webassembly.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script>
+        window.adviceComplianceCurrentCulture = {
+            get: () => localStorage['AdviceComplianceCurrentCulture'],
+            set: (value) => localStorage['AdviceComplianceCurrentCulture'] = value
+        };
+        window.adviceComplianceCurrentTheme = {
+            get: () => localStorage['AdviceComplianceCurrentThemeDark'],
+            set: (value) => localStorage['AdviceComplianceCurrentThemeDark'] = value
+        };
+    </script>
+</body>
+
+</html>

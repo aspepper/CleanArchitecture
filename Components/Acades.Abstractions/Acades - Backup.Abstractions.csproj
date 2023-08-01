@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2</TargetFramework>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<Nullable>enable</Nullable>
+		<LangVersion>8.0</LangVersion>
+		<Version>1.0</Version>
+		<Title>Acades.Abstractions</Title>
+		<Authors>Alex Pìmenta</Authors>
+		<Company>Acades Compliance</Company>
+		<Description>
+			EN: Process orchestration structure and compensation.
+			PT: Estrutura de orquestração dos processos e compensações.
+		</Description>
+		<RootNamespace>Acades.Saga</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<PackageVersion>$([System.DateTime]::UtcNow.Year).$([System.DateTime]::UtcNow.Month).$([System.DateTime]::UtcNow.Day).$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString(0))-alpha</PackageVersion>
+		<CreateNuGetPackage>false</CreateNuGetPackage>
+	</PropertyGroup>
+
+	<Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition=" '$(Configuration)|$(CreateNuGetPackage)' == 'Debug|true' Or '$(Configuration)' == 'Release' ">
+		<!--<Exec Command="dotnet nuget push &quot;bin\$(Configuration)\$(PackageId).$(PackageVersion).nupkg&quot; - -source Local" />-->
+		<!-- Exec Command="dotnet nuget push &quot;bin\$(Configuration)\$(PackageId).$(PackageVersion).nupkg&quot; - -api-key oy2mx6ej56ajnak56enqwbmdid4pkz4eznjyduoy3halya - -source https://api.nuget.org/v3/index.json" /-->
+	</Target>
+
+</Project>

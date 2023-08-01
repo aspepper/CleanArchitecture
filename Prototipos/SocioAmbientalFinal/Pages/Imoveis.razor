@@ -1,0 +1,148 @@
+﻿<div class="row">
+    <div class="col-12">
+        <div class="row mt-2">
+            <div class="col-6 ">
+                <div class="row">
+                    <div class="col-6 panel  px-0">
+                        <label class="nome mt-2 ms-2">Imóveis</label>
+                        <Botao SetClass="float-end Btn-cursor mt-1" Icon="fa-solid fa-plus" Text="Adicionar"></Botao>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 px-0">
+                        <table class="table">
+                            <thead>
+                                <tr class="tr">
+                                    <th></th>
+                                    <th class="descri text-center">Descrição</th>
+                                    <th class="descri text-center">Situação</th>
+                                    <th class="descri text-center">Tipo</th>
+                                    <th class="descri text-center">Garantia?</th>
+                                    <th class="descri text-center">CAFIR</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var imovel in ImoveisPaginado.Items)
+                                {
+                                    <tr>
+                                        <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                                        <td class="letter text-center">@imovel.descricao</td>
+                                        <td class="letter text-center">
+                                            @if (imovel.situacao == "positivo")
+                                            {
+                                                <img src="./assets/socio/Positivo.svg">
+                                            }
+                                            else if (imovel.situacao == "negativo")
+                                            {
+                                                <img src="./assets/socio/MãoVermelha.svg">
+
+                                            }
+                                            else if (imovel.situacao == "atencao")
+                                            {
+                                                <img src="./assets/socio/Alerta Laranja.svg">
+
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        </td>
+                                        <td class="letter text-center"> 
+                                            @if (imovel.tipo == "positivo")
+                                            {
+                                                <img src="./assets/socio/Imoveis.svg">
+                                            }
+                                            else if (imovel.tipo == "negativa")
+                                            {
+                                                <img src="./assets/socio/Sitio.svg">
+                                            }
+                                        </td>
+                                        <td class="letter text-center"> 
+                                            @if (imovel.garantia == "positivo")
+                                            {
+                                                <img src="./assets/socio/Circulo.svg">
+                                            }
+                                            else if (imovel.garantia == "negativo")
+                                            {
+                                                <img src="./assets/socio/X.svg">
+
+                                            }
+                                        </td>
+                                        <td class="letter text-center"> 
+                                            @if (imovel.cafir == "positivo")
+                                            {
+                                                <img src="./assets/socio/Total.svg">
+                                            }
+                                            else if (imovel.cafir == "negativo")
+                                            {
+                                                <img src="./assets/socio/X.svg">
+
+                                            }
+                                            else if (imovel.cafir == "atencao")
+                                            {
+                                                <img src="./assets/socio/Interrogaçao.svg">
+
+                                            }
+                                           
+                                        </td>
+                                        
+                                        <td class="letter ">
+                                           <img src="./assets/socio/Visualizar.svg">
+                                        </td>
+                                        <td class="letter mt-2"><img src="./assets/socio/XBolinha.svg"></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="mt-3">
+                            <nav class="barra" aria-label="Navegação de página exemplo">
+                                <ul class="pagination pagination-sm">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Anterior">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Anterior</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Próximo">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Próximo</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="box-grafico-mapa">
+                    <label class="titulo-grafico">Mapa</label>
+                    <i class="fa-solid fa-up-right-from-square float-end"></i>
+                    <hr class="hr">
+                    <div id="mapa" style="height: 95%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+ 

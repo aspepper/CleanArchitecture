@@ -1,0 +1,108 @@
+﻿@page "/novaimovel"
+@using System.ComponentModel
+@using Microsoft.AspNetCore.Components
+<div class="modal" tabindex="-1" id="modalNovoImovel" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Novo Imóvel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label class="">Detalhes</label>
+                <Botao SetClass="float-end Btn-cursor btn-success mt-1" Icon="fa-solid fa-Book" Text="Salvar" @onclick="SalvarImovel"></Botao>
+            </div>
+            <hr class="hr">
+            <div class="row">
+                <div class="col-4">
+                    <label class="">Tipo do Imóvel</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="Rural" >
+                        <label class="form-check-label" for="inlineRadio1">Rural</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="Urbano">
+                        <label class="form-check-label" for="inlineRadio2">Urbano</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label class="">Área Total(ha)</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="text" name="inlineRadioOptions" id="inlineRadio1" @bind="NovoImovel.AreaTotal">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label class="">Garantia?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="true">
+                        <label class="form-check-label" for="inlineRadio1">Sim</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="false">
+                        <label class="form-check-label" for="inlineRadio2">Não</label>
+                    </div>
+                </div>
+            </div>
+            <form class="row g-3">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="" class="form-label">Denominação</label>
+                        <input type="text" class="form-control" id="inputEmail4" @bind="NovoImovel.Denominacao">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Localização/Logradouro</label>
+                        <input type="text" class="form-control" @bind="NovoImovel.Localizacao">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputAddress" class="form-label">Número</label>
+                        <input type="text" class="form-control" id="inputAddress" @bind="NovoImovel.Numero" placeholder="1234 Main St">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Complemento</label>
+                        <input type="text" class="form-control" @bind="NovoImovel.Complemento">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputAddress" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="inputAddress" @bind="NovoImovel.Bairro" placeholder="1234 Main St">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputAddress" class="form-label">CEP</label>
+                        <input type="text" class="form-control" id="inputAddress" @bind="NovoImovel.CEP" placeholder="1234 Main St">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputState" class="form-label">Município</label>
+                        <select class="form-select" @bind="NovoImovel.Municipio">
+                            <option selected>Choose...</option>
+                            <!-- Adicione outras opções do select, se houver -->
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputState" class="form-label">Estado</label>
+                        <select class="form-select" @bind="NovoImovel.Estado">
+                            <option selected>Choose...</option>
+                            <!-- Adicione outras opções do select, se houver -->
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputState" class="form-label">País</label>
+                        <select class="form-select" @bind="NovoImovel.Pais">
+                            <option selected>Choose...</option>
+                            <!-- Adicione outras opções do select, se houver -->
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+              <div class="row">
+
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@inject IStringLocalizer<ResourcePtBR> Loc
+@inject NavigationManager Navigation
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href=""><img src="/images/logo-advice.png" height="35" /></a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> @Loc["MenuHome"]
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> @Loc["MenuCounter"]
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> @Loc["MenuFetchData"]
+            </NavLink>
+        </div>
+    </nav>
+
+    <div class="fixed-bottom botton-language mb-3">
+        <div class="col-12 d-flex justify-content-center mb-3">
+            <button class="btn btn-dark" @onclick="ToggleDarkMode">
+                Ativar/Desativar DarkMode
+            </button>
+        </div>
+
+        <div class="col-12 row d-flex justify-content-center">
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("pt-BR"))"><img src="images/bandeira-brasil.png" height="30" alt="" /></a></div>
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("en-US"))"><img src="images/bandeira-reino-unido.png" height="30" alt="" /></a></div>
+            <div class="col-2"><a role="button" value="pt-BR" @onclick="@(async(e) => await OnChangeLanguageClickAsync("es-ES"))"><img src="images/bandeira-espanha.png" height="30" alt="" /></a></div>
+        </div>
+    </div>
+</div>

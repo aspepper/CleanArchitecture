@@ -1,0 +1,10 @@
+﻿@page "/counter"
+@inject IStringLocalizer<ResourcePtBR> Loc
+
+<PageTitle>@Loc["CounterPageTitle"]</PageTitle>
+
+<h1>@Loc["CounterPageTitle"]</h1>
+
+<p role="status">@Loc["CounterPageLabelCurrrentCount"]: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">@Loc["CounterPageLabelButtonClick"]</button>

@@ -1,0 +1,74 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <ul class="navbar-nav">
+                <li class="nav-item nav-borda-esquerda ">
+                    <a href="javascript:;" class="nav-link m-0 px-4" (click)="mudaTema(); escolheTema()">
+                        <img src="./assets/socio/" alt="" id="mudaTema">
+                    </a>
+                </li>
+                <li class="nav-item nav-borda-esquerda ">
+                    <a href="javascript:;" class="nav-link m-0 px-4">
+                        <img src="assets/notification.png" alt="">
+                    </a>
+                </li>
+                <li class="nav-item nav-borda-esquerda ">
+                    <a href="javascript:;" class="nav-link m-0 px-4" (click)="mudaTema(); escolheTema()">
+                        <img src="assets/dark.png" alt="" id="mudaTema">
+                    </a>
+                </li>
+                <li class="nav-item nav-borda-esquerda ">
+                    <a routerLink="/corporativo" class="nav-link m-0 px-4">
+                        <img src="assets/settings.png" alt="">
+                    </a>
+                </li>
+                <li class="nav-item nav-borda-esquerda ">
+                    <a routerLink="/portal" class="nav-link m-0 px-4">
+                        <img src="assets/portal.png" alt="">
+                    </a>
+                </li>
+                <li class="nav-item nav-borda-esquerda ">
+                    <a href="javascript:;" class="nav-link m-0 px-4">
+                        <img src="assets/sair.png" alt="" (click)="logout()">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <article class="content px-4">
+            <div class="body">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="header">Análise do Cliente</label>
+                    </div>
+                    <div class="col-6">
+                        <Botao SetClass="float-end Btn-cursor" Icon="fa-solid fa-arrow-rotate-left" Text="Voltar"></Botao>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="nome">ADVICE INFORMÁTICA LTDA</label>
+                        <label class="number">-CNPJ: 02.369.939/0001-53</label>
+                    </div>
+                    <div class="col-6 ">
+                        <label class="situacao">SITUAÇÃO DO AVALIADO <img src=./assets/socio/Positivo.svg></label>
+                        <label class="situacao ms-2">FAIXA DE RISCO  <img class="img-vector" src="./assets/socio/Vector.svg"></label><label class="ponto"> 78 PONTOS</label>
+                    </div>
+                </div>
+            </div>
+            @Body
+        </article>
+    </main>
+    <footer class="faixa-rodape"></footer>
+
+</div>
+
+

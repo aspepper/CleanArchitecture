@@ -1,0 +1,46 @@
+﻿body {
+}
+
+titulo {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 17px;
+    color: #fbfbfb;
+}
+
+.panel {
+    color: #ffffff;
+    background: #234568;
+    border-radius: 10px 10px 0 0;
+    }
+
+.panel-descricao {
+    background: #D8D8D8;
+}
+
+.descricao {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 500px;
+    color: #2B2B2C;
+}
+
+.center {
+    margin-left: 50%;
+}
+
+.letter {
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.tabela {
+    width: 100%;
+    border:none;
+    background:#d8d8d8;
+}
+
+.alt{
+    height:40px;
+}

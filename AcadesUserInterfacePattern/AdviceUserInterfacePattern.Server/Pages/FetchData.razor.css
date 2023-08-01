@@ -1,0 +1,19 @@
+﻿.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+    .dark-mode table tr {
+        background-color: #121212;
+        color: #fff;
+    }
+
+.light-mode {
+    background-color: #fff;
+    color: #333;
+}
+
+    .light-mode table tr {
+        background-color: #fff;
+        color: #333;
+    }

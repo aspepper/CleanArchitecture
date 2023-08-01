@@ -1,0 +1,10 @@
+﻿@page "/"
+@inject IStringLocalizer<ResourcePtBR> Loc
+
+<PageTitle>Index</PageTitle>
+
+<h1>@Loc["Greeting"]</h1>
+
+@Loc["HomeText"]
+
+<SurveyPrompt Title="@Loc["SurveyPromptTitle"]" Message="@Loc["SurveyPromptText"]" />

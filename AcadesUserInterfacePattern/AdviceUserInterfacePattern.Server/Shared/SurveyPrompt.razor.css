@@ -1,0 +1,26 @@
+﻿.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+    .dark-mode div {
+        background-color: #181818;
+    }
+
+    .dark-mode span a:hover {
+        color: #fff;
+    }
+
+.light-mode {
+    background-color: #fff;
+    color: #333;
+}
+
+    .light-mode table tr {
+        background-color: #fff;
+        color: #333;
+    }
+
+    .light-mode div {
+        background-color: #eee;
+    }

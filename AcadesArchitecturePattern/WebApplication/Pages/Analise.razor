@@ -1,0 +1,416 @@
+﻿@page "/analise"
+@inject IStringLocalizer<Resource> _localizer
+
+<div class="row mt-2">
+    <div class="col-12 ">
+        <div class="row mt-3">
+            <div class="col-12 px-0 ">
+                <label class="letter">Risco Ambiental <img src="./assets/socio/FolhaVermelha.svg"></label>
+            </div>
+            <hr class="mt-2 hr">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="">
+                    <thead class="panel">
+                        <tr class="">
+                            <th></th>
+                            <th class="descricao">Descrição</th>
+                            <th class="descricao">Risco</th>
+                            <th class="descricao">Justificação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var risco in AmbientalPaginado.Items)
+                        {
+                            <tr>
+                                <td><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                                <td class="letter-small">@risco.Descricao</td>
+                                <td class="letter ">
+                                    @if (risco.RiscoTipo == "positivo")
+                                    {
+                                        <img src="./assets/socio/folhavetor (2).svg">
+                                    }
+                                    else if (risco.RiscoTipo == "negativo")
+                                    {
+                                        <img src="./assets/socio/FolhaVermelha.svg">
+                                    }
+                                    else if (risco.RiscoTipo == "analise")
+                                    {
+                                        <img src="./assets/socio/FolhaAmarela.svg">
+                                    }
+                                    else if (risco.RiscoTipo == "atencao")
+                                    {
+                                        <img src="./assets/socio/FolhaLaranja.svg">
+                                    }
+                                </td>
+                                <td class="letter-small">@risco.Justificacao <img src="./assets/socio/Visualizar.svg"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="mt-5">
+                    <nav class="space" aria-label="Navegação de página exemplo">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Anterior">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                            </li>
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <li class="page-item @(i == AmbientalPaginado.PageIndex ? "active" : "")"><a class="page-link" href="#">@i</a></li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Próximo">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Próximo</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="row mt-1">
+            <div class="col-12">
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <label class="letter">Risco Climático de Transição <img src="./assets/socio/folhavetor (2).svg"></label>
+                    </div>
+                    <hr class="mt-2 hr">
+                </div>
+
+                <table class="">
+                    <thead class="panel mt-2">
+                        <tr class="">
+                            <th></th>
+                            <th class="descricao">Descrição</th>
+                            <th class="descricao">Risco</th>
+                            <th class="descricao">Justificativa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var climatico in TransicaoPaginado.Items)
+                        {
+                            <tr>
+                                <td><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                                <td class="letter-small">@climatico.Descricao</td>
+                                <td class="">
+                                    @if (climatico.RiscoTipo == "positivo")
+                                    {
+                                        <img src="./assets/socio/folhavetor (2).svg">
+                                    }
+                                    else if (climatico.RiscoTipo == "negativo")
+                                    {
+                                        <img src="./assets/socio/FolhaVermelha.svg">
+                                    }
+                                    else if (climatico.RiscoTipo == "analise")
+                                    {
+                                        <img src="./assets/socio/FolhaAmarela.svg">
+                                    }
+                                    else if (climatico.RiscoTipo == "atencao")
+                                    {
+                                        <img src="./assets/socio/FolhaLaranja.svg">
+                                    }
+                                </td>
+                                <td class="letter-small">@climatico.Justificacao <img src="./assets/socio/Visualizar.svg"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="mt-5">
+                    <nav class="space" aria-label="Navegação de página exemplo">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Anterior">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                            </li>
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <li class="page-item @(i == TransicaoPaginado.PageIndex ? "active" : "")"><a class="page-link" href="#">@i</a></li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Próximo">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Próximo</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row mt-3">
+            <div class="col-12 px-o">
+                <label class="letter">Risco Climático Físico <img src="./assets/socio/FolhaAmarela.svg"></label>
+            </div>
+            <hr class="mt-2 hr">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="">
+                    <thead class="panel">
+                        <tr class="">
+                            <th></th>
+                            <th class="descricao">Descrição</th>
+                            <th class="descricao">Risco</th>
+                            <th class="descricao">Justificação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var justica in Fisico)
+                        {
+                            <tr>
+                                <td><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                                <td class="letter-small">@justica.Descricao</td>
+                                <td class="">
+                                    @if (justica.RiscoTipo == "positivo")
+                                    {
+                                        <img src="./assets/socio/folhavetor (2).svg">
+                                    }
+                                    else if (justica.RiscoTipo == "negativo")
+                                    {
+                                        <img src="./assets/socio/FolhaVermelha.svg">
+                                    }
+                                    else if (justica.RiscoTipo == "analise")
+                                    {
+                                        <img src="./assets/socio/FolhaAmarela.svg">
+                                    }
+                                    else if (justica.RiscoTipo == "atencao")
+                                    {
+                                        <img src="./assets/socio/FolhaLaranja.svg">
+                                    }
+                                </td>
+
+                                <td class="letter-small">@justica.Justificacao <img src="./assets/socio/Visualizar.svg"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="mt-5">
+                    <nav class="space" aria-label="Navegação de página exemplo">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Anterior">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                            </li>
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <li class="page-item @(i == AmbientalPaginado.PageIndex ? "active" : "")"><a class="page-link" href="#">@i</a></li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Próximo">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Próximo</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="row mt-1">
+            <div class="col-12">
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <label class="letter">Risco Climático Social <img src="./assets/socio/FolhaLaranja.svg"></label>
+                    </div>
+                    <hr class="mt-2 hr">
+                </div>
+
+                <table class="">
+                    <thead class="panel mt-2">
+                        <tr class="">
+                            <th></th>
+                            <th class="descricao">Descrição</th>
+                            <th class="descricao">Risco</th>
+                            <th class="descricao">Justificativa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var analise in Social)
+                        {
+                            <tr>
+                                <td><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                                <td class="letter-small">@analise.Descricao</td>
+                                <td class="">
+                                    @if (analise.RiscoTipo == "positivo")
+                                    {
+                                        <img src="./assets/socio/folhavetor (2).svg">
+                                    }
+                                    else if (analise.RiscoTipo == "negativo")
+                                    {
+                                        <img src="./assets/socio/FolhaVermelha.svg">
+                                    }
+                                    else if (analise.RiscoTipo == "analise")
+                                    {
+                                        <img src="./assets/socio/FolhaAmarela.svg">
+                                    }
+                                    else if (analise.RiscoTipo == "atencao")
+                                    {
+                                        <img src="./assets/socio/FolhaLaranja.svg">
+                                    }
+                                </td>
+                                <td class="letter-small">@analise.Justificacao <img src="./assets/socio/Visualizar.svg"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="mt-5">
+                    <nav class="space" aria-label="Navegação de página exemplo">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Anterior">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                            </li>
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <li class="page-item @(i == TransicaoPaginado.PageIndex ? "active" : "")"><a class="page-link" href="#">@i</a></li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Próximo">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Próximo</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="">
+    <div class="">
+        <div class="row top mt-4">
+            <div class="col-12">
+                <div class="borda">
+                    <label class="lette">Parecer do Cliente</label>
+                    <Botao SetClass="float-end Btn-cursor" Icon="fa-solid fa-plus" Text="Adicionar"></Botao>
+                    <hr class="hr">
+                </div>
+                <div class="parecer">
+                    <label class="">Data e Hora do Parecer</label>
+                    <label class="">Responsável pelo Parecer</label>
+                    <label class="">Situação do Cliente</label>
+                </div>
+                <div class="clt me-2">
+                    <label class="">@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</label>
+                    <label class="">Victor da Cruz</label>
+                    <label class=""><img src="./assets/socio/Positivo.svg"></label>
+                </div>
+                <div class="">
+                    <label class="mt-5 parecer">Parecer</label>
+                    <label class="let">
+                        Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
+                        e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos
+                        e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos,
+                        como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado.
+                    </label>
+                </div>
+
+
+                <div class="parecer">
+                    <label class="mt-5 letter-small">Histórico de Pareceres</label>
+                </div>
+                <div class="">
+                    <input type="text"><Botao SetClass="btn-socio  Btn-cursor" Icon="fa-solid fa-magnifying-glass" Id="2" Img="" ></Botao>
+                </div>
+                <hr class="hr">
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <label class=""></label>
+                    </div>
+                </div>
+                <table class="table  ">
+                    <thead class="panel descricao">
+                        <tr class="">
+                            <th class=""></th>
+                            <th class="">Descrição</th>
+                            <th class="">Usuário</th>
+                            <th class="">Identificação</th>
+                            <th class="">Data & Hora</th>
+                            <th class="">Tipo</th>
+                            <th class="">Parecer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var parecer in Cliente)
+                        {
+                            <tr>
+                                <td class=""><i class="fa-regular fa-pen-to-square Btn-cursor" style="color: #16a232;"></i></td>
+                                <td class="letter-small">@parecer.Descricao</td>
+                                <td class="letter-small">@parecer.Usuario</td>
+                                <td class="letter-small">@parecer.Identificacao</td>
+                                <td class="letter-small">@parecer.DataHora.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td class="letter-small">@parecer.Tipo<img src="./assets/socio/MãoDinheiro.svg"> </td>
+                                <td class="letter-small">@parecer.Parece <img src="./assets/socio/Visualizar.svg"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="mt-5">
+            <nav class="space" aria-label="Navegação de página exemplo">
+                <ul class="pagination pagination-sm">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Anterior">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <li class="page-item @(i == TransicaoPaginado.PageIndex ? "active" : "")"><a class="page-link" href="#">@i</a></li>
+                    }
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Próximo">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Próximo</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

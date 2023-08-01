@@ -1,0 +1,65 @@
+﻿@page "/Anexos"
+<div class="row">
+    <div class="col-12">
+        <div class="row mt-2">
+            <div class="col-6 ">
+                <div class="row">
+                    <div class="col-6 panel  px-0">
+                        <label class="nome mt-2 ms-2">Anexos</label>
+                        <Botao SetClass="float-end Btn-cursor mt-1" Icon="fa-solid fa-plus" Text="Adicionar"></Botao>
+                    </div>
+                </div>
+                     <div class="row border">
+                    <div class="col-12 px-0">
+                        <table class="table">
+                            <thead>
+                                <tr class="tr">
+                                    <th></th>
+                                    <th class="">Descrição</th>
+                                    <th class="">Origem</th>
+                                    <th class="">Data</th>
+                                    <th class=""></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var anexo in Anex)
+                                {
+                                    <tr>
+                                        <td class=""></td>
+                                        <td class="">@anexo.descricao</td>
+                                        <td class="">@anexo.origem</td>
+                                        <td class="">@anexo.data.ToString("dd/MM/yyyy")</td>
+                                        <td class=""><img src="./assets/socio/Visualizar.svg"></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mt-3">
+                            <nav class="barra" aria-label="Navegação de página exemplo">
+                                <ul class="pagination pagination-sm">
+                                    <!-- Código da paginação... -->
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6">
+                <div class="box-grafico-mapa">
+                    <label class="titulo-grafico">Pré-Vizualização</label>
+                    <i class="fa-solid fa-up-right-from-square float-end"></i>
+                    <hr class="hr">
+                    <div id="mapa" style="height: 95%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

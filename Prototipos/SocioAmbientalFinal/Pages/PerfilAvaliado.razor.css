@@ -1,0 +1,155 @@
+﻿body {
+}
+.header {
+    font-family: Sweet Sans Pro;
+    font-size: 18px;
+    font-weight: 600;
+    color: #303E47;
+}
+
+.nome {
+    font-family: Inter;
+    color: #0E659C;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.number {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 600;
+    color: #303E47;
+}
+
+.font {
+    font-family: Inter;
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+}
+
+.space {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+
+.fonts {
+    font-family: Inter;
+    font-size: 16px;
+    color: #303E47;
+}
+
+.fontes {
+    font-family: Inter;
+    font-size: 16px;
+}
+
+.panel-container {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.panel-contain {
+    height: 600px;
+    overflow-y: auto;
+}
+
+.separador {
+    position: relative;
+    top: 2px;
+    border-width: 0px;
+}
+
+.line {
+    color: rgba(48, 62, 71, 0.55);
+}
+
+.line-ativa {
+    color: #1f5286;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.situacao {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 800;
+    color: #303E47;
+}
+
+.decor-line {
+    border-bottom: 2px solid background: #158F32;
+    display: inline-block;
+}
+
+.panel-background {
+    background: #F5F5F5;
+    min-height: 50vh;
+    border-radius: 0px 0px 5px 5px;
+    overflow-y: auto;
+    max-height: 65vh;
+}
+.painel-grafico {
+    height: 60vh;
+    padding-top: 1rem;
+    
+}
+
+
+.box-grafico-inform{
+    background-color:#fff;
+    border-radius: 10px;
+    height: 65%;
+    padding: 0.8rem;
+    }
+
+.box-grafico-emissao {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 50%;
+    padding: 0.8rem;
+}
+.box-grafico-risco {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 60%;
+    padding: 0.8rem;
+}
+
+.box-grafico-quantidade {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 55%;
+    padding: 0.8rem;
+}
+.box-grafico-mapa {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 115%;
+    padding: 0.8rem;
+}
+
+.hr{
+    margin:0;
+}
+
+titulo-grafico {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.hr {
+    height: 2px;
+    background-color: #23683f;
+    opacity: 1 !important;
+}
+
+
+
+
+
+
+

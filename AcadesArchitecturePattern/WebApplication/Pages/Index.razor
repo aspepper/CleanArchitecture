@@ -1,0 +1,70 @@
+﻿@page "/"
+
+@using Microsoft.AspNetCore.Components.Web
+@inject IJSRuntime JSRunTime
+@inject IStringLocalizer<Resource> Loc
+
+<PageTitle>Socio Ambiental </PageTitle>
+
+<div class="body">
+
+
+    <div class="row mt-3">
+        <div class="col-12" style="display:flex; justify-content:space-between">
+            <div>
+                <label @onclick="() => AtivarPerfilAvaliado()" class="line_ativa cursor   @classDinamica1">@Loc["IndexAssessedProfile"]</label>
+                <label @onclick="() => AtivarAgravatesMitigadores()" class="font ms-3 cursor @classDinamica2">Agravantes e Mitigadores</label>
+                <label @onclick="() => AtivarEmissaoGEE()" class="font ms-3 cursor @classDinamica3">Emissão de GEE</label>
+                <label @onclick="() => AtivarOperacoes()" class="font ms-3 cursor @classDinamica5">Operações</label>
+                <label @onclick="() => AtivarImoveis()" class="font ms-3 cursor @classDinamica6">Imóveis</label>
+                <label @onclick="() => AtivarAnaliseParecer()" class="font ms-3 cursor @classDinamica4">Análise & Parecer</label>
+            </div>
+            <div>
+                <a href="/Anexos"><Botao SetClass="btn-socio  Btn-cursor" Icon="" Id="2" Img="./assets/socio/NovoClips.svg" OnClick="()=>AtivarClips()"></Botao></a>
+                <a href="/QuadroResumo"><Botao SetClass="btn-socio  Btn-cursor" Icon="" Id="2" Img="./assets/socio/NovasSetas.svg" OnClick="()=>AtivarSetas()"></Botao></a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@if (PerfilAvaliadoAtivo)
+{
+    <PerfilAvaliado></PerfilAvaliado>
+}
+
+@if (AgravanteMitigadoresAtivo)
+{
+    <Agravantes></Agravantes>
+}
+
+@if (EmissaoGEEAtivo)
+{
+    <Emissao></Emissao>
+}
+
+@if (OperacoesAtivo)
+{
+    <Operacoes></Operacoes>
+}
+
+@if (ImoveisAtivo)
+{
+    <Imoveis></Imoveis>
+}
+
+@if (AnaliseParecerAtivo)
+{
+    <Analise></Analise>
+}
+@if (AnexosAtivo)
+{
+    <Anexos></Anexos>
+}
+@if (QuadroResumoAtivo)
+{
+    <QuadroResumo></QuadroResumo>
+
+}

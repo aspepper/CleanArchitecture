@@ -1,0 +1,69 @@
+﻿@page "/QuadroResumo"
+@inject IStringLocalizer<Resource> Loc
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 panel alt">
+                <label class="titulo center mt-2">Quadro Resumo de Agravantes e Mitigadores</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 px-0">
+                <table class="table">
+                    <thead>
+                        <tr class="panel-descricao">
+                            <th class="">Descrição</th>
+                            <th class="">Tipo</th>
+                            <th class="">Situação</th>
+                            <th class="">Justificativa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var quadro in Resumo)
+                        {
+                            <tr>
+                                <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                                <td class="">@quadro.Descricao</td>
+                                <td class="">
+                                    @if (quadro.Tipo == "SetaP")
+                                    {
+                                        <img src="./assets/socio/SetaAgravante.svg">
+                                    }
+                                    else if (quadro.Tipo == "SetaN")
+                                    {
+                                        <img src="./assets/socio/SetaMitigador.svg">
+                                    }
+                                </td>
+                                <td class="letter text-center">
+                                    @if (quadro.Situacao == "positivo")
+                                    {
+                                        <img src="./assets/socio/Circulo.svg">
+                                    }
+                                    else if (quadro.Situacao == "negativo")
+                                    {
+                                        <img src="./assets/socio/X.svg">
+                                    }
+                                    else if (quadro.Situacao == "atencao")
+                                    {
+                                        <img src="./assets/socio/Interrogaçao.svg">
+                                    }
+                                    else
+                                    {
+                                        <!-- Adicione o comportamento desejado caso a situação não corresponda a nenhum dos valores acima -->
+                                    }
+                                </td>
+                                <td class="letter ">
+                                    <img src="./assets/socio/Visualizar.svg">
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                                      

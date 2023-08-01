@@ -1,0 +1,68 @@
+﻿.borda {
+    border-radius: 10px 10px 0 0;
+    border: none;
+    background: #193A5B;
+    color: #ffffff;
+}
+
+.letter {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 17vw;
+}
+
+.letter-tabela {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.letter {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 17vw;
+}
+
+.letter-table {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 40%;
+}
+
+.letter-saldo {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.top {
+    margin-top: 8vw;
+}
+
+.panel {
+    width: 100%;
+    border: none;
+    background: #D8D8D8;
+}
+
+.hr {
+    height: 3px;
+    background-color: #006437;
+    opacity: 1 !important;
+}
+
+.space {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.center {
+    margin-left: 19vw;
+}
+
+.tamanho {
+    width: 100%;
+}

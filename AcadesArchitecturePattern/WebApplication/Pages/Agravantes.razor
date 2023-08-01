@@ -1,0 +1,170 @@
+﻿@inject IStringLocalizer<Resource> _localizer
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 panel alt">
+                @*Agravantes*@
+                <label class="titulo center mt-2">@_localizer["AggravatingTitle"]</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 px-0">
+                <table class="table">
+                    <thead>
+                        <tr class="panel-descricao">
+                            @*Descrição*@
+                            <th class="descricao Btn-cursor">@_localizer["AggravatingTableDescription"]</th>
+                            @*Situação*@
+                            <th class="descricao Btn-cursor">@_localizer["AggravatingTableSituation"]</th>
+                            @*Validade*@
+                            <th class="descricao text-center Btn-cursor">@_localizer["AggravatingTableValidity"]</th>
+                            @*Risco*@
+                            <th class="descricao text-center Btn-cursor">@_localizer["AggravatingTableRisk"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var agravante in Agravant)
+                        {
+                            <tr>
+                                <td class="letter"><a href="@($"https://www.exemplo.com/{agravante.descricao}")">@agravante.descricao</a></td>
+                                <td calss="letter ">
+                                    @if (agravante.situacao == "positivo")
+                                    {
+                                        <img src="./assets/socio/Circulo.svg">
+                                    }
+                                    else if (agravante.situacao == "negativo")
+                                    {
+                                        <img src="./assets/socio/X.svg">
+
+                                    }
+                                    else if (agravante.situacao == "Interrogacao")
+                                    {
+                                        <img src="./assets/socio/Interrogaçao.svg">
+
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </td>
+                                <td class="letter text-center ">@agravante.validade.ToString("dd/MM/yyyy")</td>
+                                <td class="letter text-center ">
+                                    @if (agravante.risco == "positivo")
+                                    {
+                                        <img src="./assets/socio/folhavetor (2).svg">
+                                    }
+                                    else if (agravante.risco == "negativo")
+                                    {
+                                        <img src="./assets/socio/FolhaVermelha.svg">
+
+                                    }
+                                    else if (agravante.risco == "analise")
+                                    {
+                                        <img src="./assets/socio/FolhaAmarela.svg">
+
+                                    }
+                                    else if (agravante.risco == "atencao")
+                                    {
+                                        <img src="./assets/socio/FolhaLaranja.svg">
+                                    }
+                                    else if (agravante.risco == "interrogacao")
+                                    {
+                                        <img src="./assets/socio/Interrogaçao.svg">
+                                    }
+                                    else if (agravante.risco == "alerta")
+                                    {
+                                        <img src="./assets/socio/Alerta Laranja.svg">
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 panel alt">
+                @*Mitigadores*@
+                <label class="titulo center mt-2">@_localizer["MitigatorsTitle"]</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 px-0">
+                <table class="table">
+                    <thead>
+                        <tr class="panel-descricao">
+                            @*Descrição*@
+                            <th class="descricao Btn-cursor">@_localizer["MitigatorsTableDescription"]</th>
+                            @*Situação*@
+                            <th class="descricao  Btn-cursor">@_localizer["MitigatorsTableSituation"]</th>
+                            @*Validade*@
+                            <th class="descricao text-center Btn-cursor">@_localizer["MitigatorsTableValidity"]</th>
+                            @*Risco*@
+                            <th class="descricao text-center Btn-cursor">@_localizer["MitigatorsTableRisk"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var mitigador in Mitigadores)
+                        {
+                            <tr>
+                                <td class="letter"><a href="@($"https://www.exemplo.com/{mitigador.descricao}")">@mitigador.descricao</a></td>
+                                <td class="letter  ">
+                                    @if (mitigador.situacao == "positivo")
+                                    {
+                                        <img src="./assets/socio/X.svg">
+                                    }
+                                    else if (mitigador.situacao == "negativo")
+                                    {
+                                        <img src="./assets/socio/Circulo.svg">
+
+                                    }
+                                    else if (mitigador.situacao == "Interrogacao")
+                                    {
+                                        <img src="./assets/socio/Interrogaçao.svg">
+
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </td>
+                                <td class="letter text-center">@mitigador.validade.ToShortDateString()</td>
+                                <td class="letter text-center">
+                                    @if (mitigador.risco == "positivo")
+                                    {
+                                        <img src="./assets/socio/folhavetor (2).svg">
+                                    }
+                                    else if (mitigador.risco == "negativo")
+                                    {
+                                        <img src="./assets/socio/FolhaVermelha.svg">
+
+                                    }
+                                    else if (mitigador.risco == "Interrogacao")
+                                    {
+                                        <img src="./assets/socio/FolhaAmarela.svg">
+
+                                    }
+                                    else if (mitigador.risco == "analise")
+                                    {
+                                        <img src="./assets/socio/FolhaVermelha.svg">
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  

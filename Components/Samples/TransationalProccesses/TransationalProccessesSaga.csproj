@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Acades.Abstractions\Acades.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Acades.Saga\Acades.Saga.csproj" />
+  </ItemGroup>
+
+</Project>

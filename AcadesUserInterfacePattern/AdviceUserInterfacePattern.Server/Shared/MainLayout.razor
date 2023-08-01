@@ -1,0 +1,22 @@
+﻿@inherits LayoutComponentBase
+@inject IStringLocalizer<ResourcePtBR> Loc
+
+<PageTitle>AdviceUserInterfacePattern.Server</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main class="@GetMainCssClass()">
+        <div class="top-row px-4 @GetMainCssClass()">
+            <div class="col-3 text-end">
+                <a href="https://docs.microsoft.com/aspnet/" target="_blank">@Loc["TopMenuAbout"]</a>
+            </div>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>

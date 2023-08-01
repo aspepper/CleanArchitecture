@@ -1,0 +1,48 @@
+﻿body {
+}
+
+.historic {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+
+.space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel {
+    color: #ffffff;
+    background: #234568;
+    border-radius:10px;
+    font-weight: 500;
+    height: 37px;
+}
+
+.descricao {
+    font-family: Inter;
+    font-size: 14px;
+    color: #fbfbfb;
+}
+
+table {
+    width: 100%;
+    height: 40%;
+    border-radius: 12px;
+}
+
+.letter {
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.hr {
+    height: 2px;
+    background-color: #23683f;
+    opacity: 1 !important;
+}
+
+

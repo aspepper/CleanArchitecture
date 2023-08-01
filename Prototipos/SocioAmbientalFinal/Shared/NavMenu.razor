@@ -1,0 +1,39 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+         <i class="fa-solid fa-bars fa-2x" style="color: #fff;"></i>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        </button>
+        <img src="" asp-append-version="true">
+       
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column pt-3">
+        <div class="nav-item px-3 text-center">
+            <img src="/assets/profile-pic.jpg" class="foto">
+        </div>
+        <div class="nav-item px-3 text-center">
+            <label class="nome-sidebar">Fabiana Santos</label><br>
+            <label class="empresa-sidebar">Empresa Growth</label>
+        </div>
+        <div class="ms-2 mt-5">
+            <img src="./assets/socio/CNAEs.svg"><label class="nome-icon ms-2">CNAEs</label>
+        </div>
+        <div class="ms-2">
+            <img src="./assets/socio/Avaliados.svg"><label class="nome-icon ms-2">Avaliados</label>
+        </div>
+        <div class="ms-2">
+            <img src="./assets/socio/Arvore.svg"><label class="nome-icon ms-2">Modelo de Risco</label>
+        </div>
+        <div class="ms-2">
+            <img src="./assets/socio/Reportes2.svg"><label class="nome-icon ms-2">Reportes</label>
+        </div>
+        <div class="nav-item px-1 text-center">
+        </div>
+    </nav>
+</div>
+
+
+
+

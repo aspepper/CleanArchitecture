@@ -1,5 +1,0 @@
-﻿Após quaisquer inserção de novos ou exclusão de itens, execute os comandos abaixo nesta pasta.
-
-> resgen.exe Resource.resx /str:c#,AdviceCompliance.WebApplication.Rss,Resource,Resource.Designer.cs
-> resgen.exe Resource.en-US.resx /str:c#,AdviceCompliance.WebApplication.Rss,Resource_en_US,Resource.en-US.Designer.cs
-> resgen.exe Resource.es-ES.resx /str:c#,AdviceCompliance.WebApplication.Rss,Resource_es_ES,Resource.es-ES.Designer.cs

@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>AcadesArchitecturePattern.Domain</AssemblyName>
+		<Authors>Alex Pimenta</Authors>
+		<Company>Acades Tecnologia</Company>
+		<RootNamespace>AcadesArchitecturePattern.Domain</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="12.1.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Components\Acades.Abstractions\Acades.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Components\Acades.Saga\Acades.Saga.csproj" />
+		<ProjectReference Include="..\..\Components\Samples\TransationalProccesses\TransationalProccesses\TransationalProccessesSaga.csproj" />
+		<ProjectReference Include="..\AcadesArchitecturePattern.Shared\AcadesArchitecturePattern.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

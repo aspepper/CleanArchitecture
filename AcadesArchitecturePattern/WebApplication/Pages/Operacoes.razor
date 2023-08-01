@@ -1,0 +1,165 @@
+﻿@inject IStringLocalizer<Resource> Loc
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row mt-3">
+            <div class="col-12 px-0">
+                <label class="text-center panel-azul alt">Exposição de Operações de Crédito Ativas</label>
+            </div>
+        </div>
+    </div>
+
+
+   
+    <table class="">
+        <thead class="panel ">
+            <tr>
+                <th class=""></th>
+                <th class="descricao">IPOC da Operação</th>
+                <th class="descricao">Registrada SICOR</th>
+                <th class="descricao">SALDO Devedor Contábil</th>
+                <th class="descricao">Analisado</th>
+                <th class="descricao text-center">Risco</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var exposicao in Opera)
+            {
+                <tr>
+                    <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                    <td class="letter">@exposicao.ipoc</td>
+                    <td class="letter text-center">@exposicao.sicor</td>
+                    <td class="letter text-center">@exposicao.valor.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                    <td class="letter text-center"> 
+                        @if (exposicao.analise == "positivo")
+                        {
+                            <img src="./assets/socio/Circulo.svg">
+                        }
+                        else if (exposicao.analise == "negativo")
+                        {
+                            <img src="./assets/socio/X.svg">
+
+                        }
+                        else if (exposicao.analise == "atencao")
+                        {
+                            <img src="./assets/socio/Alerta Laranja.svg">
+
+                        }
+                    </td>
+                    <td class="letter text-center"> 
+                        @if (exposicao.risco == "positivo")
+                        {
+                            <img src="./assets/socio/folhavetor (2).svg">
+                        }
+                        else if (exposicao.risco == "negativo")
+                        {
+                            <img src="./assets/socio/FolhaVermelha.svg">
+
+                        }
+                        else if (exposicao.risco == "atencao")
+                        {
+                            <img src="./assets/socio/FolhaAmarela.svg">
+                        }
+                        else if (exposicao.risco == "alerta")
+                        {
+                            <img src="./assets/socio/FolhaLaranja.svg">
+
+                        }
+                    </td>
+                    <td class="ms-1"> <Botao SetClass="float-end " Icon="fa-solid fa-rotate" Text="Analisar"></Botao></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row mt-5">
+            <div class="col-12">
+                <label class="text-center panel-azul alt ">Operações de TVM</label>
+            </div>
+        </div>
+        <div class="row">
+            <dic class="col-12 panel">
+
+            </dic>
+        </div>
+
+
+
+        <table class="">
+            <thead class="panel">
+                <tr>
+                    <th class=""></th>
+                    <th class="descricao">Código na Câmara</th>
+                    <th class="descricao">Sistema de Registro</th>
+                    <th class="descricao">Valor do Título</th>
+                    <th class="descricao">Tipo</th>
+                    <th class="descricao text-center">Analisado</th>
+                    <th class="descricao">Risco</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var operar in Tvm)
+                {
+                    <tr>
+                        <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                        <td class="letter">@operar.codigo</td>
+                        <td class="letter">@operar.registro</td>
+                        <td class="letter">@operar.titulo.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter">@operar.tipo</td>
+                        <td class="letter">@operar.analisado</td>
+                        <td class="letter">@operar.riscos</td>
+                        <td class=""> <Botao SetClass="float-end " Icon="fa-solid fa-rotate" Text="Visualizar"></Botao></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <dic class="col-12 panel">
+
+    </dic>
+</div>
+
+
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row mt-3">
+            <div class="col-12">
+                <label class=" text-center panel-azul alt">Exposição Acumulada a Contribuição Positiva Acumulada</label>
+            </div>
+        </div>
+
+        <table class="">
+            <thead class="panel">
+                <tr>
+                    <th class=""></th>
+                    <th class="descricao">Situação de Enquadramento</th>
+                    <th class="descricao text-center">Saldo Contábil Operações Crédito</th>
+                    <th class="descricao text-center">Saldo TVM</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var exposicoes in Posit)
+                {
+                    <tr>
+                        <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
+                        <td class="letter">@exposicoes.situacoes</td>
+                        <td class="letter text-center">@exposicoes.saldo.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter text-center">@exposicoes.tvm.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

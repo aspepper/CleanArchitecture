@@ -1,0 +1,3 @@
+﻿namespace Acades.Saga.Exceptions
+{
+}

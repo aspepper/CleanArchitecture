@@ -1,0 +1,11 @@
+﻿@using System.Web
+@inject IStringLocalizer<Resources.ResourcePtBR> Loc
+
+<div class="alert alert-secondary mt-4 @GetMainCssClass()">
+    <span class="oi oi-pencil me-2" aria-hidden="true"></span>
+    <strong>@Title</strong>
+
+    <span class="text-nowrap">
+        @this.HtmlMessage
+    </span>
+</div>

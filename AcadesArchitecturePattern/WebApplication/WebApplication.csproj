@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Authors>Alex Pimenta</Authors>
+		<Company>Acades Tecnologia</Company>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="Shared\MainLayout.razor" />
+		<None Include="Shared\NavMenu.razor" />
+		<None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+		<None Include="wwwroot\css\open-iconic\FONT-LICENSE" />
+		<None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
+		<None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
+		<None Include="wwwroot\css\open-iconic\README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+		<PackageReference Include="MatBlazor" Version="2.10.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.9" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.9" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Localization\Resource.en.resx">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<Generator>ResXFileCodeGenerator </Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Localization\Resource.es.resx">
+			<Generator>ResXFileCodeGenerator </Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Localization\Resource.resx">
+			<Generator>ResXFileCodeGenerator </Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+
+</Project>

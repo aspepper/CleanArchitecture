@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<Nullable>enable</Nullable>
+		<LangVersion>8.0</LangVersion>
+		<Version>1.0</Version>
+		<Title>Acades.SagaOrchestrator</Title>
+		<Authors>Alex Pìmenta</Authors>
+		<Company>Acades Compliance</Company>
+		<Description>
+			EN: Process orchestration structure and compensation.
+			PT: Estrutura de orquestração dos processos e compensações.
+		</Description>
+		<RootNamespace>Acades.Saga</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>TRACE;SQL_SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Execution\Actions\**" />
+		<EmbeddedResource Remove="Execution\Actions\**" />
+		<None Remove="Execution\Actions\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Execution\ISagaExecutor.cs" />
+		<Compile Remove="Execution\SagaExecutor.cs" />
+		<Compile Remove="ISagaRunningState.cs" />
+		<Compile Remove="SagaExtensions.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Acades.Abstractions" Version="2023.7.11.691-alpha" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<PackageVersion>$([System.DateTime]::UtcNow.Year).$([System.DateTime]::UtcNow.Month).$([System.DateTime]::UtcNow.Day).$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString(0))-alpha</PackageVersion>
+		<CreateNuGetPackage>false</CreateNuGetPackage>
+	</PropertyGroup>
+
+	<Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition=" '$(Configuration)|$(CreateNuGetPackage)' == 'Debug|true' Or '$(Configuration)' == 'Release' ">
+		<!--<Exec Command="dotnet nuget push &quot;bin\$(Configuration)\$(PackageId).$(PackageVersion).nupkg&quot; - -source Local" />-->
+		<!--Exec Command="dotnet nuget push &quot;bin\$(Configuration)\$(PackageId).$(PackageVersion).nupkg&quot; - -api-key oy2pce5sok7virsjnpnqpepluembbpfezagwirzi57xoja - -source https://api.nuget.org/v3/index.json" / -->
+	</Target>
+
+</Project>

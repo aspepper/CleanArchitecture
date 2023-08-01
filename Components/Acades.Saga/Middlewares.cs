@@ -1,0 +1,159 @@
+﻿using Acades.Saga.Models.History;
+using Acades.Saga.Models.Interfaces;
+using Acades.Saga.ModelsSaga.Steps.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Acades.Saga
+{
+    internal static class Middlewares
+    {
+        static List<Type> beforeSetMiddlewares = new();
+        static List<Type> afterGetMiddlewares = new();
+
+        public static void AddBeforeExecuteMiddlewares<T>()
+            where T : ISagaMiddleware
+        {
+            if (!beforeSetMiddlewares.Contains(typeof(T)))
+                beforeSetMiddlewares.Add(typeof(T));
+        }
+
+        public static void AddAfterExecuteMiddlewares<T>()
+            where T : ISagaMiddleware
+        {
+            if (!afterGetMiddlewares.Contains(typeof(T)))
+                afterGetMiddlewares.Add(typeof(T));
+        }
+
+        public static async Task ExecuteChain(
+            List<NextMiddleware> middlewaresChain,
+            ISaga saga,
+            ISagaStep sagaStep,
+            StepData stepData)
+        {
+            await middlewaresChain[0].Invoke(saga, sagaStep, stepData);
+        }
+
+        public static MiddlewaresChain BuildFullChain(IServiceProvider serviceProvider, params ExecuteSagaDelegate[] executeDelegates)
+        {
+            MiddlewaresChain actions = new();
+            foreach (var item in beforeSetMiddlewares)
+                actions.Add(new NextMiddleware(serviceProvider, item, null));
+
+            foreach (var executeDelegate in executeDelegates)
+                actions.Add(new NextMiddleware(serviceProvider, null, executeDelegate));
+
+            foreach (var item in afterGetMiddlewares)
+                actions.Add(new NextMiddleware(serviceProvider, item, null));
+
+            for (var i = 0; i < actions.Count - 1; i++)
+            {
+                var action = actions[i];
+                var nextAction = actions[i + 1];
+                action.Next = nextAction;
+            }
+
+            return actions;
+        }
+
+        public static MiddlewaresChain BuildSimpleChain(IServiceProvider serviceProvider, params ExecuteSagaDelegate[] executeDelegates)
+        {
+            MiddlewaresChain actions = new();
+            foreach (var item in beforeSetMiddlewares)
+                actions.Add(new NextMiddleware(serviceProvider, item, null));
+
+            foreach (var executeDelegate in executeDelegates)
+                actions.Add(new NextMiddleware(serviceProvider, null, executeDelegate));
+
+            for (var i = 0; i < actions.Count - 1; i++)
+            {
+                var action = actions[i];
+                var nextAction = actions[i + 1];
+                action.Next = nextAction;
+            }
+
+            return actions;
+        }
+    }
+
+    public static class ListHelper
+    {
+        public static T NextAfter<T>(this ICollection<T> collection, T item)
+        {
+            bool found = false;
+            foreach (var i in collection)
+            {
+                if (found)
+                {
+                    return i;
+                }
+                else if ((i == null && item == null) || (i != null && i.Equals(item)))
+                {
+                    found = true;
+                }
+            }
+            return default;
+        }
+    }
+
+    public delegate Task ExecuteSagaDelegate(ISaga saga, ISagaStep sagaStep, StepData stepData);
+
+    internal class MiddlewaresChain : List<NextMiddleware>
+    {
+        public void Clean()
+        {
+            foreach (var item in this) { item.Clean(); }
+        }
+    }
+    internal class NextMiddleware : INextMiddleware
+    {
+        public NextMiddleware(IServiceProvider serviceProvider, Type middlewareType, ExecuteSagaDelegate middlewareAction)
+        {
+            ServiceProvider = serviceProvider;
+            MiddlewareType = middlewareType;
+            MiddlewareAction = middlewareAction;
+        }
+
+        public IServiceProvider ServiceProvider { get; set; }
+        public Type MiddlewareType { get; set; }
+        public ExecuteSagaDelegate MiddlewareAction { get; set; }
+        public NextMiddleware Next { get; set; }
+
+        public async Task Invoke(
+            ISaga saga,
+            ISagaStep sagaStep,
+            StepData stepData)
+        {
+            if (MiddlewareAction != null)
+            {
+                await MiddlewareAction(saga, sagaStep, stepData);
+                if (Next != null) { await Next.Invoke(saga, sagaStep, stepData); }
+            }
+            else
+            {
+                var middleware = ActivatorUtilities.CreateInstance(ServiceProvider, MiddlewareType) as ISagaMiddleware;
+                await middleware.InvokeAsync(saga, sagaStep, stepData, Next);
+            }
+        }
+
+        internal void Clean()
+        {
+            ServiceProvider = null;
+            MiddlewareType = null;
+            MiddlewareAction = null;
+            Next = null;
+        }
+    }
+
+    public interface INextMiddleware
+    {
+        Task Invoke(ISaga saga, ISagaStep sagaStep, StepData stepData);
+    }
+
+    public interface ISagaMiddleware
+    {
+        Task InvokeAsync(ISaga saga, ISagaStep sagaStep, StepData stepData, INextMiddleware nextMiddleware);
+    }
+}

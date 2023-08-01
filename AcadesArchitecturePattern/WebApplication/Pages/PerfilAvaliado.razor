@@ -1,0 +1,48 @@
+﻿@inject IStringLocalizer<Resource> Loc
+
+
+<div class="row painel-grafico">
+    <div class="col-4 pe-8 ">
+        <div class="box-grafico-inform ">
+            <label class="titulo-grafico ">Informações Cadastrais</label>
+            <i class="fa-solid fa-up-right-from-square margin" id="AbrirModal" @OnClick="Modal" style="margin-left:14vw;"></i>
+            <hr class="hr">
+            <div id="informacaoCadastrais" style="height: 95%;">
+            </div>
+        </div>
+        <div class="box-grafico-emissao mt-2">
+            <label class="titulo-grafico">Inventário de emissão GEE em toneladas de CO2 </label>
+            <i class="fa-solid fa-up-right-from-square margin" id="AbrirModal" @OnClick="Modal" style="margin-left:4vw;"></i>
+            <hr class="hr">
+            <div id="emissao" style="height: 95%;">
+            </div>
+        </div>
+    </div>
+    <div class="col-4 pe-8">
+        <div class="box-grafico-risco">
+            <label class="titulo-grafico">Risco por Esfera de Avaliação</label>
+            <i class="fa-solid fa-up-right-from-square margin" id="AbrirModal" @OnClick="Modal" style="margin-left:12vw;"></i>
+            <hr class="hr">
+            <div id="risco" style="height: 95%;">
+            </div>
+        </div>
+        <div class="box-grafico-quantidade mt-2">
+            <label class="titulo-grafico">Quantidade de Agravantes & Mitigadores </label>
+            <i class="fa-solid fa-arrow-up-right-from-square margin" id="AbrirModal" @OnClick="Modal" style="margin-left:7vw;"></i>
+            <hr class="hr">
+            <div id="quantidade" style="height: 95%;">
+            </div>
+        </div>
+    </div>
+    <div class="col-4  pe-8">
+        <div class="box-grafico-mapa">
+            <label class="titulo-grafico">Mapa</label>
+            <i class="fa-solid fa-up-right-from-square" id="AbrirModal" @OnClick="Modal" style="margin-left:22vw;"></i>
+            <hr class="hr">
+            <div id="mapa" style="height: 95%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<Financa></Financa>

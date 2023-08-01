@@ -1,0 +1,6 @@
+﻿Após quaisquer inserção de novos ou exclusão de itens, execute os comandos abaixo nesta pasta.
+
+> resgen.exe Resource.resx /str:c#,WebApplication.Localization,Resource,Resource.Designer.cs
+> resgen.exe Resource.en.resx /str:c#,WebApplication.Localization,Resource_en,Resource.en.Designer.cs
+> resgen.exe Resource.es.resx /str:c#,WebApplication.Localization,Resource_es,Resource.es.Designer.cs
+> del *.resources

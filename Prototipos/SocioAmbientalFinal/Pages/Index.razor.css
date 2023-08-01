@@ -1,0 +1,174 @@
+﻿
+.header{
+    font-family: Inter !important ;
+    font-size: 18px;
+    font-weight: 700;
+    color: #303E47;
+}
+
+.nome {
+    font-family: Inter;
+    color: #0E659C;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.number {
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 500;
+    color: #303E47;
+}
+
+.font {
+    font-family: Inter;
+    font-size: 16px;
+    color: #303E47;
+    font-weight: 500;
+}
+
+.space {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+
+.fonts {
+    font-family: Inter;
+    font-size: 16px;
+    color: #303E47;
+}
+
+.fontes {
+    font-family: Inter;
+    font-size: 16px;
+}
+
+.panel-container {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.panel-contain {
+    height: 600px;
+    overflow-y: auto;
+}
+
+.separador {
+    position: relative;
+    top: 2px;
+    border-width: 0px;
+}
+
+.bordas {
+    border-radius: 1vw;
+    border: 1px solid rgba(255, 255, 255, 0);
+    background: white;
+}
+
+.borda {
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 1vw;
+    background: white;
+}
+
+
+
+.line {
+    color:#878f94;
+    font-family:Inter;
+    font-weigth:500;
+    font-size:18px;
+
+
+}
+
+.line-ativa {
+    font-family:Inter;
+    color: #1f5286;
+    font-size:18px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
+.decor-line {
+    border-bottom: 2px solid background: #158F32;
+    display: inline-block;
+}
+
+.panel-background {
+    background: #F5F5F5;
+    min-height: 50vh;
+    border-radius: 0px 0px 5px 5px;
+    overflow-y: auto;
+    max-height: 65vh;
+}
+
+}
+.nome {
+    font-family: Inter;
+    color: #0E659C;
+    font-size: 17px;
+    font-weight: 700;      
+}
+
+.number {
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 500;
+    color: #303E47;
+  }
+
+.situacao {
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 700;
+    color: #303E47;
+   }
+    .aling{
+    display: end;
+    justify-content: space-between;
+    align-items: end;
+    height: 10vh;
+    padding: 0px;
+}
+
+align_nome {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.align-situacao{
+    display:flex;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+
+
+.barra-abaixo {
+    border-botton: 1px solid #006437; /* Estilo, largura e cor da borda superior */
+}
+
+.ponto {
+    color: #EB1111;
+    font-family: Inter;
+    font-size:17px;
+    font-weight:700;
+}
+
+.img-vector {
+    width: 40px;
+}
+
+.letter-table{
+    font-family:Inter;
+    font-weight:400;
+    font-size:13px;
+}
+
+.cursor{
+    cursor:pointer;
+}
+
+

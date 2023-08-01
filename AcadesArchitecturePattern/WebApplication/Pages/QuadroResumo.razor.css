@@ -1,0 +1,24 @@
+﻿.panel {
+    color: #ffffff;
+    background: #234568;
+    border-radius: 10px 10px 0 0;
+}
+
+.alt {
+    height: 40px;
+}
+
+.panel-descricao {
+    background: #D8D8D8;
+}
+
+.center {
+    margin-left: 45%;
+}
+
+titulo {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 17px;
+    color: #fbfbfb;
+}

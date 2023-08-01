@@ -1,0 +1,39 @@
+﻿@page "/fetchdata"
+@inject HttpClient Http
+@inject IStringLocalizer<ResourcePtBR> Loc
+
+<PageTitle>@Loc["WeatherPageTitlle"]</PageTitle>
+
+<h1>@Loc["WeatherPageTitlle"]</h1>
+
+<p>@Loc["WeatherPageDescription"]</p>
+
+@if (forecasts == null)
+{
+    <p><em>@Loc["Loading"]</em></p>
+}
+else
+{
+    <table class="table @GetMainCssClass()">
+        <thead>
+            <tr>
+                <th>@Loc["WeatherPageBrowserHeaderDate"]</th>
+                <th>@Loc["WeatherPageBrowserHeaderTempC"]</th>
+                <th>@Loc["WeatherPageBrowserHeaderTempF"]</th>
+                <th>@Loc["WeatherPageBrowserHeaderSummary"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

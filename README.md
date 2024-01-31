@@ -491,22 +491,22 @@ Pacotes presentes nos projetos e uma breve descrição do propósito de cada um:
 
 <div id='configs'/>
 
-## Configuração e Implantação 👩‍💻
-Para configurar e implantar a API em diferentes ambientes, como desenvolvimento, teste e produção, você pode seguir as seguintes instruções:
+## Configuration and Deployment 👩‍💻
+To set up and deploy the API in different environments, such as development, testing, and production, you can follow the instructions below:
 
-* _<ins>***Configuração Geral:***_</ins> 
-  * ***Infraestrutura:*** Windows 2016. <br>
+* _<ins>***General Configuration:***_</ins> 
+  * ***Infrastructure:*** Windows 2016. <br>
 
-  * ***Bancos de dados:*** SQL Server 2019, Oracle 19G, MySQL 8.0 ou 5.7. <br>
+  * ***Databases:*** SQL Server 2019, Oracle 19G, MySQL 8.0, or 5.7. <br>
 
-  * ***Versão do SDK e Entity Framework:*** Verifique se você tem as versões corretas do SDK do .NET 7 e do Entity Framework Core 7 instaladas em sua máquina de desenvolvimento. Haverá migração para a versão 8 em novembro de 2023, com limite até maio de 2024. <br>
+  * ***SDK and Entity Framework Version:*** Make sure you have the correct versions of .NET 7 SDK and Entity Framework Core 7 installed on your development machine. There will be a migration to version 8 in November 2023, with a deadline until May 2024. <br>
 
-  * ***Armazenamento de binários na nuvem:*** S3 da Amazon ou Storage Azure para SaaS e OnPremise. <br>
+  * ***Cloud Binary Storage:*** Amazon S3 or Azure Storage for SaaS and OnPremise. <br>
 
-  * ***Repositório de fontes:*** Azure DevOps + Git. <br>
+  * ***Source Repository:*** Azure DevOps + Git. <br>
 
-  * ***Adição de serviços:*** As linhas de código relacionadas à adição de serviços (***builder.Services.AddControllers***, ***builder.Services.AddSwaggerGen***) são parte da configuração geral. Elas configuram os serviços necessários para o funcionamento da aplicação, como ***controle de rotas***, ***serialização JSON***, ***documentação do Swagger***, entre outras. <br>
-    * Adicionando serviços ao contêiner:
+  * ***Adding Services:*** Code lines related to adding services (***builder.Services.AddControllers***, ***builder.Services.AddSwaggerGen***) are part of the general configuration. They set up the necessary services for the application to work, such as ***route control***, ***JSON serialization***, ***Swagger documentation***, among others. <br>
+    * Adding services to the container:
     
       ```
       builder.Services.AddControllers()
@@ -517,7 +517,7 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
       });
       ```
 
-    * Conectando ao banco de dados:
+    * Connecting to the database:
     
       ```
       builder.Services.AddDbContext<AcadesArchitecturePatternSqlServerContext>(x =>
@@ -526,31 +526,31 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
       });
       ```
 
-    * Injeções de dependência:
+    * Dependency injections:
     
       ```
       #region Users
         builder.Services.AddTransient<IUserService, UserService>();
 
-        // Comandos:
+        // Commands:
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(CreateUserHandle).Assembly));
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(DeleteUserHandle).Assembly));
 
-        // Consultas:
+        // Queries:
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(ListUserHandle).Assembly));
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(SearchUserByIdHandle).Assembly));
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(SearchUserByEmailHandle).Assembly));
       #endregion
       ```
 
-  * ***Adição de autorização JWT:*** As linhas de código relacionadas à autenticação JWT (***builder.Services.AddAuthentication*** e ***builder.Services.AddJwtBearer***) também fazem parte da configuração geral. Elas configuram a ***autenticação JWT***, definindo os parâmetros de ***validação do token JWT***. <br>
+  * ***Adding JWT Authorization:*** Code lines related to JWT authentication (***builder.Services.AddAuthentication*** and ***builder.Services.AddJwtBearer***) are also part of the general configuration. They configure ***JWT authentication*** by setting the parameters for ***JWT token validation***. <br>
 
-    * Adicionando autenticação/validação JWT:
+    * Adding JWT authentication/validation:
     
       ```
       builder.Services.AddAuthentication(options =>
       {
-          // Autenticação padrão
+          // Default authentication
           options.DefaultAuthenticateScheme = "JwtBearer";
           options.DefaultChallengeScheme = "JwtBearer";
       })
@@ -558,7 +558,7 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
       {
           options.TokenValidationParameters = new TokenValidationParameters
           {
-              // Parâmetros de validação
+              // Validation parameters
               ValidateIssuer = true,
               ValidateAudience = true,
               ValidateLifetime = true,
@@ -570,17 +570,14 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
       });
       ```
 
-<br>
-<br>
+* _<ins>***Development Environment:***_</ins> 
+  * Ensure you have a database server available for use in the development environment. This can be SQL Server Express or LocalDB, depending on your choice. <br>
 
-* _<ins>***Ambiente de Desenvolvimento:***_</ins> 
-  * Certifique-se de ter um servidor de banco de dados disponível para uso no ambiente de desenvolvimento. Isso pode ser o SQL Server Express ou o LocalDB, dependendo da sua escolha. <br>
+  * Open the ***appsettings.json*** or ***appsettings.Development.json*** file in the ***AcadesArchitecturePattern.Api*** project. <br>
 
-  * Abra o arquivo ***appsettings.json*** ou o ***appsettings.Development.json*** no projeto ***AcadesArchitecturePattern.Api***. <br>
+  * Check the connection string named "***DefaultConnection***". Make sure it is correct for the development environment. <br>
 
-  * Verifique a string de conexão denominada "***DefaultConnection***". Certifique-se de que esteja correta para o ambiente de desenvolvimento. <br>
-
-    * Exemplo de conexão na ***appsettings.json*** ou na ***appsettings.Development.json*** para o ***SQL Server Express***: <br>
+    * Example connection in ***appsettings.json*** or ***appsettings.Development.json*** for ***SQL Server Express***: <br>
       ```
       {
         "Logging": {
@@ -597,7 +594,7 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
       }
       ```
 
-    * Exemplo de conexão na ***appsettings.json*** ou na ***appsettings.Development.json*** para o ***LocalDB***: <br>
+    * Example connection in ***appsettings.json*** or ***appsettings.Development.json*** for ***LocalDB***: <br>
       ```
       {
         "Logging": {
@@ -614,17 +611,17 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
       }
       ```
 
-  * Certifique-se de que as demais configurações no arquivo ***appsettings.json*** ou ***appsettings.Development.json*** estejam ajustadas para o ambiente de desenvolvimento. <br>
+  * Ensure that other configurations in the ***appsettings.json*** or ***appsettings.Development.json*** file are adjusted for the development environment. <br>
 
-  * ***Adição do Swagger:*** As linhas de código relacionadas ao Swagger (***builder.Services.AddSwaggerGen***, ***app.UseSwagger***, ***app.UseSwaggerUI***) são comumente usadas no ambiente de desenvolvimento para documentar e testar a API. Elas fornecem uma interface interativa para explorar e testar os endpoints da API. <br>  
-    * Adicionando autorização no Swagger:
+  * ***Adding Swagger:*** Code lines related to Swagger (***builder.Services.AddSwaggerGen***, ***app.UseSwagger***, ***app.UseSwaggerUI***) are commonly used in the development environment to document and test the API. They provide an interactive interface to explore and test API endpoints. <br>  
+    * Adding authorization to Swagger:
 
       ```
       builder.Services.AddSwaggerGen(c =>
       {
           c.SwaggerDoc("v1", new OpenApiInfo { Title = "AcadesArchitecturePattern.Api", Version = "v1" });
 
-          // Definindo definição de segurança do Swagger para autenticação Bearer
+          // Defining Swagger security definition for Bearer authentication
           c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
           {
               Name = "Authorization",
@@ -635,7 +632,7 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
               Description = "JWT Authorization header using the Bearer scheme.\r\n\r\n Enter 'Bearer'[space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
           });
 
-          // Requerendo segurança Bearer para as operações do Swagger
+          // Requiring Bearer security for Swagger operations
           c.AddSecurityRequirement(new OpenApiSecurityRequirement
           {
               {
@@ -653,205 +650,78 @@ Para configurar e implantar a API em diferentes ambientes, como desenvolvimento,
       });
       ```
 
-    * Configurando o pipeline de solicitação HTTP:
+    * Configuring the HTTP request pipeline:
     
       ```
       app.UseSwagger();
       app.UseSwaggerUI();
       ```
 
-  <br>
-
-  * ***Adição do CORS:*** A linha de código relacionada ao CORS (***builder.Services.AddCors***) também é comumente usada no ambiente de desenvolvimento para permitir solicitações HTTP de origens diferentes. Isso é útil durante o desenvolvimento e teste da API em um ambiente local. <br>
-
-    * Adicionando suporte CORS:
-    
-      ```
-      builder.Services.AddCors();
-      ```
-
-<br>
-<br>
-
-* _<ins>***Iniciando a Migração e Criando o Banco de Dados pelo Code First:***_</ins> 
-  * Certifique-se de ter um servidor de banco de dados adequado configurado e disponível no ambiente de produção, como um servidor SQL dedicado ou um serviço de banco de dados gerenciado.
+* _<ins>***Starting Migration and Creating the Database through Code First:***_</ins> 
+  * Ensure you have a suitable database server configured and available in the production environment, such as a dedicated SQL server or a managed database service.
 
   <br>
 
-  * Abra o ***Console do Gerenciador de Pacotes*** no Visual Studio:
-    * No ***menu superior***, clique em "***Ferramentas***" > "***Gerenciador de Pacotes NuGet***" > "***Console do Gerenciador de Pacotes***".
+  * _<ins>***Setting Up Cloud Binary Storage:***_</ins> 
+  * If you're using cloud binary storage, ensure you have the necessary credentials and connection strings for the chosen service (Amazon S3 or Azure Storage). Update the relevant settings in the ***appsettings.json*** or ***appsettings.Production.json*** file.
 
   <br>
 
-  * No Console do ***Gerenciador de Pacotes***, selecione o projeto ***AcadesArchitecturePattern.Infra.Data*** no menu suspenso "***Projeto Padrão***". Certifique-se de que o projeto esteja selecionado corretamente antes de executar os comandos.
+  * _<ins>***Finalizing Deployment:***_</ins> 
+  * Deploy the application to the production environment using the chosen deployment method (Azure DevOps, manual deployment, etc.).
 
   <br>
 
-  * Execute o seguinte comando para adicionar uma nova migração: 
-  
-    ```
-    add-migration [NomeDaMigration] -context [NomeDoContext]
-    ```
-
-    * Exemplo para adicionar uma nova migração:
-    
-        ```
-        add-migration Migration1 -context AcadesArchitecturePatternSqlServerContext
-        ```
+  * _<ins>***Monitoring and Maintenance:***_</ins> 
+  * Implement monitoring solutions and regularly check logs to ensure the health and performance of the application in the production environment.
 
   <br>
 
-  * Após a criação da migração, execute o seguinte comando para aplicar as migrações e criar o banco de dados: 
-
-    ```
-    update-database
-    ```
-
-    * Esse comando executará todas as migrações pendentes no banco de dados especificado na string de conexão. Se o banco de dados não existir, ele será criado.
+  * _<ins>***Updating Environment-Specific Configurations:***_</ins> 
+  * If needed, update environment-specific configurations in the ***appsettings.json*** or ***appsettings.Production.json*** file.
 
   <br>
 
-  * Após a conclusão bem-sucedida da execução do comando update-database, o banco de dados estará criado e pronto para ser usado pela API. 
-
-<br>
-<br>
-
-* _<ins>***Ambiente de Produção:***_</ins> 
-  * Certifique-se de que as configurações de conexão com o banco de dados no arquivo ***appsettings.json*** ou ***appsettings.Development.json*** estejam corretas para o ambiente em que você deseja criar o banco de dados. <br>
-
-  * Verifique se todas as configurações relacionadas à segurança, como chaves de API, autenticação e autorização, estão adequadamente configuradas para o ambiente de produção. <br>
-
-  * ***Adição de redirecionamento HTTPS:*** As linhas de código relacionadas ao redirecionamento HTTPS (***builder.Services.AddHttpsRedirection*** e ***app.UseHttpsRedirection***) na Program.cs fazem parte do ambiente de produção. Elas garantem que as solicitações sejam redirecionadas para o protocolo HTTPS para maior segurança. <br>
-    * Código da ***Program.cs*** no projeto ***AcadesArchitecturePattern.Api***:
-    
-        ```
-        builder.Services.AddHttpsRedirection(options =>
-        {
-            options.RedirectStatusCode = (int)HttpStatusCode.TemporaryRedirect;
-            options.HttpsPort = 5001;
-        });
-        ```
+  * _<ins>***Scaling:***_</ins> 
+  * Implement scaling solutions as needed based on the application's demand and usage patterns.
 
   <br>
 
-  * ***Utilização de injeção de dependência:*** O controller faz uso da injeção de dependência para obter uma instância do IMediator, permitindo a utilização do padrão Mediator para tratar comandos e consultas. <br>
-
-    * Exemplo de injeção de dependência no controller:
-    
-        ```
-        private readonly IMediator _mediator;
-
-        public TasksController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-        ```
+  * _<ins>***Securing Production Environment:***_</ins> 
+  * Implement security best practices, including firewall configurations, encryption, and access controls, to secure the production environment.
 
   <br>
 
-  * ***Separação de comandos e consultas:*** Os métodos do controller estão organizados em ***duas seções distintas***, uma para ***commands*** e outra para ***queries***. Isso facilita a manutenção e compreensão do código, separando as operações de escrita (commands) das operações de leitura (queries). <br>
-    
-  <br>
-
-  * ***Tratamento de erros:*** Cada método do controller faz o tratamento adequado dos erros e retorna uma resposta apropriada. Caso ocorra um erro durante o processamento de um command ou query, uma resposta de erro é retornada com uma mensagem descritiva. <br>
+  * _<ins>***Backup and Disaster Recovery:***_</ins> 
+  * Set up regular backups and implement a disaster recovery plan to ensure data integrity and availability in case of unexpected events.
 
   <br>
 
-  * ***Utilização de modelos de dados:*** Alguns métodos do controller recebem dados por meio do corpo da requisição (por exemplo, o ***método Add*** recebe um objeto ***CreateTaskCommand***). Esses objetos são ***utilizados para modelar os dados de entrada de forma estruturada*** e ***facilitar a validação dos mesmos***. <br>
-
-    * Exemplo do método Add:
-    
-        ```
-        // Register a new task
-        [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateTaskCommand command)
-        {
-            var result = await _mediator.Send(command);
-
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message);
-        }
-        ```
+  * _<ins>***Updating Dependencies:***_</ins> 
+  * Regularly update dependencies, including libraries, frameworks, and SDKs, to benefit from the latest features and security patches.
 
   <br>
 
-  * ***Uso de respostas HTTP adequadas:*** Os métodos do controller retornam respostas HTTP apropriadas para indicar o resultado da operação. Por exemplo, o método Add retorna um ***código 200 (OK)*** se a operação for bem-sucedida, ou um ***código 400 (Bad Request)*** caso ocorra algum erro. <br>
+  * _<ins>***Documentation:***_</ins> 
+  * Keep the documentation up-to-date, including API documentation, infrastructure configurations, and deployment procedures.
 
-    * Exemplo do ***método Add***:
-    
-        ```
-        return result.Success ? Ok(result.Message) : BadRequest(result.Message);
-        ```
+  <br>
 
-<br>
-<br>
+  * _<ins>***Continuous Improvement:***_</ins> 
+  * Continuously evaluate and improve the application, infrastructure, and deployment processes based on feedback, performance metrics, and evolving requirements.
 
-<div id='habits'/>
+  <br>
 
-## Boas Práticas e Considerações 🧹
-Algumas boas práticas recomendadas para o desenvolvimento e manutenção da sua API:
+  * _<ins>***Collaboration:***_</ins> 
+  * Foster collaboration between development, operations, and other relevant teams to ensure a smooth and efficient deployment process.
 
-* ***Log de atividade:*** Todas as telas de parametrização devem registrar as modificações antes e depois. <br>
+  <br>
 
-<br>
+  * _<ins>***Training and Knowledge Sharing:***_</ins> 
+  * Provide training and knowledge sharing sessions for the team members involved in the deployment process to enhance their skills and awareness.
 
-* ***Controle de acesso:*** Será utilizado as regras existentes no Corporativo. <br>
+  <br>
 
-<br>
+  * _<ins>***Conclusion:***_</ins> 
+  * By following these guidelines and best practices, you can ensure a successful deployment of the AcadesArchitecturePattern API across different environments. Regularly review and update the deployment process to align with industry standards and evolving technologies.
 
-* ***Software para monitoramento:*** Será utilizado o software Prometheus. <br>
-
-<br>
-
-* ***Ferramenta de validação de código:*** Utilização do SonarQube e Zaproxy. <br>
-
-<br>
-
-* ***Processos batch (serviços escaláveis de forma horizontal):*** Utilização do Rabbit MQ e Kubernetes. <br>
-
-<br>
-
-* ***Tipo de integração (API; TXT; VIEWS):*** API como principal e Rabbit MQ como secundária. <br>
-
-<br>
-
-* ***Exportação dos dados:*** Inicialmente via API, salvo em caso o cliente tenha necessidade de consumir em outro formato. <br>
-
-<br>
-
-* ***Conceito de multi-empresa:*** Segregação física. <br>
-
-<br>
-
-* ***Separação de responsabilidades:*** Utilize uma arquitetura em camadas para separar as responsabilidades da API em componentes distintos. Isso facilita a manutenção e a evolução do código, tornando-o mais modular e reutilizável. <br>
-
-<br>
-
-* ***Utilização de padrões de projeto:*** Aplique padrões de projeto como ***Injeção de Dependência***, ***Singleton***, ***Factory***, entre outros, para promover a ***coesão e a flexibilidade*** do código. Isso facilita a ***substituição de componentes***, torna o ***código mais testável*** e ***reduz o acoplamento entre os módulos da API***. <br>
-
-<br>
-
-* ***Validação de dados de entrada:*** Realize a validação dos dados recebidos pela API para ***garantir a consistência*** e a ***integridade dos mesmos***. Utilize mecanismos de validação, como atributos de validação ou bibliotecas específicas, para garantir que os dados estejam corretos antes de serem processados pela API. <br>
-
-<br>
-
-* ***Tratamento adequado de erros:*** Implemente um mecanismo consistente de tratamento de erros na API. Utilize ***códigos de status HTTP apropriados*** para indicar falhas na operação da API. Forneça ***mensagens de erro descritivas e úteis*** para facilitar a depuração e o suporte aos usuários da API. <br>
-
-<br>
-
-* ***Segurança da API:*** Implemente mecanismos de autenticação e autorização para proteger a API contra acesso não autorizado. Utilize protocolos como ***JWT (JSON Web Tokens) para autenticar*** e ***autorizar solicitações*** à API. Considere também a aplicação de técnicas de criptografia para proteger dados sensíveis. <br>
-
-<br>
-
-* ***Documentação clara e abrangente:*** Documente adequadamente a API, fornecendo ***descrições claras de endpoints***, ***parâmetros***, ***códigos de status*** e ***formatos de resposta***. Utilize ferramentas como o ***Swagger*** para gerar automaticamente a documentação da API a partir de anotações no código. <br>
-
-<br>
-
-* ***Testes automatizados:*** Implemente testes automatizados para verificar a funcionalidade e a integridade da API. Utilize frameworks de teste, como ***xUnit***, para criar ***testes unitários***, ***de integração*** e de ***carga***. Isso ajuda a garantir que a API funcione corretamente e detecte possíveis regressões após alterações no código. <br>
-
-<br>
-
-* ***Monitoramento e registro de logs:*** Implante um ***sistema de monitoramento para acompanhar o desempenho*** e a ***disponibilidade da API em tempo real***. Registre ***logs de eventos importantes***, como erros, exceções e operações críticas, para facilitar a análise e o diagnóstico de problemas. <br>
-
-<br>
-
-* ***Escalabilidade:*** Projete a API levando em consideração a escalabilidade. Utilize ***técnicas como balanceamento de carga***, ***dimensionamento horizontal*** e ***uso de serviços em nuvem*** para garantir que a API possa lidar com um grande número de solicitações e crescer conforme a demanda. <br>

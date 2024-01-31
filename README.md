@@ -1,490 +1,471 @@
-  <h2 align="center">Acades Patterns</h2>
+<h2 align="center">Acades Patterns</h2>
 
-  <p align="center">
-    Template de API com base sólida para o desenvolvimento ágil de diversos sistemas da Acades, fornecendo funcionalidades essenciais para uma construção mais rápida e eficiente.
-    <br />
-    <a href="https://github.com/aspepper/CleanArchitecture"><strong> Ver Repositório
-    »</strong></a>
-    <br />
-    <br />
-  </p>
+<p align="center">
+  Solid-based API template for agile development of various Acades systems, providing essential features for faster and more efficient construction.
+  <br />
+  <a href="https://github.com/aspepper/CleanArchitecture"><strong> View Repository
+  »</strong></a>
+  <br />
+  <br />
 </p>
 
 <br>
 
-## Mapa da Solução 🗺️
+## Solution Map 🗺️
 
-* [Sobre o Template 🔍](#about)
-* [Conceitos-Chave 🔑](#keys)
-* [Padronizações 🔒](#default)
-* [Arquitetura Geral e Fluxo de Desenvolvimento 🏰](#architecture)
-* [Nomenclatura de Classes e Pastas 📁](#nomenclatures)
-* [Sobre os Projetos na Solução 📂](#projects)
-* [Pacotes dos Projetos 📦](#packages)
-* [Configuração e Implantação 👩‍💻](#configs)
-* [Boas Práticas e Considerações 🧹](#habits)
+* [About the Template 🔍](#about)
+* [Key Concepts 🔑](#keys)
+* [Standards 🔒](#default)
+* [General Architecture and Development Flow 🏰](#architecture)
+* [Class and Folder Naming 📁](#nomenclatures)
+* [About Projects in the Solution 📂](#projects)
+* [Project Packages 📦](#packages)
+* [Configuration and Deployment 👩‍💻](#configs)
+* [Best Practices and Considerations 🧹](#habits)
 
 <br>
 <br>
 
 <div id='about'/>
 
-## Sobre o Template 🔍
-API de um sistema de listas a fazer que oferece uma ***solução moderna e escalável*** para gerenciar tarefas pessoais. Com ela, os usuários podem criar, atualizar e excluir listas (***CRUD***), além de adicionar e manipular tarefas individuais.
+## About the Template 🔍
+API of a to-do list system that offers a ***modern and scalable solution*** for managing personal tasks. Users can create, update, and delete lists (***CRUD***), as well as add and manipulate individual tasks.
 
-A arquitetura da API incorpora conceitos e como ***CQRS***, ***Event Sourcing***, ***MediatR***, ***SAGA***, ***TDD***, ***DDD*** e ***Clean Code*** garantindo uma estrutura sólida e eficiente.
+The API architecture incorporates concepts such as ***CQRS***, ***Event Sourcing***, ***MediatR***, ***SAGA***, ***TDD***, ***DDD***, and ***Clean Code***, ensuring a solid and efficient structure.
 
-O objetivo principal é proporcionar aos usuários uma experiência intuitiva e eficaz para gerenciar suas atividades diárias.
+The main goal is to provide users with an intuitive and effective experience for managing their daily activities.
 
 <br>
 <br>
 
 <div id='keys'/>
 
-## Conceitos-Chave 🔑
-A seguir, serão apresentadas as explicações dos conceitos-chave citados acima que fundamentam a API de sistema de listas a fazer:
+## Key Concepts 🔑
+Below are explanations of the key concepts mentioned above that underpin the to-do list system API:
 
 * ***<ins>CQRS (Command Query Responsibility Segregation):***</ins> <br>
-É um padrão arquitetural utilizado na API para separar as operações de leitura (***queries***) das operações de escrita (***commands***). Isso permite uma ***melhor separação de preocupações*** e ***otimização de desempenho*** ao lidar com diferentes tipos de operações.
+  It is an architectural pattern used in the API to separate read operations (***queries***) from write operations (***commands***). This allows ***better separation of concerns*** and ***performance optimization*** when dealing with different types of operations.
 
 * ***<ins>Event Sourcing:***</ins> <br>
-A API utiliza o conceito de eventos para ***notificar*** e ***reagir a mudanças no estado das entidades***. Os eventos são emitidos sempre que uma ação significativa ocorre, como a ***criação de uma nova lista de tarefas*** ou a ***conclusão de uma tarefa***. Esses eventos podem ser consumidos por outros componentes do sistema para realizar ações adicionais, como envio de notificações ou atualização de outras entidades relacionadas.
+  The API uses the concept of events to ***notify*** and ***react to changes in the state of entities***. Events are emitted whenever a significant action occurs, such as ***creating a new to-do list*** or ***completing a task***. These events can be consumed by other system components to perform additional actions, such as sending notifications or updating other related entities.
 
 * ***<ins>MediatR:***</ins> <br>
-É um padrão de design que permite a ***comunicação*** e o ***gerenciamento de comandos/queries e eventos*** entre os diferentes componentes da API. Ele facilita o uso do padrão CQRS, permitindo a ***separação*** e o ***tratamento adequado das solicitações de comandos/queries e eventos***.
+  It is a design pattern that enables ***communication*** and ***management of commands/queries and events*** among different components of the API. It facilitates the use of the CQRS pattern, allowing ***separation*** and ***proper handling of command/query and event requests***.
 
 * ***<ins>SAGA Orchestration Pattern:***</ins> <br>
-É utilizado para ***orquestrar*** e g***erenciar transações complexas*** e ***processos de negócios*** que envolvem várias etapas e componentes. Na API, as SAGAs podem ser ***usadas para lidar com fluxos de trabalho que envolvem várias operações*** relacionadas a tarefas e listas de tarefas, garantindo que essas operações sejam executadas de ***forma consistente*** e ***confiável***.
+  Used to ***orchestrate*** and ***manage complex transactions*** and ***business processes*** involving multiple steps and components. In the API, SAGAs can be ***used to handle workflows involving multiple operations*** related to tasks and to-do lists, ensuring that these operations are executed ***consistently*** and ***reliably***.
 
 * ***<ins>DDD (Domain-Driven Design):***</ins> <br>
-Abordagem de design de software que visa a ***modelagem do domínio de negócios*** de forma eficiente e coesa. A API segue os princípios do DDD para organizar as entidades, agregados, serviços e eventos em uma estrutura de domínio clara e compreensível, permitindo um ***design flexível*** e ***escalável***.
+  A software design approach that aims at ***efficient and cohesive modeling of the business domain***. The API follows DDD principles to organize entities, aggregates, services, and events in a clear and understandable domain structure, allowing for ***flexible and scalable design***.
 
 * ***<ins>Clean Code:***</ins> <br>
-A API adota os princípios do Clean Code para promover um ***código legível***, ***conciso*** e de ***fácil manutenção***. Isso inclui a utilização de nomenclatura significativa para classes e métodos, a criação de funções pequenas e bem definidas, a eliminação de duplicação de código e a adoção de boas práticas de programação.
+  The API adopts Clean Code principles to promote ***readable***, ***concise***, and ***easily maintainable code***. This includes the use of meaningful naming for classes and methods, creating small and well-defined functions, eliminating code duplication, and adopting good programming practices.
 
 * ***<ins>TDD (Test-Driven Development):***</ins> <br>
-Abordagem de desenvolvimento que enfatiza a ***criação de testes unitários*** antes da implementação do código. Na API, são utilizados testes unitários para ***verificar a corretude*** e a ***robustez das funcionalidades implementadas***. Os testes garantem que a API esteja funcionando conforme o esperado, fornecendo ***maior confiabilidade*** e ***facilitando a manutenção do código***.
+  A development approach that emphasizes ***creating unit tests*** before implementing the code. In the API, unit tests are used to ***verify the correctness*** and ***robustness of implemented features***. Tests ensure that the API is working as expected, providing ***greater reliability*** and ***facilitating code maintenance***.
 
 <br>
 <br>
 
 <div id='default'/>
 
-## Padronizações 🔒
-A API adota as seguintes padronizações:
+## Standards 🔒
+The API adopts the following standards:
 
-* ***<ins>Padronização de documentos:***</ins> <br>
-A API utiliza máscaras, tamanhos e expressões regulares para formatar campos de documentos relacionados a um domínio de tipo. Isso garante que os documentos sejam inseridos e exibidos de forma padronizada.
+* ***<ins>Document Standardization:***</ins> <br>
+  The API uses masks, sizes, and regular expressions to format document-related fields in a standardized way. This ensures that documents are inserted and displayed in a standardized manner.
 
-* ***<ins>Padronização de tipagens, data e número:***</ins> <br>
-Utiliza o formato ISO/GNT para padronizar as tipagens, datas e números. Além disso, o padrão UTC é utilizado para armazenamento de datas e horas, garantindo consistência e interoperabilidade.
+* ***<ins>Type, Date, and Number Standardization:***</ins> <br>
+  It uses the ISO/GNT format to standardize types, dates, and numbers. Additionally, the UTC standard is used for storing dates and times, ensuring consistency and interoperability.
 
-* ***<ins>Template para tela:***</ins> <br>
-A API fornece templates para telas que incluem validação de dados, formatação e outras funcionalidades relacionadas à interface do usuário. Isso ajuda a garantir uma experiência consistente e amigável para os usuários da API.
+* ***<ins>Screen Template:***</ins> <br>
+  The API provides templates for screens that include data validation, formatting, and other user interface-related functionalities. This helps ensure a consistent and user-friendly experience for API users.
 
-* ***<ins>Template para API:***</ins> <br>
-A API utiliza templates padronizados para garantir a segurança, validação de dados e outras funcionalidades essenciais em suas interfaces de programação. Isso facilita o desenvolvimento de novas funcionalidades e garante a consistência das APIs.
+* ***<ins>API Template:***</ins> <br>
+  The API uses standardized templates to ensure security, data validation, and other essential functionalities in its programming interfaces. This facilitates the development of new features and ensures API consistency.
 
-* ***<ins>Acesso a banco de dados:***</ins> <br>
-É utilizado o EntityFramework para facilitar o acesso e a manipulação dos dados no banco de dados. Isso permite uma abstração eficiente das operações de banco de dados e melhora a produtividade do desenvolvimento.
+* ***<ins>Database Access:***</ins> <br>
+  EntityFramework is used to facilitate access and manipulation of data in the database. This allows efficient abstraction of database operations and improves development productivity.
 
-* ***<ins>Tratamento de log:***</ins> <br>
-A API utiliza o NLog para o tratamento de log e exceções. Isso permite registrar informações relevantes e identificar a origem das consultas e operações realizadas na API. 
+* ***<ins>Log Handling:***</ins> <br>
+  The API uses NLog for log and exception handling. This allows recording relevant information and identifying the origin of queries and operations performed in the API.
 
-* ***<ins>Multi-idioma:***</ins> <br>
-Suporta os idiomas português, inglês e espanhol, possibilitando a internacionalização da aplicação e atendendo a diferentes públicos.
+* ***<ins>Multi-language:***</ins> <br>
+  Supports Portuguese, English, and Spanish languages, enabling application internationalization and catering to different audiences.
 
-* ***<ins>LGPD (Lei Geral de Proteção de Dados):***</ins> <br>
-A API está em conformidade com a LGPD. Ela implementa mecanismos para garantir a privacidade e a segurança dos dados, como a pesquisa por nome e documento, que pode ser realizada por partícula, garantindo a proteção dos dados pessoais.
+* ***<ins>LGPD (General Data Protection Law):***</ins> <br>
+  The API complies with LGPD. It implements mechanisms to ensure data privacy and security, such as searching by name and document, which can be performed in parts, ensuring the protection of personal data.
 
 <br>
 <br>
 
 <div id='architecture'/>
 
-## Arquitetura Geral e Fluxo de Desenvolvimento 🏰
-A arquitetura da solução segue uma abordagem modular, dividida em diferentes camadas e componentes que se encaixam para fornecer a funcionalidade completa da API.
+## General Architecture and Development Flow 🏰
 
-* _**Camada 0 - <ins>AcadesArchitecturePattern.Tests**_</ins> 
-  * Será desenvolvido e implementado conforme o andamento de todos os projetos da solução.
-  * Contém os testes unitários para todas as entidades, comandos, consultas e manipuladores do projeto.
+The solution's architecture follows a modular approach, divided into different layers and components that fit together to provide the complete functionality of the API.
 
-<br>
-
-* _**Camada 1 - <ins>AcadesArchitecturePattern.Shared**_</ins>
-
-  * ***Entities:*** Contém a definição de entidades base (Base) que podem ser estendidas por outras entidades.
-
-  * ***Commands:*** Define os comandos da API, como GenericCommandResult, ICommand e ICommandResult, que são usados para executar operações de criação, atualização e exclusão.
-
-  * ***Queries:*** Define as consultas da API, como GenericQueryResult, IQuery e IQueryResult, que são usadas para recuperar informações dos dados.
-
-  * ***Handlers:*** Define os contratos para manipuladores de comandos (IHandlerCommand) e consultas (IHandlerQuery).
-
-  * ***Events:*** Define eventos base (BaseEvent) que podem ser usados para notificar e reagir a mudanças no sistema.
-
-  * ***Enums:*** Define enumerações, como EnColor, EnStatusTask e EnTaskPriorityLevel, usadas para representar diferentes propriedades e estados.
-
-  * ***Utils:*** Contém a implementação de utilitários, como PasswordEncryption, usado para criptografar senhas.
+* _**Layer 0 - <ins>AcadesArchitecturePattern.Tests**_</ins>
+  * Will be developed and implemented as the progress of all solution projects.
+  * Contains unit tests for all entities, commands, queries, and handlers of the project.
 
 <br>
 
-* _**Camada 2 - <ins>AcadesArchitecturePattern.Domain**_</ins>
+* _**Layer 1 - <ins>AcadesArchitecturePattern.Shared**_</ins>
 
-  * ***Entities:*** Define as entidades específicas do domínio, como User, ToDoList e Task, que representam os objetos principais do sistema.
+  * ***Entities:*** Contains the definition of base entities (Base) that can be extended by other entities.
 
-  * ***Commands:*** Define os comandos relacionados a cada entidade, como CreateUserCommand, CreateToDoListCommand, etc.
+  * ***Commands:*** Defines API commands, such as GenericCommandResult, ICommand, and ICommandResult, used to perform create, update, and delete operations.
 
-  * ***Queries:*** Define as consultas relacionadas a cada entidade, como ListUserQuery, ListToDoListQuery, etc.
+  * ***Queries:*** Defines API queries, such as GenericQueryResult, IQuery, and IQueryResult, used to retrieve information from data.
 
-  * ***Events:*** Define eventos específicos para cada entidade, como UserEvent, ToDoListEvent, etc.
+  * ***Handlers:*** Defines contracts for command (IHandlerCommand) and query (IHandlerQuery) handlers.
 
-  * ***Interfaces:*** Define as interfaces de serviço (ITaskService, IToDoListService, IUserService) para a manipulação das entidades.
+  * ***Events:*** Defines base events (BaseEvent) that can be used to notify and react to changes in the system.
 
-<br>
+  * ***Enums:*** Defines enumerations, such as EnColor, EnStatusTask, and EnTaskPriorityLevel, used to represent different properties and states.
 
-* _**Camada 3 - <ins>AcadesArchitecturePattern.Infra.Data**_</ins>
- 
-  * ***Mappings:*** Contém as classes de mapeamento (TaskMapping, ToDoListMapping, UserMapping) para mapear as entidades do domínio no banco de dados.
-
-  * ***Contexts:*** Representa o contexto do banco de dados desejado(AcadesArchitecturePatternSqlServerContext) que permite o acesso aos dados.
-
-  * ***Services:*** Fornecem a implementação dos serviços relacionados a cada entidade, como TaskService, ToDoListService, UserService.
+  * ***Utils:*** Contains utility implementations, such as PasswordEncryption, used for encrypting passwords.
 
 <br>
 
-* _**Camada 4 - <ins>AcadesArchitecturePattern.Application**_</ins> 
-  * ***Handlers:*** Implementam os manipuladores (Handlers) que lidam com os comandos e consultas específicos do domínio.
+* _**Layer 2 - <ins>AcadesArchitecturePattern.Domain**_</ins>
 
-  * ***Security:*** Contém o JwtTokenGenerator, responsável por gerar tokens JWT para autenticação.
+  * ***Entities:*** Defines domain-specific entities, such as User, ToDoList, and Task, representing the main objects of the system.
 
-  * ***Services:*** Fornece a implementação de serviços específicos, como UserMappingService.
+  * ***Commands:*** Defines commands related to each entity, such as CreateUserCommand, CreateToDoListCommand, etc.
+
+  * ***Queries:*** Defines queries related to each entity, such as ListUserQuery, ListToDoListQuery, etc.
+
+  * ***Events:*** Defines specific events for each entity, such as UserEvent, ToDoListEvent, etc.
+
+  * ***Interfaces:*** Defines service interfaces (ITaskService, IToDoListService, IUserService) for entity manipulation.
 
 <br>
 
-* _**Camada 5 - <ins>AcadesArchitecturePattern.Api**_</ins> 
-  * ***Controllers:*** Contém os controladores (Controllers) que fornecem os pontos de extremidade da API para manipulação das entidades.
+* _**Layer 3 - <ins>AcadesArchitecturePattern.Infra.Data**_</ins>
+
+  * ***Mappings:*** Contains mapping classes (TaskMapping, ToDoListMapping, UserMapping) to map domain entities to the database.
+
+  * ***Contexts:*** Represents the desired database context (AcadesArchitecturePatternSqlServerContext) allowing data access.
+
+  * ***Services:*** Provides implementation of services related to each entity, such as TaskService, ToDoListService, UserService.
+
+<br>
+
+* _**Layer 4 - <ins>AcadesArchitecturePattern.Application**_</ins>
+  * ***Handlers:*** Implements handlers that deal with domain-specific commands and queries.
+
+  * ***Security:*** Contains JwtTokenGenerator, responsible for generating JWT tokens for authentication.
+
+  * ***Services:*** Provides implementation of specific services, such as UserMappingService.
+
+<br>
+
+* _**Layer 5 - <ins>AcadesArchitecturePattern.Api**_</ins>
+  * ***Controllers:*** Contains controllers providing API endpoints for entity manipulation.
 
 <br>
 <br>
 
 <div id='nomenclatures'/>
 
-## Nomenclatura de Classes e Pastas 📁
-A convenção de nomenclatura segue algumas diretrizes para tornar a estrutura do código mais compreensível e consistente. Aqui estão alguns exemplos de nomenclatura com seus significados:
+## Class and Folder Naming 📁
 
-* _<ins>***Classes:***_</ins> 
-  * ***ClassName:*** As classes são nomeadas utilizando o padrão ***PascalCase*** no ***singular***, seguindo a convenção de iniciar cada palavra com letra maiúscula. Além disso, é importante utilizar nomes ***em inglês*** para aderir à convenção correta de nomenclatura.
-    * ***Exemplos:*** User, ToDoList, Task, CreateUserCommand, IToDoListService, SearchTaskByIdQuery.
+The naming convention follows guidelines to make the code structure more understandable and consistent. Here are some examples of naming with their meanings:
 
-<br>
-
-* _<ins>***Pastas:***_</ins> 
-  * ***FolderNames:*** As pastas são nomeadas utilizando o padrão ***PascalCase*** no ***plural***, seguindo a convenção de iniciar cada palavra com letra maiúscula. Além disso, é importante utilizar nomes ***em inglês*** para aderir à convenção correta de nomenclatura.
-    * ***Exemplos:*** Entities, Commands, Queries, Controllers, Services, Contexts. <br>
+* _<ins>***Classes:***_</ins>
+  * ***ClassName:*** Classes are named using the ***PascalCase*** pattern in the ***singular form***, following the convention of starting each word with an uppercase letter. Also, it is important to use names ***in English*** to adhere to the correct naming convention.
+    * ***Examples:*** User, ToDoList, Task, CreateUserCommand, IToDoListService, SearchTaskByIdQuery.
 
 <br>
 
-* _<ins>***Nomenclatura de Classes Específicas:***_</ins> 
+* _<ins>***Folders:***_</ins>
+  * ***FolderNames:*** Folders are named using the ***PascalCase*** pattern in the ***plural form***, following the convention of starting each word with an uppercase letter. Also, it is important to use names ***in English*** to adhere to the correct naming convention.
+    * ***Examples:*** Entities, Commands, Queries, Controllers, Services, Contexts.
+
+<br>
+
+* _<ins>***Specific Class Naming:***_</ins>
 
   #### ***Commands:***
 
-  * ***[Action][Entity]Command:*** Segue o padrão, no qual, onde está ***[Action] é substituído pela a ação*** que o Command fará e onde está ***[Entity] é substituído pela entidade*** relacionada.
-    * ***Exemplos:*** CreateTaskCommand, DeleteUserCommand, UpdateToDoListCommand. <br>
+  * ***[Action][Entity]Command:*** Follows the pattern where ***[Action] is replaced by the action*** the Command will perform and where ***[Entity] is replaced by the related entity***.
+    * ***Examples:*** CreateTaskCommand, DeleteUserCommand, UpdateToDoListCommand.
 
   <br>
   <br>
 
   #### ***Queries:***
 
-  * ***List[Entity]Query:*** Segue o padrão, no qual, onde está ***[Entity] é substituído pela entidade*** relacionada.
-    * ***Exemplos:*** ListTaskQuery, ListUserQuery, ListToDoListQuery. <br>
+  * ***List[Entity]Query:*** Follows the pattern where ***[Entity] is replaced by the related entity***.
+    * ***Examples:*** ListTaskQuery, ListUserQuery, ListToDoListQuery.
 
   <br>
 
-  * ***Search[Entity]By[Parameter]Query:*** Segue o padrão, no qual, onde está ***[Entity] é substituído pela entidade*** relacionada e onde está ***[Parameter] é substituído pelo nome do parâmetro*** da consulta.
-    * ***Exemplos:*** SearchTaskByIdQuery, SearchUserByUserNameQuery, SearchUserByEmailQuery. <br>
+  * ***Search[Entity]By[Parameter]Query:*** Follows the pattern where ***[Entity] is replaced by the related entity*** and where ***[Parameter] is replaced by the name of the query parameter***.
+    * ***Examples:*** SearchTaskByIdQuery, SearchUserByUserNameQuery, SearchUserByEmailQuery.
 
   <br>
   <br>
 
   #### ***Handlers:***
 
-  * ***[Action][Entity]Handle:*** Segue o padrão, no qual, onde está ***[Action] é substituído pela a ação*** que o Handler fará e onde está ***[Entity] é substituído pela entidade*** relacionada. Por fim, será adicionado a palavra ***Handle***, ***SEM a letra "r"*** como é escrito Handler.
-    * ***Exemplos:*** CreateTaskHandle, DeleteUserHandle, UpdateToDoListHandle. <br>
+  * ***[Action][Entity]Handle:*** Follows the pattern where ***[Action] is replaced by the action*** the Handler will perform and where ***[Entity] is replaced by the related entity***. Finally, the word ***Handle*** is added, ***WITHOUT the letter "r"*** as it is written Handler.
+    * ***Examples:*** CreateTaskHandle, DeleteUserHandle, UpdateToDoListHandle.
 
   <br>
 
-  * ***Search[Entity]By[Parameter]Handle:*** Segue o padrão, no qual, onde está ***[Entity] é substituído pela entidade*** relacionada e onde está ***[Parameter] é substituído pelo nome do parâmetro***. Por fim, será adicionado a palavra ***Handle***, ***SEM a letra "r"*** como é escrito Handler.
-    * ***Exemplos:*** SearchTaskByIdHandle, SearchUserByUserNameHandle, SearchUserByEmailHandle. <br>
+  * ***Search[Entity]By[Parameter]Handle:*** Follows the pattern where ***[Entity] is replaced by the related entity*** and where ***[Parameter] is replaced by the name of the parameter***. Finally, the word ***Handle*** is added, ***WITHOUT the letter "r"*** as it is written Handler.
+    * ***Examples:*** SearchTaskByIdHandle, SearchUserByUserNameHandle, SearchUserByEmailHandle.
 
   <br>
   <br>
 
   #### ***Interfaces:***
 
-  * ***I[Entity]Service:*** Segue o padrão, no qual, é ***acompanhado da letra "I" no início*** e onde está ***[Entity] é substituído pela entidade***. 
-    * ***Exemplos:*** ITaskService, IToDoListService, IUserService. <br>
+  * ***I[Entity]Service:*** Follows the pattern where ***accompanied by the letter "I" at the beginning*** and where ***[Entity] is replaced by the entity***.
+    * ***Examples:*** ITaskService, IToDoListService, IUserService.
 
   <br>
   <br>
 
   #### ***Contexts:***
 
-  * ***[SolutionName][DatabaseName]Context:*** Segue o padrão, no qual, onde está ***[SolutionName] é substituído pelo nome da solução*** e onde está ***[DatabaseName] é substituído pelo nome do banco de dados que será utilizado***.
-    * ***Exemplos:*** AcadesArchitecturePatternSqlServerContext, AcadesArchitecturePatternOracleContext, AcadesArchitecturePatternMySqlContext. <br>
+  * ***[SolutionName][DatabaseName]Context:*** Follows the pattern where ***[SolutionName] is replaced by the solution name*** and where ***[DatabaseName] is replaced by the name of the database to be used***.
+    * ***Examples:*** AcadesArchitecturePatternSqlServerContext, AcadesArchitecturePatternOracleContext, AcadesArchitecturePatternMySqlContext.
 
   <br>
   <br>
 
   #### ***Mappings:***
 
-  * ***[Entity]Mapping:*** Segue o padrão, no qual, onde está ***[Entity] é substituído pela entidade***.
-    * ***Exemplos:*** TaskMapping, ToDoListMapping, UserMapping. <br>
+  * ***[Entity]Mapping:*** Follows the pattern where ***[Entity] is replaced by the entity***.
+    * ***Examples:***
+#### ***Controllers:***
 
-  <br>
-  <br>
+* ***[Entities]Controller:*** Follows the pattern, where ***[Entities] is replaced by the entity in the plural form***.
+  * ***Examples:*** TasksController, ToDoListsController, UsersController. <br>
 
-  #### ***Services:***
+<br>
+<br>
 
-  * ***[Entity]Service:*** Segue o padrão, no qual, onde está ***[Entity] é substituído pela entidade***. 
-    * ***Exemplos:*** TaskService, ToDoListService, UserService. <br>
+#### ***Tests:***
 
-  <br>
-  <br>
+* ***[Entity]Test:*** Follows the pattern, where ***[Entity] is replaced by the entity***.
+  * ***Examples:*** TaskTest, ToDoListTest, UserTest. <br>
 
-  #### ***Events:***
+<br>
 
-  * ***[Entity]Event:*** Segue o padrão, no qual, onde está ***[Entity] é substituído pela entidade***. 
-    * ***Exemplos:*** TaskEvent, ToDoListEvent, UserEvent. <br>
+* ***[CommandName]Test:*** Follows the pattern, where ***[CommandName] is replaced by the full name of the command*** related to the entity.
+  * ***Examples:*** CreateTaskCommandTest, DeleteUserCommandTest, UpdateToDoListCommandTest. <br>
 
-  <br>
-  <br>
+<br>
 
-  #### ***Controllers:***
+* ***[QueryName]Test:*** Follows the pattern, where ***[QueryName] is replaced by the full name of the query*** related to the entity.
+  * ***Examples:*** ListTaskQueryTest, SearchUserByIdQueryTest, SearchUserByUserNameQueryTest. <br>
 
-  * ***[Entities]Controller:*** Segue o padrão, no qual, onde está ***[Entities] é substituído pela entidade no plural***. 
-    * ***Exemplos:*** TasksController, ToDoListsController, UsersController. <br>
+<br>
 
-  <br>
-  <br>
-
-  #### ***Tests:***
-
-  * ***[Entity]Test:*** Segue o padrão, no qual, onde está ***[Entity] é substituído pela entidade***. 
-    * ***Exemplos:*** TaskTest, ToDoListTest, UserTest. <br>
-
-  <br>
-
-  * ***[CommandName]Test:*** Segue o padrão, no qual, onde está ***[CommandName] é substituído pelo nome inteiro do command*** da entidade relacionada. 
-    * ***Exemplos:*** CreateTaskCommandTest, DeleteUserCommandTest, UpdateToDoListCommandTest. <br>
-
-  <br>
-
-    * ***[QueryName]Test:*** Segue o padrão, no qual, onde está ***[QueryName] é substituído pelo nome inteiro da query*** da entidade relacionada. 
-      * ***Exemplos:*** ListTaskQueryTest, SearchUserByIdQueryTest, SearchUserByUserNameQueryTest. <br>
-
-  <br>
-
-    * ***[HandleName]Test:*** Segue o padrão, no qual, onde está ***[HandleName] é substituído pelo nome inteiro do handle*** da entidade relacionada. 
-      * ***Exemplos:*** CreateTaskHandleTest, ListToDoListHandleTest, UpdateUserHandleTest. <br>
+* ***[HandleName]Test:*** Follows the pattern, where ***[HandleName] is replaced by the full name of the handle*** related to the entity.
+  * ***Examples:*** CreateTaskHandleTest, ListToDoListHandleTest, UpdateUserHandleTest. <br>
 
 <br>
 <br>
 
 <div id='projects'/>
 
-## Sobre os Projetos na Solução 📂
-Projetos presentes na solução e uma breve descrição do propósito de cada um e seus tipos:
+## About Projects in the Solution 📂
+Projects present in the solution and a brief description of the purpose of each and their types:
 
-* _<ins>***AcadesArchitecturePattern (Solução em Branco):***_</ins> 
-  * ***Descrição:*** Solução de projeto vazia para desenvolvimento de sistemas escaláveis.
-  * ***Propósito:*** Fornecer uma estrutura organizada e modular para o desenvolvimento de aplicativos de software.
-
-<br>
-
-* _<ins>***AcadesArchitecturePattern.Shared (Biblioteca de Classes):***_</ins> 
-  * ***Descrição:*** Contém classes e estruturas compartilhadas que são utilizadas em toda a solução.
-  * ***Propósito:*** Fornecer funcionalidades comuns e reutilizáveis para outros projetos da solução.
+* _<ins>***AcadesArchitecturePattern (Blank Solution):***_</ins> 
+  * ***Description:*** Empty project solution for scalable systems development.
+  * ***Purpose:*** Provide an organized and modular structure for software application development.
 
 <br>
 
-* _<ins>***AcadesArchitecturePattern.Domain (Biblioteca de Classes):***_</ins> 
-  * ***Descrição:*** Contém as entidades de domínio do sistema, como User (usuário), ToDoList (lista de tarefas) e Task (tarefa).
-  * ***Propósito:*** Definir as entidades de domínio e suas regras de negócio, encapsulando a lógica do domínio.
+* _<ins>***AcadesArchitecturePattern.Shared (Class Library):***_</ins> 
+  * ***Description:*** Contains shared classes and structures used throughout the solution.
+  * ***Purpose:*** Provide common and reusable functionalities for other projects in the solution.
 
 <br>
 
-* _<ins>***AcadesArchitecturePattern.Infra.Data (Biblioteca de Classes):***_</ins> 
-  * ***Descrição:*** Responsável pelo acesso a dados e persistência, contendo mapeamentos e contextos dos bancos de dados.
-  * ***Propósito:*** Implementar a camada de acesso a dados, interagindo com os bancos de dados e realizando operações de persistência.
+* _<ins>***AcadesArchitecturePattern.Domain (Class Library):***_</ins> 
+  * ***Description:*** Contains the system's domain entities, such as User, ToDoList, and Task.
+  * ***Purpose:*** Define domain entities and their business rules, encapsulating domain logic.
 
 <br>
 
-* _<ins>***AcadesArchitecturePattern.Application (Biblioteca de Classes):***_</ins> 
-  * ***Descrição:*** Implementa os handlers dos commands e queries, bem como outros serviços da aplicação.
-  * ***Propósito:*** Gerenciar a lógica de negócio da aplicação, processando commands e consultas, e fornecer serviços específicos.
+* _<ins>***AcadesArchitecturePattern.Infra.Data (Class Library):***_</ins> 
+  * ***Description:*** Responsible for data access and persistence, containing mappings and database contexts.
+  * ***Purpose:*** Implement the data access layer, interacting with databases and performing persistence operations.
 
 <br>
 
-* _<ins>***AcadesArchitecturePattern.Api (Projeto de Aplicativo):***_</ins> 
-  * ***Descrição:*** Contém os controladores da API RESTful, que recebem as solicitações HTTP e fornecem as respostas correspondentes.
-  * ***Propósito:*** Expor endpoints da API para interação com clientes externos, lidando com a comunicação e a lógica de apresentação.
+* _<ins>***AcadesArchitecturePattern.Application (Class Library):***_</ins> 
+  * ***Description:*** Implements handlers for commands and queries, as well as other application services.
+  * ***Purpose:*** Manage application business logic, process commands and queries, and provide specific services.
 
 <br>
 
-* _<ins>***AcadesArchitecturePattern.Tests (Projeto de Teste):***_</ins> 
-  * ***Descrição:*** Contém testes unitários para as entidades, commands, queries e handlers da aplicação.
-  * ***Propósito:*** Verificar a correta implementação das funcionalidades, garantir a qualidade do código e evitar regressões.
+* _<ins>***AcadesArchitecturePattern.Api (Application Project):***_</ins> 
+  * ***Description:*** Contains RESTful API controllers, which receive HTTP requests and provide corresponding responses.
+  * ***Purpose:*** Expose API endpoints for interaction with external clients, handling communication and presentation logic.
+
+<br>
+
+* _<ins>***AcadesArchitecturePattern.Tests (Test Project):***_</ins> 
+  * ***Description:*** Contains unit tests for entities, commands, queries, and handlers of the application.
+  * ***Purpose:*** Verify the correct implementation of functionalities, ensure code quality, and prevent regressions.
 
 <br>
 <br>
 
 <div id='packages'/>
 
-## Pacotes dos Projetos 📦
-Pacotes presentes nos projetos e uma breve descrição do propósito de cada um:
+## Packages in Projects 📦
+Packages present in the projects and a brief description of the purpose of each:
 
-* _**Projeto - <ins>AcadesArchitecturePattern.Shared**_</ins> 
-  * ***BCrypt.Net-Core (versão 1.6.0):*** Biblioteca que fornece suporte para hashing de senhas usando o algoritmo BCrypt. <br>
-
-  <br>
-
-  * ***Flunt (versão 2.0.5):*** Biblioteca que fornece suporte para validação de objetos e notificações de erros. <br>
+* _**Project - <ins>AcadesArchitecturePattern.Shared**_</ins> 
+  * ***BCrypt.Net-Core (version 1.6.0):*** Library that provides support for password hashing using the BCrypt algorithm. <br>
 
   <br>
 
-  * ***MediatR (versão 12.0.1):*** Biblioteca que implementa o padrão Mediator para a comunicação entre diferentes componentes de um aplicativo. <br>
+  * ***Flunt (version 2.0.5):*** Library that provides support for object validation and error notifications. <br>
+
+  <br>
+
+  * ***MediatR (version 12.0.1):*** Library that implements the Mediator pattern for communication between different components of an application. <br>
 
 <br>
 <br>
 
-* _**Projeto - <ins>AcadesArchitecturePattern.Domain**_</ins> 
-  * ***Acades.Abstractions (versão 2023.7.3.926-alpha):*** Biblioteca que contém abstrações e interfaces comuns usadas em arquiteturas baseadas em CQRS (Command Query Responsibility Segregation) e Event Sourcing. <br>
+* _**Project - <ins>AcadesArchitecturePattern.Domain**_</ins> 
+  * ***Acades.Abstractions (version 2023.7.3.926-alpha):*** Library containing common abstractions and interfaces used in CQRS (Command Query Responsibility Segregation) and Event Sourcing-based architectures. <br>
 
   <br>
 
-  * ***Acades.Saga (versão 2023.7.3.957-alpha):*** Biblioteca que fornece suporte para implementação de padrão de projeto Saga em arquiteturas orientadas a eventos. <br>
+  * ***Acades.Saga (version 2023.7.3.957-alpha):*** Library that provides support for implementing the Saga design pattern in event-driven architectures. <br>
 
   <br>
 
-  * ***MediatR (versão 12.0.1):*** Biblioteca que implementa o padrão Mediator para a comunicação entre diferentes componentes de um aplicativo. <br>
+  * ***MediatR (version 12.0.1):*** Library that implements the Mediator pattern for communication between different components of an application. <br>
 
   <br>
 
-  * ***MediatR (versão 12.0.1):*** Fornece suporte para a injeção de dependência no ASP.NET Core. <br>
+  * ***MediatR.Extensions.Microsoft.DependencyInjection (version 5.1.2):*** Provides support for dependency injection in ASP.NET Core. <br>
 
   <br>
 
-  * ***Microsoft.Extensions.DependencyModel (versão 7.0.0):*** Fornece recursos para acessar informações sobre dependências de tempo de execução. <br>
+  * ***Microsoft.Extensions.DependencyModel (version 7.0.0):*** Provides resources for accessing information about runtime dependencies. <br>
 
   <br>
 
-  * ***Microsoft.Extensions.Logging (versão 7.0.0):*** Fornece recursos de registro de logs no ASP.NET Core. <br>
+  * ***Microsoft.Extensions.Logging (version 7.0.0):*** Provides logging capabilities in ASP.NET Core. <br>
 
   <br>
 
-  * ***Microsoft.Extensions.Logging.Abstractions (versão 7.0.1):*** Contém abstrações para recursos de logging no ASP.NET Core. <br>
+  * ***Microsoft.Extensions.Logging.Abstractions (version 7.0.1):*** Contains abstractions for logging features in ASP.NET Core. <br>
 
   <br>
 
-  * ***Microsoft.Extensions.Logging.Debug (versão 7.0.0):*** Fornece um provedor de log que escreve mensagens no depurador durante o desenvolvimento. <br>
+  * ***Microsoft.Extensions.Logging.Debug (version 7.0.0):*** Provides a log provider that writes messages to the debugger during development. <br>
 
   <br>
 
-  * ***Scrutor (versão 4.2.2):*** Biblioteca que simplifica o registro de serviços com base em convenções usando a injeção de dependência do ASP.NET Core. <br>
+  * ***Scrutor (version 4.2.2):*** Library that simplifies service registration based on conventions using ASP.NET Core dependency injection. <br>
 
 <br>
 <br>
 
-* _**Projeto - <ins>AcadesArchitecturePattern.Infra.Data**_</ins> 
-  * ***Microsoft.EntityFrameworkCore (versão 7.0.5):*** Fornece acesso a dados e recursos de mapeamento objeto-relacional para o Entity Framework Core. <br>
+* _**Project - <ins>AcadesArchitecturePattern.Infra.Data**_</ins> 
+  * ***Microsoft.EntityFrameworkCore (version 7.0.5):*** Provides data access and object-relational mapping features for Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.Design (versão 7.0.5):*** Fornece suporte para a geração de código e ferramentas de design do Entity Framework Core. <br>
+  * ***Microsoft.EntityFrameworkCore.Design (version 7.0.5):*** Provides support for code generation and design tools for Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.Relational (versão 7.0.5):*** Fornece suporte para recursos relacionais adicionais no Entity Framework Core. <br>
+  * ***Microsoft.EntityFrameworkCore.Relational (version 7.0.5):*** Provides support for additional relational features in Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.SqlServer (versão 7.0.5):*** Fornece suporte específico para o uso do SQL Server no Entity Framework Core. <br>
+  * ***Microsoft.EntityFrameworkCore.SqlServer (version 7.0.5):*** Provides specific support for using SQL Server in Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.Tools (versão 7.0.5):*** Fornece ferramentas adicionais para o Entity Framework Core, como migrações de banco de dados. <br>
+  * ***Microsoft.EntityFrameworkCore.Tools (version 7.0.5):*** Provides additional tools for Entity Framework Core, such as database migrations. <br>
 
 <br>
 <br>
 
-* _**Projeto - <ins>AcadesArchitecturePattern.Application**_</ins> 
-  * ***FluentValidation.DependencyInjectionExtensions (versão 11.5.2):*** Fornece suporte para a integração do FluentValidation com a injeção de dependência do ASP.NET Core. <br>
+* _**Project - <ins>AcadesArchitecturePattern.Application**_</ins> 
+  * ***FluentValidation.DependencyInjectionExtensions (version 11.5.2):*** Provides support for integrating FluentValidation with ASP.NET Core dependency injection. <br>
 
   <br>
 
-  * ***MediatR (versão 12.0.1):*** Biblioteca que implementa o padrão Mediator para a comunicação entre diferentes componentes de um aplicativo. <br>
+  * ***MediatR (version 12.0.1):*** Library that implements the Mediator pattern for communication between different components of an application. <br>
 
   <br>
 
-  * ***MediatR.Extensions.Microsoft.DependencyInjectionFixed (versão 5.1.2):*** Fornece suporte para a integração do MediatR com a injeção de dependência do ASP.NET Core. <br>
+  * ***MediatR.Extensions.Microsoft.DependencyInjectionFixed (version 5.1.2):*** Provides support for integrating MediatR with ASP.NET Core dependency injection. <br>
 
   <br>
 
-  * ***Microsoft.AspNetCore.Authentication.JwtBearer (versão 7.0.5):*** Fornece suporte para autenticação baseada em tokens JWT (JSON Web Token) no ASP.NET Core. <br>
+  * ***Microsoft.AspNetCore.Authentication.JwtBearer (version 7.0.5):*** Provides support for JWT (JSON Web Token) based authentication in ASP.NET Core. <br>
 
 <br>
 <br>
 
-* _**Projeto - <ins>AcadesArchitecturePattern.Api**_</ins> 
-  * ***Microsoft.AspNetCore.Mvc.NewtonsoftJson (versão 6.0.19):*** Fornece suporte para serialização e desserialização personalizada usando a biblioteca Newtonsoft.Json no ASP.NET Core MVC. <br>
+* _**Project - <ins>AcadesArchitecturePattern.Api**_</ins> 
+  * ***Microsoft.AspNetCore.Mvc.NewtonsoftJson (version 6.0.19):*** Provides support for custom serialization and deserialization using the Newtonsoft.Json library in ASP.NET Core MVC. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore (versão 7.0.5):*** Fornece acesso a dados e recursos de mapeamento objeto-relacional para o Entity Framework Core. <br>
+  * ***Microsoft.EntityFrameworkCore (version 7.0.5):*** Provides data access and object-relational mapping features for Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.Design (versão 7.0.5):*** Fornece suporte para a geração de código e ferramentas de design do Entity Framework Core. <br>
+  * ***Microsoft.EntityFrameworkCore.Design (version 7.0.5):*** Provides support for code generation and design tools for Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.Relational (versão 7.0.5):*** Fornece suporte para recursos relacionais adicionais no Entity Framework Core. <br>
+  * ***Microsoft.EntityFrameworkCore.Relational (version 7.0.5):*** Provides support for additional relational features in Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.SqlServer (versão 7.0.5):*** Fornece suporte específico para o uso do SQL Server no Entity Framework Core. <br>
+  * ***Microsoft.EntityFrameworkCore.SqlServer (version 7.0.5):*** Provides specific support for using SQL Server in Entity Framework Core. <br>
 
   <br>
 
-  * ***Microsoft.EntityFrameworkCore.Tools (versão 7.0.5):*** Fornece ferramentas adicionais para o Entity Framework Core, como migrações de banco de dados. <br>
+  * ***Microsoft.EntityFrameworkCore.Tools (version 7.0.5):*** Provides additional tools for Entity Framework Core, such as database migrations. <br>
 
   <br>
 
-  * ***Newtonsoft.Json (versão 13.0.3):*** Uma popular biblioteca de serialização e desserialização JSON. <br>
+  * ***Newtonsoft.Json (version 13.0.3):*** A popular JSON serialization and deserialization library. <br>
 
   <br>
 
-  * ***Swashbuckle.AspNetCore (versão 6.5.0):*** Fornece suporte para geração de documentação interativa da API usando o Swagger/OpenAPI no ASP.NET Core. <br>
+  * ***Swashbuckle.AspNetCore (version 6.5.0):*** Provides support for generating interactive API documentation using Swagger/OpenAPI in ASP.NET Core. <br>
 
 <br>
 <br>
 
-* _**Projeto - <ins>AcadesArchitecturePattern.Tests**_</ins> 
-  * ***FluentAssertions (versão 6.11.0):*** Biblioteca que fornece uma API fluente para escrever asserções em testes unitários. <br>
+* _**Project - <ins>AcadesArchitecturePattern.Tests**_</ins> 
+  * ***FluentAssertions (version 6.11.0):*** Library that provides a fluent API for writing assertions in unit tests. <br>
 
   <br>
 
-  * ***Microsoft.NET.Test.Sdk (versão 17.5.0):*** Fornece suporte para a execução de testes .NET Core. <br>
+  * ***Microsoft.NET.Test.Sdk (version 17.5.0):*** Provides support for running .NET Core tests. <br>
 
   <br>
 
-  * ***Moq (versão 4.18.4):*** Biblioteca que permite a criação de objetos simulados (mocks) para testes unitários. <br>
+  * ***Moq (version 4.18.4):*** Library that allows the creation of mock objects for unit testing. <br>
 
   <br>
 
-  * ***xUnit (versão 2.4.2):*** Framework de testes unitários para .NET. <br>
+  * ***xUnit (version 2.4.2):*** Unit testing framework for .NET. <br>
 
 <br>
 <br>
@@ -724,4 +705,3 @@ To set up and deploy the API in different environments, such as development, tes
 
   * _<ins>***Conclusion:***_</ins> 
   * By following these guidelines and best practices, you can ensure a successful deployment of the AcadesArchitecturePattern API across different environments. Regularly review and update the deployment process to align with industry standards and evolving technologies.
-

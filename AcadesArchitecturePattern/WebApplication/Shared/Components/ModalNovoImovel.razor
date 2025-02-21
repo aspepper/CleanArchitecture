@@ -28,7 +28,7 @@
                 <div class="col-4">
                     <label class="">Área Total(ha)</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="text" name="inlineRadioOptions" id="inlineRadio1" @bind="NovoImovel.AreaTotal">
+                        <input class="form-check-input" type="text" name="inlineRadioOptions" id="inlineRadio1" @bind="novoImovel.AreaTotal">
                     </div>
                 </div>
                 <div class="col-4">
@@ -47,51 +47,51 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="" class="form-label">Denominação</label>
-                        <input type="text" class="form-control" id="inputEmail4" @bind="NovoImovel.Denominacao">
+                        <input type="text" class="form-control" id="inputEmail4" @bind="novoImovel.Denominacao">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="" class="form-label">Localização/Logradouro</label>
-                        <input type="text" class="form-control" @bind="NovoImovel.Localizacao">
+                        <input type="text" class="form-control" @bind="novoImovel.Localizacao">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress" class="form-label">Número</label>
-                        <input type="text" class="form-control" id="inputAddress" @bind="NovoImovel.Numero" placeholder="1234 Main St">
+                        <input type="text" class="form-control" id="inputAddress" @bind="novoImovel.Numero" placeholder="1234 Main St">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="" class="form-label">Complemento</label>
-                        <input type="text" class="form-control" @bind="NovoImovel.Complemento">
+                        <input type="text" class="form-control" @bind="novoImovel.Complemento">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress" class="form-label">Bairro</label>
-                        <input type="text" class="form-control" id="inputAddress" @bind="NovoImovel.Bairro" placeholder="1234 Main St">
+                        <input type="text" class="form-control" id="inputAddress" @bind="novoImovel.Bairro" placeholder="1234 Main St">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress" class="form-label">CEP</label>
-                        <input type="text" class="form-control" id="inputAddress" @bind="NovoImovel.CEP" placeholder="1234 Main St">
+                        <input type="text" class="form-control" id="inputAddress" @bind="novoImovel.CEP" placeholder="1234 Main St">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputState" class="form-label">Município</label>
-                        <select class="form-select" @bind="NovoImovel.Municipio">
+                        <select class="form-select" @bind="novoImovel.Municipio">
                             <option selected>Choose...</option>
                             <!-- Adicione outras opções do select, se houver -->
                         </select>
                     </div>
                     <div class="col-12">
                         <label for="inputState" class="form-label">Estado</label>
-                        <select class="form-select" @bind="NovoImovel.Estado">
+                        <select class="form-select" @bind="novoImovel.Estado">
                             <option selected>Choose...</option>
                             <!-- Adicione outras opções do select, se houver -->
                         </select>
                     </div>
                     <div class="col-12">
                         <label for="inputState" class="form-label">País</label>
-                        <select class="form-select" @bind="NovoImovel.Pais">
+                        <select class="form-select" @bind="novoImovel.Pais">
                             <option selected>Choose...</option>
                             <!-- Adicione outras opções do select, se houver -->
                         </select>

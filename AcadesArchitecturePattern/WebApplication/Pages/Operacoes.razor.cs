@@ -1,64 +1,62 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
 
-namespace WebApplication.Pages
+namespace WebApplication.Pages;
+
+public partial class Operacoes : ComponentBase
 {
-    public partial class Operacoes : ComponentBase
+    public List<Exposicao> Opera { get; set; } = [];
+    public List<Operar> Tvm { get; set; } = [];
+    public List<Exposicoes> Posit { get; set; } = [];
+
+    protected override void OnInitialized()
     {
-        public List<Exposicao> Opera { get; set; }
-        public List<Operar> Tvm { get; set; }
-        public List<Exposicoes> Posit { get; set; }
+        Opera =
+        [
+            new Exposicao { Ipoc = 2342342345023, Sicor = "SIM", Valor = 7344002340123.00, Analise = "", Risco = "positivo" },
+            new Exposicao { Ipoc = 2342342345023, Sicor = "NÃO", Valor = 7344002340123.00, Analise = "", Risco = "alerta" },
+            new Exposicao { Ipoc = 2342342345023, Sicor = "SIM", Valor = 7344002340123.00, Analise = "", Risco = "negativo" },
+            new Exposicao { Ipoc = 2342342345023, Sicor = "SIM", Valor = 7344002340123.00, Analise = "", Risco = "atencao" },
+        ];
 
-        protected override void OnInitialized()
-        {
-            Opera = new List<Exposicao>
-            {
-                new Exposicao { ipoc = 2342342345023, sicor = "SIM", valor = 7344002340123.00, analise = "", risco = "positivo" },
-                new Exposicao { ipoc = 2342342345023, sicor = "NÃO", valor = 7344002340123.00, analise = "", risco = "alerta" },
-                new Exposicao { ipoc = 2342342345023, sicor = "SIM", valor = 7344002340123.00, analise = "", risco = "negativo" },
-                new Exposicao { ipoc = 2342342345023, sicor = "SIM", valor = 7344002340123.00, analise = "", risco = "atencao" },
-            };
+        Tvm =
+        [
+            new Operar { Codigo = 215421547802, Registro = "", Titulo = 1132535000000.00, Tipo = "", Analisado = "", Riscos = "atencao" },
+            new Operar { Codigo = 215421547802, Registro = "", Titulo = 1132535000000.00, Tipo = "", Analisado = "", Riscos = "negativo" },
+            new Operar { Codigo = 215421547802, Registro = "", Titulo = 1132535000000.00, Tipo = "", Analisado = "", Riscos = "positivo" },
+            new Operar { Codigo = 215421547802, Registro = "", Titulo = 1132535000000.00, Tipo = "", Analisado = "", Riscos = "Analise" }
+        ];
 
-            Tvm = new List<Operar>
-            {
-                new Operar { codigo = 215421547802, registro = "", titulo = 1132535000000.00, tipo = "", analisado = "", riscos = "atencao" },
-                new Operar { codigo = 215421547802, registro = "", titulo = 1132535000000.00, tipo = "", analisado = "", riscos = "negativo" },
-                new Operar { codigo = 215421547802, registro = "", titulo = 1132535000000.00, tipo = "", analisado = "", riscos = "positivo" },
-                new Operar { codigo = 215421547802, registro = "", titulo = 1132535000000.00, tipo = "", analisado = "", riscos = "analise" }
-            };
+        Posit =
+        [
+            new Exposicoes { Situacoes = "Enquadramento Total", Saldo = 6475000005220.00, Tvm = 1000000000000.00 },
+            new Exposicoes { Situacoes = "Enquadramento Total", Saldo = 6475000005220.00, Tvm = 1000000000000.00 },
+            new Exposicoes { Situacoes = "Enquadramento Total", Saldo = 6475000005220.00, Tvm = 1000000000000.00 }
+        ];
+    }
 
-            Posit = new List<Exposicoes>
-            {
-                new Exposicoes { situacoes = "Enquadramento Total", saldo = 6475000005220.00, tvm = 1000000000000.00 },
-                new Exposicoes { situacoes = "Enquadramento Total", saldo = 6475000005220.00, tvm = 1000000000000.00 },
-                new Exposicoes { situacoes = "Enquadramento Total", saldo = 6475000005220.00, tvm = 1000000000000.00 }
-            };
-        }
+    public class Exposicao
+    {
+        public long Ipoc { get; set; }
+        public string Sicor { get; set; } = string.Empty;
+        public double Valor { get; set; }
+        public string Analise { get; set; } = string.Empty;
+        public string Risco { get; set; } = string.Empty;
+    }
 
-        public class Exposicao
-        {
-            public long ipoc { get; set; }
-            public string sicor { get; set; }
-            public double valor { get; set; }
-            public string analise { get; set; }
-            public string risco { get; set; }
-        }
+    public class Operar
+    {
+        public long Codigo { get; set; }
+        public string Registro { get; set; } = string.Empty;
+        public double Titulo { get; set; }
+        public string Tipo { get; set; } = string.Empty;
+        public string Analisado { get; set; } = string.Empty;
+        public string Riscos { get; set; } = string.Empty;
+    }
 
-        public class Operar
-        {
-            public long codigo { get; set; }
-            public string registro { get; set; }
-            public double titulo { get; set; }
-            public string tipo { get; set; }
-            public string analisado { get; set; }
-            public string riscos { get; set; }
-        }
-
-        public class Exposicoes
-        {
-            public string situacoes { get; set; }
-            public double saldo { get; set; }
-            public double tvm { get; set; }
-        }
+    public class Exposicoes
+    {
+        public string Situacoes { get; set; } = string.Empty;
+        public double Saldo { get; set; }
+        public double Tvm { get; set; }
     }
 }

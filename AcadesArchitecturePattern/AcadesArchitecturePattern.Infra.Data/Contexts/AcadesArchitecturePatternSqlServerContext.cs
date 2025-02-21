@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AcadesArchitecturePattern.Infra.Data.Contexts
 {
-    public class AcadesArchitecturePatternSqlServerContext : DbContext
+    public class AcadesArchitecturePatternSqlServerContext(DbContextOptions<AcadesArchitecturePatternSqlServerContext> options) : DbContext(options)
     {
-        public AcadesArchitecturePatternSqlServerContext(DbContextOptions<AcadesArchitecturePatternSqlServerContext> options) : base(options) { }
-
         public DbSet<User> Users { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
         public DbSet<ToDoTask> Tasks { get; set; }

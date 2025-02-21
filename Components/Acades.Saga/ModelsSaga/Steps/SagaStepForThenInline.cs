@@ -9,30 +9,20 @@ using Acades.Saga.ModelsSaga.Steps.Interfaces;
 
 namespace Acades.Saga.ModelsSaga.Steps
 {
-    internal class SagaStepForThenInline<TSagaData> : ISagaStep
+    internal class SagaStepForThenInline<TSagaData>(
+        string stepName,
+        ThenAsyncActionDelegate<TSagaData> action,
+        ThenAsyncActionDelegate<TSagaData>? compensation,
+        bool async, ISagaStep parentStep) : ISagaStep
         where TSagaData : ISagaData
     {
-        public SagaSteps ChildSteps { get; private set; }
-        public ISagaStep ParentStep { get; set; }
-        public bool Async { get; set; }
-        public string StepName { get; set; }
+        public SagaSteps ChildSteps { get; private set; } = new SagaSteps();
+        public ISagaStep ParentStep { get; set; } = parentStep;
+        public bool Async { get; set; } = async;
+        public string StepName { get; set; } = stepName;
 
-        public SagaStepForThenInline(
-            string stepName,
-            ThenAsyncActionDelegate<TSagaData> action,
-            ThenAsyncActionDelegate<TSagaData> compensation,
-            bool async, ISagaStep parentStep)
-        {
-            StepName = stepName;
-            this.Action = action;
-            this.Compensation = compensation;
-            Async = async;
-            ChildSteps = new SagaSteps();
-            ParentStep = parentStep;
-        }
-
-        private ThenAsyncActionDelegate<TSagaData> Action { get; }
-        private ThenAsyncActionDelegate<TSagaData> Compensation { get; }
+        private ThenAsyncActionDelegate<TSagaData> Action { get; } = action;
+        private ThenAsyncActionDelegate<TSagaData>? Compensation { get; } = compensation;
 
         public async Task Compensate(IServiceProvider serviceProvider, IExecutionContext context, ISagaEvent @event, IStepData stepData)
         {

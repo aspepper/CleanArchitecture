@@ -1,52 +1,51 @@
-﻿namespace WebApplication.Pages
+﻿namespace WebApplication.Pages;
+
+public partial class Agravantes
 {
-    public partial class Agravantes
+    public List<Agravante> Agravant { get; set; } = [];
+    public List<Mitigador> Mitigadores { get; set; } = [];
+
+
+    protected override void OnInitialized()
     {
-        public List<Agravante> Agravant { get; set; }
-        public List<Mitigador> Mitigadores { get; set; }
+        Agravant =
+        [
+            new Agravante { Descricao = "Certidão do Ibama", Situacao = "negativo", Validade = new DateTime(2022, 12, 01), Risco = "negativo" },
+            new Agravante { Descricao = "Certidão do Ibama", Situacao = "positivo", Validade = new DateTime(2022, 12, 01), Risco = "positivo" },
+            new Agravante { Descricao = "Certidão do Ibama", Situacao = "negativo", Validade = new DateTime(2022, 12, 01), Risco = "alerta" },
+            new Agravante { Descricao = "Certidão do Ibama", Situacao = "positivo", Validade = new DateTime(2022, 12, 01), Risco = "negativo" },
+            new Agravante { Descricao = "Certidão do Ibama", Situacao = "negativo", Validade = new DateTime(2022, 12, 01), Risco = "Analise" },
+            new Agravante { Descricao = "Certidão do Ibama", Situacao = "positivo", Validade = new DateTime(2022, 12, 01), Risco = "alerta" },
 
+        ];
 
-        protected override void OnInitialized()
-        {
-            Agravant = new List<Agravante>
-            {
-        new Agravante { descricao = "Certidão do Ibama", situacao = "negativo", validade = new DateTime(2022, 12, 01), risco = "negativo" },
-        new Agravante { descricao = "Certidão do Ibama", situacao = "positivo", validade = new DateTime(2022, 12, 01), risco = "positivo" },
-        new Agravante { descricao = "Certidão do Ibama", situacao = "negativo", validade = new DateTime(2022, 12, 01), risco = "alerta" },
-        new Agravante { descricao = "Certidão do Ibama", situacao = "positivo", validade = new DateTime(2022, 12, 01), risco = "negativo" },
-        new Agravante { descricao = "Certidão do Ibama", situacao = "negativo", validade = new DateTime(2022, 12, 01), risco = "analise" },
-        new Agravante { descricao = "Certidão do Ibama", situacao = "positivo", validade = new DateTime(2022, 12, 01), risco = "alerta" },
+        Mitigadores =
+        [
+            new Mitigador {  Descricao = "Certidão do Ibama",Situacao = "positivo",Validade = new DateTime(2022, 11, 10),Risco = "atencao" },
+            new Mitigador {  Descricao = "Certidão do Ibama",Situacao = "negativo",Validade = new DateTime(2022, 11, 10),Risco = "alerta"},
+            new Mitigador {  Descricao = "Certidão do Ibama",Situacao = "positivo",Validade = new DateTime(2022, 11, 10),Risco = "positivo"},
+            new Mitigador {  Descricao = "Certidão do Ibama",Situacao = "positivo",Validade = new DateTime(2022, 11, 10),Risco = "negativo" },
+            new Mitigador {  Descricao = "Certidão do Ibama",Situacao = "negativo",Validade = new DateTime(2022, 11, 10),Risco = "Analise" },
+            new Mitigador {  Descricao = "Certidão do Ibama",Situacao = "positivo",Validade = new DateTime(2022, 11, 10),Risco = "atencao" },
 
-    };
-
-            Mitigadores = new List<Mitigador>
-    {
-        new Mitigador {  descricao = "Certidão do Ibama",situacao = "positivo",validade = new DateTime(2022, 11, 10),risco = "atencao" },
-        new Mitigador {  descricao = "Certidão do Ibama",situacao = "negativo",validade = new DateTime(2022, 11, 10),risco = "alerta"},
-        new Mitigador {  descricao = "Certidão do Ibama",situacao = "positivo",validade = new DateTime(2022, 11, 10),risco = "positivo"},
-        new Mitigador {  descricao = "Certidão do Ibama",situacao = "positivo",validade = new DateTime(2022, 11, 10),risco = "negativo" },
-        new Mitigador {  descricao = "Certidão do Ibama",situacao = "negativo",validade = new DateTime(2022, 11, 10),risco = "analise" },
-        new Mitigador {  descricao = "Certidão do Ibama",situacao = "positivo",validade = new DateTime(2022, 11, 10),risco = "atencao" },
-
-         };
-        }
-
-        public class Agravante
-        {
-            public string descricao { get; set; }
-            public string situacao { get; set; }
-            public DateTime validade { get; set; }
-            public string risco { get; set; }
-        }
-
-        public class Mitigador
-        {
-            public string descricao { get; set; }
-            public string situacao { get; set; }
-            public DateTime validade { get; set; }
-            public string risco { get; set; }
-        }
-
-
+        ];
     }
+
+    public class Agravante
+    {
+        public string Descricao { get; set; } = string.Empty;
+        public string Situacao { get; set; } = string.Empty;
+        public DateTime Validade { get; set; }
+        public string Risco { get; set; } = string.Empty;
+    }
+
+    public class Mitigador
+    {
+        public string Descricao { get; set; } = string.Empty;
+        public string Situacao { get; set; } = string.Empty;
+        public DateTime Validade { get; set; }
+        public string Risco { get; set; } = string.Empty;
+    }
+
+
 }

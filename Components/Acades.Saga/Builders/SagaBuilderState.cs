@@ -6,25 +6,15 @@ using System;
 
 namespace Acades.Saga.Builders
 {
-    internal class SagaBuilderState
+    internal class SagaBuilderState(Type currentEvent, string currentState, ISagaModel model,
+        IServiceProvider serviceProvider, UniqueNameGenerator uniqueNameGenerator, ISagaStep parentStep)
     {
-        public ISagaStep ParentStep;
-        public Type CurrentEvent;
-        public string CurrentState;
-        public ISagaModel Model;
-        public IServiceProvider ServiceProvider;
-        public UniqueNameGenerator UniqueNameGenerator;
-        public SagaAction CurrentAction;
-
-        public SagaBuilderState(Type currentEvent, string currentState, ISagaModel model,
-            IServiceProvider serviceProvider, UniqueNameGenerator uniqueNameGenerator, ISagaStep parentStep)
-        {
-            CurrentEvent = currentEvent;
-            CurrentState = currentState;
-            Model = model;
-            ServiceProvider = serviceProvider;
-            UniqueNameGenerator = uniqueNameGenerator;
-            ParentStep = parentStep;
-        }
+        public ISagaStep ParentStep = parentStep;
+        public Type CurrentEvent = currentEvent;
+        public string CurrentState = currentState;
+        public ISagaModel Model = model;
+        public IServiceProvider ServiceProvider = serviceProvider;
+        public UniqueNameGenerator UniqueNameGenerator = uniqueNameGenerator;
+        public SagaAction? CurrentAction;
     }
 }

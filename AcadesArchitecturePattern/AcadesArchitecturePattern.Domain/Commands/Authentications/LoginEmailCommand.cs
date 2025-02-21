@@ -5,16 +5,10 @@ using MediatR;
 
 namespace AcadesArchitecturePattern.Domain.Commands.Authentications
 {
-    public class LoginEmailCommand : Notifiable<Notification>, ICommand, IRequest<GenericCommandResult>
+    public class LoginEmailCommand(string email, string password) : Notifiable<Notification>, ICommand, IRequest<GenericCommandResult>
     {
-        public LoginEmailCommand(string email, string password)
-        {
-            Email = email;
-            Password = password;
-        }
-
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Email { get; set; } = email;
+        public string Password { get; set; } = password;
 
         public void Validate()
         {

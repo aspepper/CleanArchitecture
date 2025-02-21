@@ -1,31 +1,20 @@
-﻿using AcadesArchitecturePattern.Application.Services;
-using AcadesArchitecturePattern.Domain.Queries.Users;
-using AcadesArchitecturePattern.Domain.Security;
-using MediatR;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿using MediatR;
 
 namespace AcadesArchitecturePattern.Api.Helper
 {
-    public class UtilHelper
+    public class UtilHelper(IMediator mediator, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
     {
 
-        private readonly IMediator _mediator;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IConfiguration _configuration;
-
-        public UtilHelper(IMediator mediator, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
-        {
-            _mediator = mediator;
-            _httpContextAccessor = httpContextAccessor;
-            _configuration = configuration;
-        }
+        private readonly IMediator mediator = mediator;
+        private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+        private readonly IConfiguration configuration = configuration;
 
         public static object? GetObjectItem(object obj, string item)
         {
             Type t = obj.GetType();
             foreach (var prop in t.GetProperties())
             {
-                if (prop.Name.ToLower() == item.ToLower())
+                if (prop.Name.Equals(item, StringComparison.CurrentCultureIgnoreCase))
                 {
                     return prop.GetValue(obj);
                 }

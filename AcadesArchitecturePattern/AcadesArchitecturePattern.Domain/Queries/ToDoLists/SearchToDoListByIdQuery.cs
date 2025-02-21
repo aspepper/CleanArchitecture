@@ -28,7 +28,7 @@ namespace AcadesArchitecturePattern.Domain.Queries.ToDoLists
         {
             public Guid Id { get; set; }
             public Guid IdUser { get; set; }
-            public string Title { get; set; }
+            public string Title { get; set; } = string.Empty;
             public EnColor Color { get; set; }
         }
     }

@@ -10,8 +10,6 @@
 
         void Update(Domain.Entities.ToDoTask task);
 
-
-
         // Queries:
         IEnumerable<Domain.Entities.ToDoTask> List();
         Domain.Entities.ToDoTask SearchById(Guid? id);

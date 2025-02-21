@@ -8,7 +8,10 @@ namespace AcadesArchitecturePattern.Domain.Commands.ToDoLists
 {
     public class CreateToDoListCommand : Notifiable<Notification>, ICommand, IRequest<GenericCommandResult>
     {
-        public CreateToDoListCommand() { }
+        public CreateToDoListCommand()
+        {
+            Title = string.Empty; // Initialize Title to avoid CS8618
+        }
 
         public CreateToDoListCommand(string title, EnColor color, Guid idUser)
         {

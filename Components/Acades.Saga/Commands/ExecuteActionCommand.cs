@@ -2,12 +2,11 @@
 using Acades.Saga.ModelsSaga.Interfaces;
 using Acades.Saga.ValueObjects;
 
-namespace Acades.Saga.Commands
+namespace Acades.Saga.Commands;
+
+internal class ExecuteActionCommand
 {
-    internal class ExecuteActionCommand
-    {
-        public AsyncExecution Async;
-        public ISagaModel Model;
-        public ISaga Saga { get; internal set; }
-    }
+    public AsyncExecution Async;
+    public ISagaModel Model;
+    public ISaga Saga { get; internal set; }
 }

@@ -8,18 +8,11 @@ namespace AcadesArchitecturePattern.Api.Controllers
 {
     [Route("v1/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController(IMediator mediator) : ControllerBase
     {
         // Dependency Injection:
 
-        private readonly IMediator _mediator;
-
-        public UsersController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-
+        private readonly IMediator mediator = mediator;
 
         // Commands:
 
@@ -27,7 +20,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         [HttpPost("signUp")]
         public async Task<IActionResult> SignUp([FromBody] CreateUserCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await mediator.Send(command);
 
             return result.Success ? Ok(result.Message) : BadRequest(result.Message);
         }
@@ -37,12 +30,10 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteUserCommand { Id = id };
-            var result = await _mediator.Send(command);
+            var result = await mediator.Send(command);
 
             return result.Success ? NoContent() : BadRequest(result.Message);
         }
-
-
 
         // Queries:
 
@@ -51,7 +42,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> List()
         {
             var query = new ListUserQuery();
-            var result = await _mediator.Send(query);
+            var result = await mediator.Send(query);
 
             return result.Success ? Ok(result.Data) : BadRequest(result.Message);
         }
@@ -61,7 +52,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> SearchByEmail(string email)
         {
             var query = new SearchUserByEmailQuery { Email = email };
-            var result = await _mediator.Send(query);
+            var result = await mediator.Send(query);
 
             return result.Success ? Ok(result.Data) : BadRequest(result.Message);
         }
@@ -71,7 +62,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> SearchById(Guid id)
         {
             var query = new SearchUserByIdQuery { Id = id };
-            var result = await _mediator.Send(query);
+            var result = await mediator.Send(query);
 
             return result.Success ? Ok(result.Data) : BadRequest(result.Message);
         }

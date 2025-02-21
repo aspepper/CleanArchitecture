@@ -1,9 +1,8 @@
-﻿namespace Acades.Saga.Builders
+﻿namespace Acades.Saga.Builders;
+
+public interface ISagaSettingsBuilder
 {
-    public interface ISagaSettingsBuilder
-    {
-        ISagaSettingsBuilder OnResumeDoCurrentStepCompensation();
-        ISagaSettingsBuilder OnResumeDoFullCompensation();
-        ISagaSettingsBuilder OnResumeDoNothing();
-    }
+    ISagaSettingsBuilder OnResumeDoCurrentStepCompensation();
+    ISagaSettingsBuilder OnResumeDoFullCompensation();
+    ISagaSettingsBuilder OnResumeDoNothing();
 }

@@ -1,16 +1,9 @@
 ﻿namespace AcadesArchitecturePattern.Shared.Queries
 {
-    public class GenericQueryResult : IQueryResult
+    public class GenericQueryResult(bool success, string message, object data) : IQueryResult
     {
-        public GenericQueryResult(bool success, string message, object data)
-        {
-            Success = success;
-            Message = message;
-            Data = data;
-        }
-
-        public bool Success { get; set; } // true = success message || false = failure message
-        public string Message { get; set; } // custom message to help front-end
-        public Object Data { get; set; } // return an object
+        public bool Success { get; set; } = success;
+        public string Message { get; set; } = message;
+        public Object Data { get; set; } = data;
     }
 }

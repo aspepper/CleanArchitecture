@@ -23,8 +23,8 @@ namespace AcadesArchitecturePattern.Domain.Queries.Tasks
         {
             public Guid Id { get; set; }
             public Guid IdList { get; set; }
-            public string Name { get; set; }
-            public string Description { get; set; }
+            public string Name { get; set; } = string.Empty;
+            public string Description { get; set; } = string.Empty;
             public EnTaskPriorityLevel Priority { get; set; }
             public EnStatusTask Status { get; set; }
             public DateTime? Reminder { get; set; }

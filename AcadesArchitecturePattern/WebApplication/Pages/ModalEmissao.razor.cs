@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 
-namespace WebApplication.Pages
+namespace WebApplication.Pages;
+
+public partial class ModalEmissao
 {
-    public partial class ModalEmissao
-    {
 
-        public void DesativaBotao()
-        {
-            JSRunTime.InvokeVoidAsync("eval", "document.querySelectorAll('.botao-ativado').forEach(element => element.classList.remove('botao-ativado'));");
-        }
+    public void DesativaBotao()
+    {
+        _ = JSRunTime.InvokeVoidAsync("eval", "document.querySelectorAll('.botao-ativado').forEach(element => element.classList.remove('botao-ativado'));");
     }
 }

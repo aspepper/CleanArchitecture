@@ -2,18 +2,12 @@
 
 namespace AcadesArchitecturePattern.Domain.Events
 {
-    public class TaskEvent : BaseEvent
+    public class TaskEvent(Entities.ToDoTask item) : BaseEvent
     {
-        public TaskEvent(Entities.ToDoTask item)
-        {
-            Item = item;
-            EventDateTime = DateTime.Now;
-        }
+        public Entities.ToDoTask Item { get; } = item;
+        public DateTime EventDateTime { get; } = DateTime.Now;
 
-        public Entities.ToDoTask Item { get; }
-        public DateTime EventDateTime { get; }
-
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || GetType() != obj.GetType())
             {
@@ -25,5 +19,9 @@ namespace AcadesArchitecturePattern.Domain.Events
             return Item.Id == other.Item.Id;
         }
 
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

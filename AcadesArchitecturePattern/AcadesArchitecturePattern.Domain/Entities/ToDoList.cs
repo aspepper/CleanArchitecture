@@ -2,7 +2,6 @@
 using AcadesArchitecturePattern.Shared.Enums;
 using Flunt.Notifications;
 using Flunt.Validations;
-using System.Xml.Linq;
 
 namespace AcadesArchitecturePattern.Domain.Entities
 {
@@ -21,6 +20,9 @@ namespace AcadesArchitecturePattern.Domain.Entities
             Title = title;
             Color = color;
             IdUser = idUser;
+            Users = new User("defaultUserName", "defaultEmail", "defaultPassword"); // Initialize Users property with default values
+            taskList = []; // Initialize taskList property
+            Tasks = taskList.AsReadOnly(); // Initialize Tasks property
         }
 
         public string Title { get; set; }
@@ -32,6 +34,6 @@ namespace AcadesArchitecturePattern.Domain.Entities
 
         // Compositions
         public IReadOnlyCollection<ToDoTask> Tasks { get; private set; }
-        private List<ToDoTask> _tasks { get; set; }
+        private List<ToDoTask> taskList { get; set; }
     }
 }

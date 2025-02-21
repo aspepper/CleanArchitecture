@@ -27,6 +27,7 @@ namespace AcadesArchitecturePattern.Domain.Entities
             Status = status;
             Reminder = reminder;
             IdList = idList;
+            Lists = new ToDoList("Default Title", EnColor.White, idList); // Initialize Lists property with required parameters
         }
 
         public string Name { get; set; }
@@ -55,44 +56,42 @@ namespace AcadesArchitecturePattern.Domain.Entities
             ModifyDate = DateTime.Now;
         }
 
-
-
         // Events
-        private bool _done;
-        private List<TaskEvent> _domainEvents = new List<TaskEvent>();
+        private bool done;
+        private readonly List<TaskEvent> domainEvents = [];
 
         public bool Done
         {
-            get => _done;
+            get => done;
             set
             {
-                if (value && !_done)
+                if (value && !done)
                 {
                     AddDomainEvent(new TaskEvent(this));
                 }
 
-                _done = value;
+                done = value;
             }
         }
 
         // Add event in list
         private void AddDomainEvent(TaskEvent @event)
         {
-            _domainEvents.Add(@event);
+            domainEvents.Add(@event);
         }
 
         // Get task's event
         public IReadOnlyList<TaskEvent> GetDomainEvents()
         {
-            return _domainEvents.AsReadOnly();
+            return domainEvents.AsReadOnly();
         }
 
         // Mark task as done
         public void MarkAsDone()
         {
-            if (!_done && Status == EnStatusTask.Done)
+            if (!done && Status == EnStatusTask.Done)
             {
-                _done = true;
+                done = true;
                 AddDomainEvent(new TaskEvent(this));
             }
         }

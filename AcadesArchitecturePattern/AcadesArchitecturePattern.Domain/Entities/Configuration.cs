@@ -12,7 +12,7 @@ namespace AcadesArchitecturePattern.Domain.Entities
     {
 
         /*
-         retorno:
+         returns:
 
             advCorpLoginAcessoApi: null
             advCorpLoginApi: "http://advdes15/Corp/Authenticate"
@@ -68,7 +68,5 @@ namespace AcadesArchitecturePattern.Domain.Entities
         public string Titulo { get; set; }
         public string UrlApiRisc { get; set; }
         public string VersaoApi { get; set; }
-
-
     }
 }

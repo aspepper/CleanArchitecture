@@ -8,7 +8,11 @@ namespace AcadesArchitecturePattern.Domain.Commands.Tasks
 {
     public class CreateTaskCommand : Notifiable<Notification>, ICommand, IRequest<GenericCommandResult>
     {
-        public CreateTaskCommand() { }
+        public CreateTaskCommand()
+        {
+            Name = string.Empty;
+            Description = string.Empty;
+        }
 
         public CreateTaskCommand(string name, string description, EnTaskPriorityLevel priority, EnStatusTask status, DateTime? reminder, Guid idList)
         {

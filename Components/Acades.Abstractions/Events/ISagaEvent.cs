@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace Acades.Saga.Events
+namespace Acades.Saga.Events;
+
+public interface ISagaEvent
 {
-    public interface ISagaEvent
-    {
-        /// <summary>
-        ///     Saga's correlation ID
-        /// </summary>
-        Guid ID { get; set; }
-    }
+    /// <summary>
+    ///     Saga's correlation ID
+    /// </summary>
+    Guid ID { get; set; }
 }

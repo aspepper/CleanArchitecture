@@ -1,6 +1,5 @@
-﻿namespace WebApplication.Pages
+﻿namespace WebApplication.Pages;
+
+public partial class SocioAdministradores
 {
-    public partial class SocioAdministradores
-    {
-    }
 }

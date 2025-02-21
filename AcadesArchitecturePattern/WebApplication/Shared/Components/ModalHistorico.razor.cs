@@ -1,6 +1,5 @@
-﻿namespace WebApplication.Shared.Components
+﻿namespace WebApplication.Shared.Components;
+
+public partial class ModalHistorico
 {
-    public partial class ModalHistorico
-    {
-    }
 }

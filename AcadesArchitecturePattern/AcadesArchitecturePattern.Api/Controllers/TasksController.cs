@@ -7,18 +7,11 @@ namespace AcadesArchitecturePattern.Api.Controllers
 {
     [Route("v1/tasks")]
     [ApiController]
-    public class TasksController : ControllerBase
+    public class TasksController(IMediator mediator) : ControllerBase
     {
         // Dependency Injection:
 
-        private readonly IMediator _mediator;
-
-        public TasksController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-
+        private readonly IMediator mediator = mediator;
 
         // Commands:
 
@@ -26,7 +19,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CreateTaskCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await mediator.Send(command);
 
             return result.Success ? Ok(result.Message) : BadRequest(result.Message);
         }
@@ -36,7 +29,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteTaskCommand { Id = id };
-            var result = await _mediator.Send(command);
+            var result = await mediator.Send(command);
 
             return result.Success ? NoContent() : BadRequest(result.Message);
         }
@@ -47,7 +40,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         {
             command.Id = id;
 
-            var result = await _mediator.Send(command);
+            var result = await mediator.Send(command);
 
             return result.Success ? Ok(result.Message) : BadRequest(result.Message);
         }
@@ -61,7 +54,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> List()
         {
             var query = new ListTaskQuery();
-            var result = await _mediator.Send(query);
+            var result = await mediator.Send(query);
 
             return result.Success ? Ok(result.Data) : BadRequest(result.Message);
         }
@@ -71,7 +64,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> SearchById(Guid id)
         {
             var query = new SearchTaskByIdQuery { Id = id };
-            var result = await _mediator.Send(query);
+            var result = await mediator.Send(query);
 
             return result.Success ? Ok(result.Data) : BadRequest(result.Message);
         }

@@ -8,7 +8,7 @@ namespace AcadesArchitecturePattern.Domain.Queries.Users
 {
     public class SearchUserByEmailQuery : Notifiable<Notification>, IQuery, IRequest<GenericQueryResult>
     {
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         public void Validate()
         {
@@ -22,12 +22,12 @@ namespace AcadesArchitecturePattern.Domain.Queries.Users
         public class SearchUserByEmailResult
         {
             public Guid Id { get; set; }
-            public string UserName { get; set; }
-            public string Email { get; set; }
+            public string UserName { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
 
             // Compositions
-            public IReadOnlyCollection<ToDoList> ToDoLists { get; private set; }
-            private List<ToDoList> _lists { get; set; }
+            public IReadOnlyCollection<ToDoList> ToDoLists { get; private set; } = [];
+            private List<ToDoList> Lists { get; set; } = [];
         }
     }
 }

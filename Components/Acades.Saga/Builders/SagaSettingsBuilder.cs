@@ -1,32 +1,26 @@
 ﻿using Acades.Saga.ModelsSaga.Interfaces;
 
-namespace Acades.Saga.Builders
+namespace Acades.Saga.Builders;
+
+public class SagaSettingsBuilder(ISagaModel model) : ISagaSettingsBuilder
 {
-    public class SagaSettingsBuilder : ISagaSettingsBuilder
+    private readonly ISagaModel model = model;
+
+    public ISagaSettingsBuilder OnResumeDoCurrentStepCompensation()
     {
-        private readonly ISagaModel model;
+        model.ResumePolicy = ESagaResumePolicy.DoCurrentStepCompensation;
+        return this;
+    }
 
-        public SagaSettingsBuilder(ISagaModel model)
-        {
-            this.model = model;
-        }
+    public ISagaSettingsBuilder OnResumeDoFullCompensation()
+    {
+        model.ResumePolicy = ESagaResumePolicy.DoFullCompensation;
+        return this;
+    }
 
-        public ISagaSettingsBuilder OnResumeDoCurrentStepCompensation()
-        {
-            model.ResumePolicy = ESagaResumePolicy.DoCurrentStepCompensation;
-            return this;
-        }
-
-        public ISagaSettingsBuilder OnResumeDoFullCompensation()
-        {
-            model.ResumePolicy = ESagaResumePolicy.DoFullCompensation;
-            return this;
-        }
-
-        public ISagaSettingsBuilder OnResumeDoNothing()
-        {
-            model.ResumePolicy = ESagaResumePolicy.DoNothing;
-            return this;
-        }
+    public ISagaSettingsBuilder OnResumeDoNothing()
+    {
+        model.ResumePolicy = ESagaResumePolicy.DoNothing;
+        return this;
     }
 }

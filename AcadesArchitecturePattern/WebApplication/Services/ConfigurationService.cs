@@ -14,39 +14,39 @@ namespace WebApplication.Services
     public class ConfigurationService: IConfigurationService
     {
 
-        private readonly HttpClient _httpClient;
-        private readonly IConfiguration _configuration;
-        private readonly ILocalStorageService _localStorage;
+        private readonly HttpClient httpClient;
+        private readonly IConfiguration configuration;
+        private readonly ILocalStorageService localStorage;
 
         public ConfigurationService(IConfiguration configuration, ILocalStorageService localStorage)
         {
-            _configuration = configuration;
-            _localStorage = localStorage;
+            this.configuration = configuration;
+            this.localStorage = localStorage;
 
-            var urlProto = _configuration["APIConfigProtocol"];
-            var urlServr = _configuration["APIConfigServer"];
-            var urlLinkr = _configuration["APIConfigURL"];
-            var urlVersi = _configuration["APIConfigVersion"];
+            var urlProto = this.configuration["APIConfigProtocol"];
+            var urlServr = this.configuration["APIConfigServer"];
+            var urlLinkr = this.configuration["APIConfigURL"];
+            var urlVersi = this.configuration["APIConfigVersion"];
 
-            _httpClient = new HttpClient()
+            httpClient = new HttpClient()
             {
                 BaseAddress = new Uri($"{urlProto}://{urlServr}/{urlLinkr}/api/{urlVersi}/GetAdvConfig/")
             };
-            _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task Get()
         {
-            var APISyst = _configuration["APIConfigSystem"];
-            var APIComp = _configuration["APIConfigCompany"];
-            HttpResponseMessage response = await _httpClient.GetAsync($"getConfig/{APISyst}/{APIComp}");
+            var APISyst = configuration["APIConfigSystem"];
+            var APIComp = configuration["APIConfigCompany"];
+            HttpResponseMessage response = await httpClient.GetAsync($"getConfig/{APISyst}/{APIComp}");
 
             if (!response.IsSuccessStatusCode)
             { throw new Exception("Configuração não encontrada"); }
 
             var result = JsonSerializer.Deserialize<JsonElement>(await response.Content.ReadAsStringAsync());
             result.TryGetProperty("advLinkWebApi", out var advLinkWebApi);
-            await _localStorage.SetItemAsStringAsync("advLinkWebApi", advLinkWebApi.ToString());
+            await localStorage.SetItemAsStringAsync("advLinkWebApi", advLinkWebApi.ToString());
 
         }
 

@@ -1,6 +1,5 @@
-﻿namespace WebApplication.Shared.Components
+﻿namespace WebApplication.Shared.Components;
+
+public partial class ModalJustificativa
 {
-    public partial class ModalJustificativa
-    {
-    }
 }

@@ -1,16 +1,9 @@
 ﻿namespace AcadesArchitecturePattern.Shared.Commands
 {
-    public class GenericCommandResult : ICommandResult
+    public class GenericCommandResult(bool success, string message, object data) : ICommandResult
     {
-        public GenericCommandResult(bool success, string message, object data)
-        {
-            Success = success;
-            Message = message;
-            Data = data;
-        }
-
-        public bool Success { get; set; } // true = success message || false = failure message
-        public string Message { get; set; } // custom message to help front-end
-        public Object Data { get; set; } // return an object
+        public bool Success { get; set; } = success;
+        public string Message { get; set; } = message;
+        public Object Data { get; set; } = data;
     }
 }

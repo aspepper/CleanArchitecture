@@ -9,8 +9,6 @@ namespace AcadesArchitecturePattern.Domain.Interfaces
 
         void Delete(Guid? id);
 
-
-
         // Queries:
         IEnumerable<User> List();
         User SearchById(Guid? id);

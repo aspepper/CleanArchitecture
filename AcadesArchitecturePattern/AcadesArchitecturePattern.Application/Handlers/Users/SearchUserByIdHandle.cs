@@ -1,5 +1,4 @@
 ﻿using AcadesArchitecturePattern.Application.Handlers.Events;
-using AcadesArchitecturePattern;
 using AcadesArchitecturePattern.Domain.Events;
 using AcadesArchitecturePattern.Domain.Interfaces;
 using AcadesArchitecturePattern.Domain.Queries.Users;
@@ -9,64 +8,63 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 
-namespace AcadesArchitecturePattern.Application.Handlers.Users
+namespace AcadesArchitecturePattern.Application.Handlers.Users;
+
+public class SearchUserByIdHandle : IRequestHandler<SearchUserByIdQuery, GenericQueryResult>
 {
-    public class SearchUserByIdHandle : IRequestHandler<SearchUserByIdQuery, GenericQueryResult>
+    private readonly IUserService userService;
+    private readonly ILogger<ToDoListEventHandle> logger;
+    private readonly IMediator mediator;
+    private readonly HttpClient client;
+    private readonly IConfiguration configuration;
+
+    public SearchUserByIdHandle(IUserService userService, ILogger<ToDoListEventHandle> logger, IMediator mediator, IConfiguration config)
     {
-        private readonly IUserService _userService;
-        private readonly ILogger<ToDoListEventHandle> _logger;
-        private readonly IMediator _mediator;
-        private HttpClient _client;
-        private IConfiguration _configuration;
+        this.userService = userService;
+        this.logger = logger;
+        this.mediator = mediator;
+        configuration = config;
 
-        public SearchUserByIdHandle(IUserService userService, ILogger<ToDoListEventHandle> logger, IMediator mediator, IConfiguration config)
+        if (client == null)
         {
-            _userService = userService;
-            _logger = logger;
-            _mediator = mediator;
-            _configuration = config;
-
-            if (_client == null)
+            client = new HttpClient
             {
-                _client = new HttpClient
-                {
-                    BaseAddress = new Uri($"{_configuration["APIConfigProtocol"]}://{_configuration["APIConfigServer"]}/{_configuration["APIConfigURL"]}/")
-                };
-                _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            }
-
+                BaseAddress = new Uri($"{configuration["APIConfigProtocol"]}://{configuration["APIConfigServer"]}/{configuration["APIConfigURL"]}/")
+            };
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<GenericQueryResult> Handle(SearchUserByIdQuery query, CancellationToken cancellationToken)
+    }
+
+    public async Task<GenericQueryResult> Handle(SearchUserByIdQuery query, CancellationToken cancellationToken)
+    {
+        try
         {
-            try
+            query.Validate();
+
+            if (!query.IsValid)
             {
-                query.Validate();
-
-                if (!query.IsValid)
-                {
-                    return await Task.FromResult(new GenericQueryResult(false, "Insira corretamente os dados do usuário", query.Notifications));
-                }
-
-                HttpResponseMessage response = _client.GetAsync($"/{_configuration["APIConfigSystem"]}/{_configuration["APIConfigCompany"]}", cancellationToken).Result;
-
-                if (!response.IsSuccessStatusCode)
-                { throw new Exception("Usuário não encontrado"); }
-
-                var searchedUser = response.Content.ReadFromJsonAsync<Domain.Entities.User>(cancellationToken: cancellationToken).Result ?? throw new Exception("Usuário não encontrado");
-
-                _logger.LogInformation("Tarefa Concluída: {CommandName}", query.GetType().Name);
-
-                var userEvent = new UserEvent(searchedUser);
-                await _mediator.Publish(userEvent, cancellationToken);
-
-                return await Task.FromResult(new GenericQueryResult(true, "Usuários encontrados!", searchedUser));
+                return await Task.FromResult(new GenericQueryResult(false, "Insira corretamente os dados do usuário", query.Notifications));
             }
-            catch (Exception ex)
-            {
-                _logger.LogInformation("Tarefa Falhou: {CommandName}", query.GetType().Name);
-                return await Task.FromResult(new GenericQueryResult(false, ex.Message, query.GetType().Name));
-            }
+
+            HttpResponseMessage response = client.GetAsync($"/{configuration["APIConfigSystem"]}/{configuration["APIConfigCompany"]}", cancellationToken).Result;
+
+            if (!response.IsSuccessStatusCode)
+            { throw new Exception("Usuário não encontrado"); }
+
+            var searchedUser = response.Content.ReadFromJsonAsync<Domain.Entities.User>(cancellationToken: cancellationToken).Result ?? throw new Exception("Usuário não encontrado");
+
+            logger.LogInformation("Tarefa Concluída: {CommandName}", query.GetType().Name);
+
+            var userEvent = new UserEvent(searchedUser);
+            await mediator.Publish(userEvent, cancellationToken);
+
+            return await Task.FromResult(new GenericQueryResult(true, "Usuários encontrados!", searchedUser));
+        }
+        catch (Exception ex)
+        {
+            logger.LogInformation("Tarefa Falhou: {CommandName}", query.GetType().Name);
+            return await Task.FromResult(new GenericQueryResult(false, ex.Message, query.GetType().Name));
         }
     }
 }

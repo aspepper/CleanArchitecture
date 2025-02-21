@@ -28,40 +28,40 @@
             {
                 <tr>
                     <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
-                    <td class="letter">@exposicao.ipoc</td>
-                    <td class="letter text-center">@exposicao.sicor</td>
-                    <td class="letter text-center">@exposicao.valor.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                    <td class="letter">@exposicao.Ipoc</td>
+                    <td class="letter text-center">@exposicao.Sicor</td>
+                    <td class="letter text-center">@exposicao.Valor.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
                     <td class="letter text-center"> 
-                        @if (exposicao.analise == "positivo")
+                        @if (exposicao.Analise == "positivo")
                         {
                             <img src="./assets/socio/Circulo.svg">
                         }
-                        else if (exposicao.analise == "negativo")
+                        else if (exposicao.Analise == "negativo")
                         {
                             <img src="./assets/socio/X.svg">
 
                         }
-                        else if (exposicao.analise == "atencao")
+                        else if (exposicao.Analise == "atencao")
                         {
                             <img src="./assets/socio/Alerta Laranja.svg">
 
                         }
                     </td>
                     <td class="letter text-center"> 
-                        @if (exposicao.risco == "positivo")
+                        @if (exposicao.Risco == "positivo")
                         {
                             <img src="./assets/socio/folhavetor (2).svg">
                         }
-                        else if (exposicao.risco == "negativo")
+                        else if (exposicao.Risco == "negativo")
                         {
                             <img src="./assets/socio/FolhaVermelha.svg">
 
                         }
-                        else if (exposicao.risco == "atencao")
+                        else if (exposicao.Risco == "atencao")
                         {
                             <img src="./assets/socio/FolhaAmarela.svg">
                         }
-                        else if (exposicao.risco == "alerta")
+                        else if (exposicao.Risco == "alerta")
                         {
                             <img src="./assets/socio/FolhaLaranja.svg">
 
@@ -111,12 +111,12 @@
                 {
                     <tr>
                         <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
-                        <td class="letter">@operar.codigo</td>
-                        <td class="letter">@operar.registro</td>
-                        <td class="letter">@operar.titulo.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
-                        <td class="letter">@operar.tipo</td>
-                        <td class="letter">@operar.analisado</td>
-                        <td class="letter">@operar.riscos</td>
+                        <td class="letter">@operar.Codigo</td>
+                        <td class="letter">@operar.Registro</td>
+                        <td class="letter">@operar.Titulo.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter">@operar.Tipo</td>
+                        <td class="letter">@operar.Analisado</td>
+                        <td class="letter">@operar.Riscos</td>
                         <td class=""> <Botao SetClass="float-end " Icon="fa-solid fa-rotate" Text="Visualizar"></Botao></td>
                     </tr>
                 }
@@ -154,9 +154,9 @@
                 {
                     <tr>
                         <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
-                        <td class="letter">@exposicoes.situacoes</td>
-                        <td class="letter text-center">@exposicoes.saldo.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
-                        <td class="letter text-center">@exposicoes.tvm.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter">@exposicoes.Situacoes</td>
+                        <td class="letter text-center">@exposicoes.Saldo.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter text-center">@exposicoes.Tvm.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
                     </tr>
                 }
             </tbody>

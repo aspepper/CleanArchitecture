@@ -1,13 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<Authors>Alex Pimenta</Authors>
 		<Company>Acades Tecnologia</Company>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Shared\Components\ModalOperacoes.razor.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Shared\Components\ModalOperacoes.razor.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="Shared\MainLayout.razor" />

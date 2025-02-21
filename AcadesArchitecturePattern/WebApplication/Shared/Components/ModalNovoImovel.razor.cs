@@ -1,37 +1,34 @@
-﻿
-   
-namespace WebApplication.Shared.Components
+﻿namespace WebApplication.Shared.Components;
+
+public partial class ModalNovoImovel
 {
-    public partial class ModalNovoImovel
+    public class NovoImovelModel
     {
-        public class NovoImovelModel
-        {
-            public string TipoImovel { get; set; }
-            public string AreaTotal { get; set; }
-            public bool Garantia { get; set; }
-            public string Denominacao { get; set; }
-            public string Localizacao { get; set; }
-            public string Numero { get; set; }
-            public string Complemento { get; set; }
-            public string Bairro { get; set; }
-            public string CEP { get; set; }
-            public string Municipio { get; set; }
-            public string Estado { get; set; }
-            public string Pais { get; set; }
-        }
-
-        private NovoImovelModel NovoImovel = new NovoImovelModel();
-
-        private void SalvarImovel()
-        {
-            // Lógica para salvar o novo imóvel
-            // Você pode acessar os dados do formulário através das propriedades em NovoImovel
-        }
-
-        private void LimpaModal()
-        {
-            // Lógica para limpar o modal
-        }
-
+        public string TipoImovel { get; set; } = string.Empty;
+        public string AreaTotal { get; set; } = string.Empty;
+        public bool Garantia { get; set; }
+        public string Denominacao { get; set; } = string.Empty;
+        public string Localizacao { get; set; } = string.Empty;
+        public string Numero { get; set; } = string.Empty;
+        public string Complemento { get; set; } = string.Empty;
+        public string Bairro { get; set; } = string.Empty;
+        public string CEP { get; set; } = string.Empty;
+        public string Municipio { get; set; } = string.Empty;
+        public string Estado { get; set; } = string.Empty;
+        public string Pais { get; set; } = string.Empty;
     }
+
+    private NovoImovelModel novoImovel = new();
+
+    private void SalvarImovel()
+    {
+        // Lógica para salvar o novo imóvel
+        // Você pode acessar os dados do formulário através das propriedades em novoImovel
+    }
+
+    private void LimpaModal()
+    {
+        // Lógica para limpar o modal
+    }
+
 }

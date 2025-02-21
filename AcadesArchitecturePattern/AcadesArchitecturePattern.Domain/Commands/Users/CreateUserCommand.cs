@@ -7,7 +7,12 @@ namespace AcadesArchitecturePattern.Domain.Commands.Users
 {
     public class CreateUserCommand : Notifiable<Notification>, ICommand, IRequest<GenericCommandResult>
     {
-        public CreateUserCommand() { }
+        public CreateUserCommand()
+        {
+            UserName = string.Empty;
+            Email = string.Empty;
+            Password = string.Empty;
+        }
 
         public CreateUserCommand(string userName, string email, string password)
         {

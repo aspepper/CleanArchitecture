@@ -1,6 +1,5 @@
-﻿namespace WebApplication.Pages
+﻿namespace WebApplication.Pages;
+
+public partial class Historico
 {
-    public partial class Historico
-    {
-    }
 }

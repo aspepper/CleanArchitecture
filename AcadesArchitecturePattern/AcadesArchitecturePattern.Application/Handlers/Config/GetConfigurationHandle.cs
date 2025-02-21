@@ -12,24 +12,24 @@ namespace AcadesArchitecturePattern.Application.Handlers.Users
 {
     public class GetConfigurationHandle : IRequestHandler<GetConfigurationByCompanyQuery, GenericQueryResult>
     {
-        private readonly ILogger<ToDoListEventHandle> _logger;
-        private readonly IMediator _mediator;
-        private readonly HttpClient _client;
-        private readonly IConfiguration _configuration;
+        private readonly ILogger<ToDoListEventHandle> logger;
+        private readonly IMediator mediator;
+        private readonly HttpClient client;
+        private readonly IConfiguration configuration;
 
         public GetConfigurationHandle(ILogger<ToDoListEventHandle> logger, IMediator mediator, IConfiguration config)
         {
-            _logger = logger;
-            _mediator = mediator;
-            _configuration = config;
+            this.logger = logger;
+            this.mediator = mediator;
+            configuration = config;
 
-            if (_client == null)
+            if (client == null)
             {
-                _client = new HttpClient()
+                client = new HttpClient()
                 {
-                    BaseAddress = new Uri($"{_configuration["APIConfigProtocol"]}://{_configuration["APIConfigServer"]}/{_configuration["APIConfigURL"]}/api/{_configuration["APIConfigVersion"]}/GetAdvConfig/")
+                    BaseAddress = new Uri($"{configuration["APIConfigProtocol"]}://{configuration["APIConfigServer"]}/{configuration["APIConfigURL"]}/api/{configuration["APIConfigVersion"]}/GetAdvConfig/")
                 };
-                _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
 
@@ -37,7 +37,7 @@ namespace AcadesArchitecturePattern.Application.Handlers.Users
         {
             try
             {
-                HttpResponseMessage response = _client.GetAsync($"getConfig/{_configuration["APIConfigSystem"]}/{query.Company}", cancellationToken).Result;
+                HttpResponseMessage response = client.GetAsync($"getConfig/{this.configuration["APIConfigSystem"]}/{query.Company}", cancellationToken).Result;
 
                 if (!response.IsSuccessStatusCode)
                 { throw new Exception("Configuração não encontrada"); }
@@ -45,15 +45,15 @@ namespace AcadesArchitecturePattern.Application.Handlers.Users
                 var configuration = response.Content.ReadFromJsonAsync<Configuration>(cancellationToken: cancellationToken).Result ?? throw new Exception("Configuração não encontrada");
                 var configurationEvent = new ConfigurationEvent(configuration);
 
-                _logger.LogInformation("Tarefa Concluída: {CommandName}", query.GetType().Name);
+                logger.LogInformation("Tarefa Concluída: {CommandName}", query.GetType().Name);
 
-                await _mediator.Publish(configurationEvent, cancellationToken);
+                await mediator.Publish(configurationEvent, cancellationToken);
 
                 return await Task.FromResult(new GenericQueryResult(true, "Configuração encontrada!", configurationEvent));
             }
             catch (Exception ex)
             {
-                _logger.LogInformation("Tarefa Falhou: {CommandName}", query.GetType().Name);
+                logger.LogInformation("Tarefa Falhou: {CommandName}", query.GetType().Name);
                 return await Task.FromResult(new GenericQueryResult(false, ex.Message, query.Notifications));
             }
         }

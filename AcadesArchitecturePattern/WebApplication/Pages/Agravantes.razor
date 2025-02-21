@@ -27,18 +27,18 @@
                         @foreach (var agravante in Agravant)
                         {
                             <tr>
-                                <td class="letter"><a href="@($"https://www.exemplo.com/{agravante.descricao}")">@agravante.descricao</a></td>
+                                <td class="letter"><a href="@($"https://www.exemplo.com/{agravante.Descricao}")">@agravante.Descricao</a></td>
                                 <td calss="letter ">
-                                    @if (agravante.situacao == "positivo")
+                                    @if (agravante.Situacao == "positivo")
                                     {
                                         <img src="./assets/socio/Circulo.svg">
                                     }
-                                    else if (agravante.situacao == "negativo")
+                                    else if (agravante.Situacao == "negativo")
                                     {
                                         <img src="./assets/socio/X.svg">
 
                                     }
-                                    else if (agravante.situacao == "Interrogacao")
+                                    else if (agravante.Situacao == "Interrogacao")
                                     {
                                         <img src="./assets/socio/Interrogaçao.svg">
 
@@ -48,31 +48,31 @@
 
                                     }
                                 </td>
-                                <td class="letter text-center ">@agravante.validade.ToString("dd/MM/yyyy")</td>
+                                <td class="letter text-center ">@agravante.Validade.ToString("dd/MM/yyyy")</td>
                                 <td class="letter text-center ">
-                                    @if (agravante.risco == "positivo")
+                                    @if (agravante.Risco == "positivo")
                                     {
                                         <img src="./assets/socio/folhavetor (2).svg">
                                     }
-                                    else if (agravante.risco == "negativo")
+                                    else if (agravante.Risco == "negativo")
                                     {
                                         <img src="./assets/socio/FolhaVermelha.svg">
 
                                     }
-                                    else if (agravante.risco == "analise")
+                                    else if (agravante.Risco == "Analise")
                                     {
                                         <img src="./assets/socio/FolhaAmarela.svg">
 
                                     }
-                                    else if (agravante.risco == "atencao")
+                                    else if (agravante.Risco == "atencao")
                                     {
                                         <img src="./assets/socio/FolhaLaranja.svg">
                                     }
-                                    else if (agravante.risco == "interrogacao")
+                                    else if (agravante.Risco == "interrogacao")
                                     {
                                         <img src="./assets/socio/Interrogaçao.svg">
                                     }
-                                    else if (agravante.risco == "alerta")
+                                    else if (agravante.Risco == "alerta")
                                     {
                                         <img src="./assets/socio/Alerta Laranja.svg">
                                     }
@@ -115,18 +115,18 @@
                         @foreach (var mitigador in Mitigadores)
                         {
                             <tr>
-                                <td class="letter"><a href="@($"https://www.exemplo.com/{mitigador.descricao}")">@mitigador.descricao</a></td>
+                                <td class="letter"><a href="@($"https://www.exemplo.com/{mitigador.Descricao}")">@mitigador.Descricao</a></td>
                                 <td class="letter  ">
-                                    @if (mitigador.situacao == "positivo")
+                                    @if (mitigador.Situacao == "positivo")
                                     {
                                         <img src="./assets/socio/X.svg">
                                     }
-                                    else if (mitigador.situacao == "negativo")
+                                    else if (mitigador.Situacao == "negativo")
                                     {
                                         <img src="./assets/socio/Circulo.svg">
 
                                     }
-                                    else if (mitigador.situacao == "Interrogacao")
+                                    else if (mitigador.Situacao == "Interrogacao")
                                     {
                                         <img src="./assets/socio/Interrogaçao.svg">
 
@@ -136,23 +136,23 @@
 
                                     }
                                 </td>
-                                <td class="letter text-center">@mitigador.validade.ToShortDateString()</td>
+                                <td class="letter text-center">@mitigador.Validade.ToShortDateString()</td>
                                 <td class="letter text-center">
-                                    @if (mitigador.risco == "positivo")
+                                    @if (mitigador.Risco == "positivo")
                                     {
                                         <img src="./assets/socio/folhavetor (2).svg">
                                     }
-                                    else if (mitigador.risco == "negativo")
+                                    else if (mitigador.Risco == "negativo")
                                     {
                                         <img src="./assets/socio/FolhaVermelha.svg">
 
                                     }
-                                    else if (mitigador.risco == "Interrogacao")
+                                    else if (mitigador.Risco == "Interrogacao")
                                     {
                                         <img src="./assets/socio/FolhaAmarela.svg">
 
                                     }
-                                    else if (mitigador.risco == "analise")
+                                    else if (mitigador.Risco == "Analise")
                                     {
                                         <img src="./assets/socio/FolhaVermelha.svg">
                                     }

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AcadesArchitecturePattern.Infra.Data.Mappings
 {
-    public class TaskMapping : IEntityTypeConfiguration<Domain.Entities.ToDoTask>
+    public class TaskMapping : IEntityTypeConfiguration<ToDoTask>
     {
-        public void Configure(EntityTypeBuilder<Domain.Entities.ToDoTask> builder)
+        public void Configure(EntityTypeBuilder<ToDoTask> builder)
         {
             // Adding Table Name
             builder.ToTable("Tasks");

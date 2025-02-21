@@ -24,9 +24,9 @@
                 {
                     <tr >
                         <td class=""> <i class="fa-regular fa-pen-to-square Btn-cursor" style="color: #16a232;"></i></td>
-                        <td class="letter mt-2">@situacao.descricao</td>
-                        <td class="letter">@situacao.situacao</td>
-                        <td class="letter">@situacao.quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter mt-2">@situacao.Descricao</td>
+                        <td class="letter">@situacao.Status</td>
+                        <td class="letter">@situacao.Quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
                     </tr>
                 }
             </tbody>
@@ -60,9 +60,9 @@
                 {
                     <tr>
                         <td class=""><i class="fa-regular fa-pen-to-square Btn-cursor" style="color: #16a232;"></i></td>
-                        <td class="letter">@emiss.descricao</td>
-                        <td class="letter">@emiss.situacao</td>
-                        <td class="letter">@emiss.quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter">@emiss.Descricao</td>
+                        <td class="letter">@emiss.Situacao</td>
+                        <td class="letter">@emiss.Quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
 
                     </tr>
                 }
@@ -98,9 +98,9 @@
                 {
                     <tr>
                         <td class=""><i class="fa-regular fa-pen-to-square Btn-cursor" style="color: #16a232;" id="ModalEmissao" data-bs-toggle="modal" data-bs-target="#ModalEmissao"></i></td>
-                        <td class="letter">@emiss.descricao</td>
-                        <td class="letter">@emiss.situacao</td>
-                        <td class="letter">@emiss.quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
+                        <td class="letter">@emiss.Descricao</td>
+                        <td class="letter">@emiss.Situacao</td>
+                        <td class="letter">@emiss.Quantidade.ToString("#,##0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))</td>
 
                     </tr>
                 }

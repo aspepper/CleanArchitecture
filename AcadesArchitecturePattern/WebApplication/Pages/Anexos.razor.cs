@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace WebApplication.Pages;
 
-namespace WebApplication.Pages
+public partial class Anexos
 {
-    public partial class Anexos
+    public List<Anexo> Anex { get; set; } = [];
+
+    protected override void OnInitialized()
     {
-        public List<Anexo> Anex { get; set; }
+        Anex =
+        [
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "Anexos", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "Análise de Imóvel", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "Análise de Imóvel", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "Anexos", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "Visualizar", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "pendente", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "negado", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "Anexos", Data = DateTime.Now},
+            new Anexo {Descricao = "Certidão do Ibama", Origem = "Anexos", Data = DateTime.Now}
+        ];
+    }
 
-        protected override void OnInitialized()
-        {
-            Anex = new List<Anexo>
-            {
-                new Anexo {descricao = "Certidão do Ibama", origem = "Anexos", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "Análise de Imóvel", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "Análise de Imóvel", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "Anexos", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "Visualizar", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "pendente", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "negado", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "Anexos", data = DateTime.Now},
-                new Anexo {descricao = "Certidão do Ibama", origem = "Anexos", data = DateTime.Now}
-            };
-        }
-
-        public class Anexo
-        {
-            public string descricao { get; set; }
-            public string origem { get; set; }
-            public DateTime data { get; set; }
-        }
+    public class Anexo
+    {
+        public string Descricao { get; set; } = string.Empty;
+        public string Origem { get; set; } = string.Empty;
+        public DateTime Data { get; set; }
     }
 }
 

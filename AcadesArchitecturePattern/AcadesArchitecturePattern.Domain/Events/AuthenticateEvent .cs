@@ -3,18 +3,12 @@ using AcadesArchitecturePattern.Shared.Events;
 
 namespace AcadesArchitecturePattern.Domain.Events
 {
-    public class AuthenticateEvent : BaseEvent
+    public class AuthenticateEvent(AuthenticateResponse item) : BaseEvent
     {
-        public AuthenticateEvent(AuthenticateResponse item)
-        {
-            Item = item;
-            EventDateTime = DateTime.Now;
-        }
+        public AuthenticateResponse Item { get; } = item;
+        public DateTime EventDateTime { get; } = DateTime.Now;
 
-        public AuthenticateResponse Item { get; }
-        public DateTime EventDateTime { get; }
-
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || GetType() != obj.GetType())
             {
@@ -24,6 +18,11 @@ namespace AcadesArchitecturePattern.Domain.Events
             AuthenticateEvent other = (AuthenticateEvent)obj;
 
             return Item.Id == other.Item.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
         }
     }
 }

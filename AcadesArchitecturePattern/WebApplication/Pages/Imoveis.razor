@@ -30,18 +30,18 @@
                                 {
                                     <tr>
                                         <td class=""><i class="fa-regular fa-pen-to-square" style="color: #16a232;"></i></td>
-                                        <td class="letter text-center">@imovel.descricao</td>
+                                        <td class="letter text-center">@imovel.Descricao</td>
                                         <td class="letter text-center">
-                                            @if (imovel.situacao == "positivo")
+                                            @if (imovel.Situacao == "positivo")
                                             {
                                                 <img src="./assets/socio/Positivo.svg">
                                             }
-                                            else if (imovel.situacao == "negativo")
+                                            else if (imovel.Situacao == "negativo")
                                             {
                                                 <img src="./assets/socio/MãoVermelha.svg">
 
                                             }
-                                            else if (imovel.situacao == "atencao")
+                                            else if (imovel.Situacao == "atencao")
                                             {
                                                 <img src="./assets/socio/Alerta Laranja.svg">
 
@@ -52,37 +52,37 @@
                                             }
                                         </td>
                                         <td class="letter text-center"> 
-                                            @if (imovel.tipo == "positivo")
+                                            @if (imovel.Tipo == "positivo")
                                             {
                                                 <img src="./assets/socio/Imoveis.svg">
                                             }
-                                            else if (imovel.tipo == "negativa")
+                                            else if (imovel.Tipo == "negativa")
                                             {
                                                 <img src="./assets/socio/Sitio.svg">
                                             }
                                         </td>
                                         <td class="letter text-center"> 
-                                            @if (imovel.garantia == "positivo")
+                                            @if (imovel.Garantia == "positivo")
                                             {
                                                 <img src="./assets/socio/Circulo.svg">
                                             }
-                                            else if (imovel.garantia == "negativo")
+                                            else if (imovel.Garantia == "negativo")
                                             {
                                                 <img src="./assets/socio/X.svg">
 
                                             }
                                         </td>
                                         <td class="letter text-center"> 
-                                            @if (imovel.cafir == "positivo")
+                                            @if (imovel.Cafir == "positivo")
                                             {
                                                 <img src="./assets/socio/Total.svg">
                                             }
-                                            else if (imovel.cafir == "negativo")
+                                            else if (imovel.Cafir == "negativo")
                                             {
                                                 <img src="./assets/socio/X.svg">
 
                                             }
-                                            else if (imovel.cafir == "atencao")
+                                            else if (imovel.Cafir == "atencao")
                                             {
                                                 <img src="./assets/socio/Interrogaçao.svg">
 

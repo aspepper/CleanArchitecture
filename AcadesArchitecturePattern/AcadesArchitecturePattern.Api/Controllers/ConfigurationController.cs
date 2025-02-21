@@ -1,26 +1,18 @@
 ﻿using AcadesArchitecturePattern.Api.Helper;
 using AcadesArchitecturePattern.Domain.Queries.Users;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace AcadesArchitecturePattern.Api.Controllers
 {
     [Route("v1/authentications")]
     [ApiController]
-    public class ConfigurationController : ControllerBase
+    public class ConfigurationController(IMediator mediator, IHttpContextAccessor httpContextAccessor) : ControllerBase
     {
         // Dependency Injection:
 
-        private readonly IMediator _mediator;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public ConfigurationController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
-        {
-            _mediator = mediator;
-            _httpContextAccessor = httpContextAccessor;
-        }
+        private readonly IMediator mediator = mediator;
+        private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
 
 
         // Commands:
@@ -31,7 +23,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
         public async Task<IActionResult> GetConfig(string Company)
         {
             var query = new GetConfigurationByCompanyQuery { Company = Company };
-            var result = await _mediator.Send(query);
+            var result = await mediator.Send(query);
 
             if (result.Success)
             {
@@ -42,7 +34,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
                     if (config != null)
                     {
                         var t = config.GetType();
-                        var session = _httpContextAccessor.HttpContext.Session;
+                        var session = httpContextAccessor.HttpContext!.Session;
                         foreach (var prop in t.GetProperties())
                         {
                             if (prop.PropertyType.Name == "String")
@@ -50,7 +42,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
                                 var value = prop.GetValue(config);
                                 //AppContext.SetData("configuration", item);
                                 //Environment.SetEnvironmentVariable(prop.Name, value?.ToString());
-                                session.SetString(prop.Name, value != null ? value.ToString() : "");
+                                session.SetString(prop.Name, value?.ToString());
                             }
                         }
                     }

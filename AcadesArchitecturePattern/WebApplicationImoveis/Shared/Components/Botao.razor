@@ -1,0 +1,18 @@
+﻿@using WebApplicationImoveis.Pages
+<a href="@Page" id="@Id" class="btn btn-eguardian @(SetClass)" @onclick="() => PassaParametro()" data-bs-toggle="modal" data-bs-target="@IdModal">
+    @if (@Icon != "")
+    {
+        <i class="@Icon"></i>
+    }
+    else if (@Img != "")
+    {
+        <img src="@Img" />
+    }
+   
+    @if (@Text != null)
+    {
+        <label class="text cursor-click">@Text</label>
+    }
+</a>
+
+

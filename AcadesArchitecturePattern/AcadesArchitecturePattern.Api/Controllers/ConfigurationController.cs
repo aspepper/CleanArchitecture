@@ -42,7 +42,7 @@ namespace AcadesArchitecturePattern.Api.Controllers
                                 var value = prop.GetValue(config);
                                 //AppContext.SetData("configuration", item);
                                 //Environment.SetEnvironmentVariable(prop.Name, value?.ToString());
-                                session.SetString(prop.Name, value?.ToString());
+                                session.SetString(prop.Name, value?.ToString() ?? string.Empty);
                             }
                         }
                     }

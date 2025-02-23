@@ -11,6 +11,6 @@ namespace AcadesArchitecturePattern.Domain.Interfaces
 
         // Queries:
         IEnumerable<ToDoList> List();
-        ToDoList SearchById(Guid? id);
+        ToDoList? SearchById(Guid? id);
     }
 }

@@ -12,6 +12,6 @@
 
         // Queries:
         IEnumerable<Domain.Entities.ToDoTask> List();
-        Domain.Entities.ToDoTask SearchById(Guid? id);
+        Domain.Entities.ToDoTask? SearchById(Guid? id);
     }
 }

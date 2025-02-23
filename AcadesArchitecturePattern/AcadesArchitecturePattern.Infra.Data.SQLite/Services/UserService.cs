@@ -1,13 +1,13 @@
 ﻿using AcadesArchitecturePattern.Domain.Entities;
 using AcadesArchitecturePattern.Domain.Interfaces;
-using AcadesArchitecturePattern.Infra.Data.Contexts;
+using AcadesArchitecturePattern.Infra.Data.SQLite.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace AcadesArchitecturePattern.Infra.Data.Services
+namespace AcadesArchitecturePattern.Infra.Data.SQLite.Services
 {
-    public class UserService(AcadesArchitecturePatternSqlServerContext ctx) : IUserService
+    public class UserService(AcadesArchitecturePatternSQLiteContext ctx) : IUserService
     {
-        private readonly AcadesArchitecturePatternSqlServerContext ctx = ctx;
+        private readonly AcadesArchitecturePatternSQLiteContext ctx = ctx;
 
         // Commands:
         public void Add(User user)
@@ -19,7 +19,7 @@ namespace AcadesArchitecturePattern.Infra.Data.Services
         public void Delete(Guid? id)
         {
             var user = SearchById(id);
-            if (user != null) 
+            if (user != null)
             {
                 ctx.Users.Remove(user);
                 ctx.SaveChanges();

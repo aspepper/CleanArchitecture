@@ -7,6 +7,14 @@ namespace AcadesArchitecturePattern.Domain.Entities
 {
     public class ToDoList : Base
     {
+        public ToDoList()
+        {
+            Title = string.Empty;
+            Color = EnColor.White;
+            IdUser = new Guid();
+            Users = new User(); // Initialize Users property with default values
+        }
+
         public ToDoList(string title, EnColor color, Guid idUser)
         {
             AddNotifications(
@@ -20,9 +28,9 @@ namespace AcadesArchitecturePattern.Domain.Entities
             Title = title;
             Color = color;
             IdUser = idUser;
-            Users = new User("defaultUserName", "defaultEmail", "defaultPassword"); // Initialize Users property with default values
-            taskList = []; // Initialize taskList property
-            Tasks = taskList.AsReadOnly(); // Initialize Tasks property
+            Users = new User(); // Initialize Users property with default values
+            TaskList = []; // Initialize taskList property
+            Tasks = TaskList.AsReadOnly(); // Initialize Tasks property
         }
 
         public string Title { get; set; }
@@ -33,7 +41,7 @@ namespace AcadesArchitecturePattern.Domain.Entities
         public User Users { get; set; }
 
         // Compositions
-        public IReadOnlyCollection<ToDoTask> Tasks { get; private set; }
-        private List<ToDoTask> taskList { get; set; }
+        public IReadOnlyCollection<ToDoTask> Tasks { get; private set; } = [];
+        private List<ToDoTask> TaskList { get; set; } = [];
     }
 }

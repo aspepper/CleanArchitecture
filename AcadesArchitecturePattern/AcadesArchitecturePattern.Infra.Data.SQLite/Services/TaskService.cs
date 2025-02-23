@@ -1,12 +1,12 @@
 ﻿using AcadesArchitecturePattern.Domain.Interfaces;
-using AcadesArchitecturePattern.Infra.Data.Contexts;
+using AcadesArchitecturePattern.Infra.Data.SQLite.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace AcadesArchitecturePattern.Infra.Data.Services
+namespace AcadesArchitecturePattern.Infra.Data.SQLite.Services
 {
-    public class TaskService(AcadesArchitecturePatternSqlServerContext ctx) : ITaskService
+    public class TaskService(AcadesArchitecturePatternSQLiteContext ctx) : ITaskService
     {
-        private readonly AcadesArchitecturePatternSqlServerContext ctx = ctx;
+        private readonly AcadesArchitecturePatternSQLiteContext ctx = ctx;
 
 
 

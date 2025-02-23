@@ -1,29 +1,15 @@
-﻿using AcadesArchitecturePattern.Shared.Commands;
+﻿    using AcadesArchitecturePattern.Shared.Commands;
 using Flunt.Notifications;
 using Flunt.Validations;
 using MediatR;
 
 namespace AcadesArchitecturePattern.Domain.Commands.Users
 {
-    public class CreateUserCommand : Notifiable<Notification>, ICommand, IRequest<GenericCommandResult>
+    public class CreateUserCommand(string userName, string email, string password) : Notifiable<Notification>, ICommand, IRequest<GenericCommandResult>
     {
-        public CreateUserCommand()
-        {
-            UserName = string.Empty;
-            Email = string.Empty;
-            Password = string.Empty;
-        }
-
-        public CreateUserCommand(string userName, string email, string password)
-        {
-            UserName = userName;
-            Email = email;
-            Password = password;
-        }
-
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string UserName { get; set; } = userName;
+        public string Email { get; set; } = email;
+        public string Password { get; set; } = password;
 
         public void Validate()
         {

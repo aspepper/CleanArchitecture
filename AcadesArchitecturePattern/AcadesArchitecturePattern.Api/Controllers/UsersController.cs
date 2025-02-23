@@ -1,4 +1,5 @@
 ﻿using AcadesArchitecturePattern.Domain.Commands.Users;
+using AcadesArchitecturePattern.Domain.Entities;
 using AcadesArchitecturePattern.Domain.Events;
 using AcadesArchitecturePattern.Domain.Queries.Users;
 using MediatR;

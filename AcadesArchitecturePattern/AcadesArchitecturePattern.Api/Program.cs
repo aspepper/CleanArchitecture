@@ -6,9 +6,8 @@ using AcadesArchitecturePattern.Application.Handlers.Users;
 using AcadesArchitecturePattern.Application.Services;
 using AcadesArchitecturePattern.Domain.Interfaces;
 using AcadesArchitecturePattern.Domain.Security;
-using AcadesArchitecturePattern.Infra.Data.Contexts;
-using AcadesArchitecturePattern.Infra.Data.Services;
-using BlazorShop.Infra.Data.Repositories;
+using AcadesArchitecturePattern.Infra.Data.SQLite.Contexts;
+using AcadesArchitecturePattern.Infra.Data.SQLite.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -63,10 +62,12 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddCors();
 
 // Connecting to the database
-builder.Services.AddDbContext<AcadesArchitecturePatternSqlServerContext>(x =>
+builder.Services.AddDbContext<AcadesArchitecturePatternSQLiteContext>(x =>
 {
-    x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+/* x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); */
 
 // Adding JWT authentication/validation 
 builder.Services.AddAuthentication(options =>

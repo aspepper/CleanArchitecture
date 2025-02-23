@@ -58,7 +58,7 @@ namespace AcadesArchitecturePattern.Tests.Handlers.Tasks
             var loggerMock = new Mock<ILogger<TaskEventHandle>>();
             var mediatorMock = new Mock<IMediator>();
 
-            taskServiceMock.Setup(x => x.List()).Returns(new List<Domain.Entities.ToDoTask>());
+            taskServiceMock.Setup(x => x.List()).Returns([]);
 
             var handle = new ListTaskHandle(taskServiceMock.Object, loggerMock.Object, mediatorMock.Object);
 

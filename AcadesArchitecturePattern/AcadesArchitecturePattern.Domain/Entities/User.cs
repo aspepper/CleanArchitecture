@@ -6,6 +6,13 @@ namespace AcadesArchitecturePattern.Domain.Entities
 {
     public class User : Base
     {
+        public User()
+        {
+            UserName = string.Empty;
+            Email = string.Empty;
+            Password = string.Empty;
+        }
+
         public User(string userName, string email, string password)
         {
             AddNotifications(
@@ -16,12 +23,12 @@ namespace AcadesArchitecturePattern.Domain.Entities
                 .IsGreaterThan(password, 6, "O campo 'senha' deve ter no mínimo 6 caracteres")
             );
 
-            if (IsValid)
-            {
-                UserName = userName;
-                Email = email;
-                Password = password;
-            }
+            if (!IsValid)
+                return;
+
+            UserName = userName;
+            Email = email;
+            Password = password;
         }
 
         public string UserName { get; set; }
@@ -29,7 +36,7 @@ namespace AcadesArchitecturePattern.Domain.Entities
         public string Password { get; set; }
 
         // Compositions
-        public IReadOnlyCollection<ToDoList> ToDoLists { get; private set; }
-        private List<ToDoList> _lists { get; set; }
+        public IReadOnlyCollection<ToDoList> ToDoLists { get; private set; } = [];
+        private List<ToDoList> Lists { get; set; } = [];
     }
 }

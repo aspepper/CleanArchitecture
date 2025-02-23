@@ -1,13 +1,13 @@
 ﻿using AcadesArchitecturePattern.Domain.Entities;
 using AcadesArchitecturePattern.Domain.Interfaces;
-using AcadesArchitecturePattern.Infra.Data.Contexts;
+using AcadesArchitecturePattern.Infra.Data.SQLite.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace AcadesArchitecturePattern.Infra.Data.Services
+namespace AcadesArchitecturePattern.Infra.Data.SQLite.Services
 {
-    public class ToDoListService(AcadesArchitecturePatternSqlServerContext ctx) : IToDoListService
+    public class ToDoListService(AcadesArchitecturePatternSQLiteContext ctx) : IToDoListService
     {
-        private readonly AcadesArchitecturePatternSqlServerContext ctx = ctx;
+        private readonly AcadesArchitecturePatternSQLiteContext ctx = ctx;
 
 
 

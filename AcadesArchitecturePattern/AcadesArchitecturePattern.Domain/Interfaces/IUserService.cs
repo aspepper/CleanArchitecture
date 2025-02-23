@@ -11,8 +11,8 @@ namespace AcadesArchitecturePattern.Domain.Interfaces
 
         // Queries:
         IEnumerable<User> List();
-        User SearchById(Guid? id);
-        User SearchByEmail(string email);
-        User SearchByUserName(string userName);
+        User? SearchById(Guid? id);
+        User? SearchByEmail(string email);
+        User? SearchByUserName(string userName);
     }
 }

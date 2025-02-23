@@ -8,6 +8,16 @@ namespace AcadesArchitecturePattern.Domain.Entities
 {
     public class ToDoTask : Base
     {
+        public ToDoTask()
+        {
+            Name = string.Empty;
+            Description = string.Empty;
+            Priority = EnTaskPriorityLevel.None;
+            Status = EnStatusTask.Done;
+            Reminder = null;
+            IdList = new Guid();
+        }
+
         public ToDoTask(string name, string description, EnTaskPriorityLevel priority, EnStatusTask status, DateTime? reminder, Guid idList)
         {
             AddNotifications(
@@ -27,7 +37,6 @@ namespace AcadesArchitecturePattern.Domain.Entities
             Status = status;
             Reminder = reminder;
             IdList = idList;
-            Lists = new ToDoList("Default Title", EnColor.White, idList); // Initialize Lists property with required parameters
         }
 
         public string Name { get; set; }
@@ -38,7 +47,7 @@ namespace AcadesArchitecturePattern.Domain.Entities
 
         // FK's
         public Guid IdList { get; set; }
-        public ToDoList Lists { get; set; }
+        public ToDoList Lists { get; set; } = new ToDoList("Default Title", EnColor.White, new Guid()); // Initialize Lists property with required parameters
 
         // Configs:
         public void UpdateTask(string? name = null, string? description = null, EnTaskPriorityLevel? priority = null, EnStatusTask? status = null, DateTime? reminder = null)

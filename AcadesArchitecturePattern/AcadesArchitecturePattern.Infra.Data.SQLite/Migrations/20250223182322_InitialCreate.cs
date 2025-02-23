@@ -19,9 +19,9 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     UserName = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
                     Password = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "GETDATE()"),
+                    InsertDate = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     InsertedBy = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: true),
-                    ModifyDate = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "GETDATE()"),
+                    ModifyDate = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
                     ModifiedBy = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
@@ -37,9 +37,9 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     Title = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     Color = table.Column<int>(type: "INTEGER", nullable: false),
                     IdUser = table.Column<Guid>(type: "TEXT", nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "GETDATE()"),
+                    InsertDate = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     InsertedBy = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: true),
-                    ModifyDate = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "GETDATE()"),
+                    ModifyDate = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
                     ModifiedBy = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
@@ -65,9 +65,9 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     Reminder = table.Column<DateTime>(type: "TEXT", nullable: true),
                     IdList = table.Column<Guid>(type: "TEXT", nullable: false),
                     Done = table.Column<bool>(type: "INTEGER", nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "GETDATE()"),
+                    InsertDate = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     InsertedBy = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: true),
-                    ModifyDate = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "GETDATE()"),
+                    ModifyDate = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
                     ModifiedBy = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>

@@ -1,3 +1,4 @@
+using AcadesArchitecturePattern.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -9,8 +10,11 @@ public class AcadesArchitecturePatternSQLiteContextFactory : IDesignTimeDbContex
     {
         var optionsBuilder = new DbContextOptionsBuilder<AcadesArchitecturePatternSQLiteContext>();
 
-        // Configure a conexão com SQLite; por exemplo:
-        optionsBuilder.UseSqlite("Data Source=AcadesArchitecturePatternDb.db");
+        var dbPath = DatabasePathHelper.GetDatabasePath();
+        var connectionString = $"Data Source={dbPath}";
+        
+         // Configure a conexão com SQLite; por exemplo:
+        optionsBuilder.UseSqlite(connectionString);
 
         return new AcadesArchitecturePatternSQLiteContext(optionsBuilder.Options);
     }

@@ -24,10 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AcadesArchitecturePattern.Application\AcadesArchitecturePattern.Application.csproj" />
     <ProjectReference Include="..\AcadesArchitecturePattern.Domain\AcadesArchitecturePattern.Domain.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="AcadesArchitecturePatternDb.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\AcadesArchitecturePattern.Shared\AcadesArchitecturePattern.Shared.csproj" />
   </ItemGroup>
 </Project>

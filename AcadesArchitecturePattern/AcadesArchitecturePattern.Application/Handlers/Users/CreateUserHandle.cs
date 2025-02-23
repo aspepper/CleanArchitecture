@@ -24,7 +24,7 @@ public class CreateUserHandle(IUserService userService, ILogger<ToDoListEventHan
 
             if (!command.IsValid)
             {
-                return await System.Threading.Tasks.Task.FromResult(new GenericCommandResult(false, "Insira corretamente os dados do usuário", command.Notifications));
+                return await Task.FromResult(new GenericCommandResult(false, "Insira corretamente os dados do usuário", command.Notifications));
             }
 
             var emailExists = userService.SearchByEmail(command.Email.ToLower());
@@ -33,12 +33,12 @@ public class CreateUserHandle(IUserService userService, ILogger<ToDoListEventHan
             if (emailExists != null)
             {
                 logger.LogInformation("Tarefa Falhou: {CommandName}", command.GetType().Name);
-                return await System.Threading.Tasks.Task.FromResult(new GenericCommandResult(false, "E-mail existente", "Insira outro e-mail"));
+                return await Task.FromResult(new GenericCommandResult(false, "E-mail existente", "Insira outro e-mail"));
             }
             else if (userNameExists != null)
             {
                 logger.LogInformation("Tarefa Falhou: {CommandName}", command.GetType().Name);
-                return await System.Threading.Tasks.Task.FromResult(new GenericCommandResult(false, "Nome de usuário existente", "Insira outro nome de usuário"));
+                return await Task.FromResult(new GenericCommandResult(false, "Nome de usuário existente", "Insira outro nome de usuário"));
             }
 
             bool spacesUserName = command.UserName.Contains(" ");
@@ -46,17 +46,17 @@ public class CreateUserHandle(IUserService userService, ILogger<ToDoListEventHan
             if (spacesUserName)
             {
                 logger.LogInformation("Tarefa Falhou: {CommandName}", command.GetType().Name);
-                return await System.Threading.Tasks.Task.FromResult(new GenericCommandResult(false, "Nome de usuário não pode ter espaços", "Insira outro nome de usuário"));
+                return await Task.FromResult(new GenericCommandResult(false, "Nome de usuário não pode ter espaços", "Insira outro nome de usuário"));
             }
 
             string encryptedPassword = PasswordEncryption.Encrypt(command.Password);
 
-            User newUser = new User(command.UserName.ToLower(), command.Email.ToLower(), encryptedPassword);
+            User newUser = new(command.UserName.ToLower(), command.Email.ToLower(), encryptedPassword);
 
             if (!newUser.IsValid)
             {
                 logger.LogInformation("Tarefa Falhou: {CommandName}", command.GetType().Name);
-                return await System.Threading.Tasks.Task.FromResult(new GenericCommandResult(false, "Dados de usuário inválidos", newUser.Notifications));
+                return await Task.FromResult(new GenericCommandResult(false, "Dados de usuário inválidos", newUser.Notifications));
             }
 
             userService.Add(newUser);
@@ -66,12 +66,12 @@ public class CreateUserHandle(IUserService userService, ILogger<ToDoListEventHan
             var userEvent = new UserEvent(newUser);
             await mediator.Publish(userEvent, cancellationToken);
 
-            return await System.Threading.Tasks.Task.FromResult(new GenericCommandResult(true, "Usuário criado com sucesso!", newUser));
+            return await Task.FromResult(new GenericCommandResult(true, "Usuário criado com sucesso!", newUser));
         }
         catch (Exception ex)
         {
             logger.LogInformation("Tarefa Falhou: {CommandName}", command.GetType().Name);
-            return await System.Threading.Tasks.Task.FromResult(new GenericCommandResult(false, "Ocorreu um erro ao criar o usuário", ex.Message));
+            return await Task.FromResult(new GenericCommandResult(false, "Ocorreu um erro ao criar o usuário", ex.Message));
         }
         
     }

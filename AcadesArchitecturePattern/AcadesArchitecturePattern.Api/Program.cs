@@ -8,11 +8,13 @@ using AcadesArchitecturePattern.Domain.Interfaces;
 using AcadesArchitecturePattern.Domain.Security;
 using AcadesArchitecturePattern.Infra.Data.SQLite.Contexts;
 using AcadesArchitecturePattern.Infra.Data.SQLite.Services;
+using AcadesArchitecturePattern.Shared;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,11 +63,16 @@ builder.Services.AddSwaggerGen(c =>
 // Adding CORS support
 builder.Services.AddCors();
 
-// Connecting to the database
+var dbPath = DatabasePathHelper.GetDatabasePath();
+var connectionString = $"Data Source={dbPath}";
+
 builder.Services.AddDbContext<AcadesArchitecturePatternSQLiteContext>(x =>
 {
-    x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    x.UseSqlite(connectionString);
 });
+
+Debug.WriteLine("Working Directory: " + Directory.GetCurrentDirectory());
+Debug.WriteLine($"Connection String = {connectionString}");
 
 /* x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); */
 

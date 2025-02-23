@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
 {
     [DbContext(typeof(AcadesArchitecturePatternSQLiteContext))]
-    [Migration("20250223154318_InitialCreate")]
+    [Migration("20250223182322_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -35,7 +35,7 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     b.Property<DateTime>("InsertDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("InsertedBy")
                         .HasMaxLength(50)
@@ -48,7 +48,7 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     b.Property<DateTime?>("ModifyDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -82,7 +82,7 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     b.Property<DateTime>("InsertDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("InsertedBy")
                         .HasMaxLength(50)
@@ -95,7 +95,7 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     b.Property<DateTime?>("ModifyDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -132,7 +132,7 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     b.Property<DateTime>("InsertDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("InsertedBy")
                         .HasMaxLength(50)
@@ -145,7 +145,7 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Migrations
                     b.Property<DateTime?>("ModifyDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Password")
                         .IsRequired()

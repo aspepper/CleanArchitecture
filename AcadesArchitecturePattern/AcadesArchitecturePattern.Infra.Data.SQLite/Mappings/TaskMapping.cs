@@ -31,11 +31,11 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Mappings
 
             // Adding Reminder
             builder.Property(x => x.InsertDate).HasColumnType("DATETIME");
-            builder.Property(x => x.InsertDate).HasDefaultValueSql("GETDATE()");
+            builder.Property(x => x.InsertDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
 
             // Adding InsertDate
             builder.Property(x => x.InsertDate).HasColumnType("DATETIME");
-            builder.Property(x => x.InsertDate).HasDefaultValueSql("GETDATE()");
+            builder.Property(x => x.InsertDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(x => x.InsertDate).IsRequired();
 
             // Adding InsertedBy
@@ -45,7 +45,7 @@ namespace AcadesArchitecturePattern.Infra.Data.SQLite.Mappings
 
             // Adding ModifyDate
             builder.Property(x => x.ModifyDate).HasColumnType("DATETIME");
-            builder.Property(x => x.ModifyDate).HasDefaultValueSql("GETDATE()");
+            builder.Property(x => x.ModifyDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
 
             // Adding ModifiedBy
             builder.Property(x => x.ModifiedBy).HasColumnType("VARCHAR(50)");

@@ -16,7 +16,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
-using Serilog;  // Certifique-se de adicionar essa referência
+using Serilog;  // Make sure to add this reference: dotnet add package Serilog.AspNetCore and dotnet add package Serilog.Sinks.File
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,7 +71,7 @@ builder.Services.AddSwaggerGen(c =>
             {
                 Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
     });
 });

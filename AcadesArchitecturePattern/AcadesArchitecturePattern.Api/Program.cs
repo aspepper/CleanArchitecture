@@ -21,26 +21,26 @@ using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- Configuração do Serilog para log em arquivos ---
+// --- Serilog configuration for file logging ---
 var baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 var logFolder = Path.Combine(baseFolder, "AcadesArchitecturePattern", "Logs");
-// Cria a pasta caso ela não exista
+// Creates the folder if it doesn't exist
 Directory.CreateDirectory(logFolder);
 
 Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Information() // Defina o nível mínimo (pode ser ajustado conforme o ambiente)
-    .Enrich.FromLogContext()     // Enriquecer os logs com informações do contexto
-    .WriteTo.Console()           // Opcional: para exibir no console
+    .MinimumLevel.Information() // Set the minimum level (can be adjusted based on the environment)
+    .Enrich.FromLogContext()     // Enrich the logs with context information
+    .WriteTo.Console()           // Optional: to display on the console
     .WriteTo.File(
          Path.Combine(logFolder, "log-.txt"),
-         rollingInterval: RollingInterval.Day,  // Cria um novo arquivo a cada dia
-         retainedFileCountLimit: 7)               // Exemplo: mantém os 7 arquivos mais recentes
+         rollingInterval: RollingInterval.Day,  // Creates a new file each day
+         retainedFileCountLimit: 7)               // For example: retains the last 7 files
     .CreateLogger();
 
-// Integra o Serilog com o Generic Host
+// Integrates Serilog with the Generic Host
 builder.Host.UseSerilog();
 
-// --- Configurações padrão já existentes ---
+// --- Default/existing configurations ---
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
     {

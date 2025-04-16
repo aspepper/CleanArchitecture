@@ -16,10 +16,31 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
+using Serilog;  // Certifique-se de adicionar essa referência
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adding services to the container.
+// --- Configuração do Serilog para log em arquivos ---
+var baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+var logFolder = Path.Combine(baseFolder, "AcadesArchitecturePattern", "Logs");
+// Cria a pasta caso ela não exista
+Directory.CreateDirectory(logFolder);
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information() // Defina o nível mínimo (pode ser ajustado conforme o ambiente)
+    .Enrich.FromLogContext()     // Enriquecer os logs com informações do contexto
+    .WriteTo.Console()           // Opcional: para exibir no console
+    .WriteTo.File(
+         Path.Combine(logFolder, "log-.txt"),
+         rollingInterval: RollingInterval.Day,  // Cria um novo arquivo a cada dia
+         retainedFileCountLimit: 7)               // Exemplo: mantém os 7 arquivos mais recentes
+    .CreateLogger();
+
+// Integra o Serilog com o Generic Host
+builder.Host.UseSerilog();
+
+// --- Configurações padrão já existentes ---
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
     {
@@ -40,7 +61,7 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme.\r\n\r\n Enter 'Bearer'[space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+        Description = "JWT Authorization header using the Bearer scheme.\r\n\r\n Enter 'Bearer'[space] and then your token.\r\nExample: \"Bearer 12345abcdef\"",
     });
 
     // Requiring Bearer security for Swagger operations
@@ -49,11 +70,7 @@ builder.Services.AddSwaggerGen(c =>
         {
             new OpenApiSecurityScheme
             {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
             },
             new string[] {}
         }
@@ -110,17 +127,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMvcCore().AddControllersAsServices();
 
-// Independence injections
+// Dependência e registros diversos
 #region Sessions
 builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(20);
     options.Cookie.HttpOnly = true;
 });
-#endregion Sessions
+#endregion
 
 #region Users
 builder.Services.AddTransient<IUserService, UserService>();
@@ -179,7 +195,6 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Tas
 
 var app = builder.Build();
 
-// Configuring HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

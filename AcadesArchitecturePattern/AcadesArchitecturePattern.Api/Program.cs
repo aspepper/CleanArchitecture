@@ -17,7 +17,6 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
 using Serilog;  // Certifique-se de adicionar essa referência
-using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 

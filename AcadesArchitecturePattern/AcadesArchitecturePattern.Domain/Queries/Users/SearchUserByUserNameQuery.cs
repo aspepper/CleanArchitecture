@@ -9,6 +9,7 @@ namespace AcadesArchitecturePattern.Domain.Queries.Users
     public class SearchUserByUserNameQuery : Notifiable<Notification>, IQuery, IRequest<GenericQueryResult>
     {
         public string UserName { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
 
         public void Validate()
         {
@@ -16,6 +17,7 @@ namespace AcadesArchitecturePattern.Domain.Queries.Users
                 new Contract<Notification>()
                     .Requires()
                     .IsNotEmpty(UserName, "UserName", "O campo 'UserName' não pode estar vazio")
+                    .IsNotEmpty(Password, "UserName", "O campo 'UserName' não pode estar vazio")
                 );
         }
 
@@ -24,6 +26,7 @@ namespace AcadesArchitecturePattern.Domain.Queries.Users
             public Guid Id { get; set; }
             public string UserName { get; set; } = string.Empty;
             public string Email { get; set; } = string.Empty;
+            public string Password { get; set; } = string.Empty;
 
             // Compositions
             public IReadOnlyCollection<ToDoList> ToDoLists { get; private set; } = [];

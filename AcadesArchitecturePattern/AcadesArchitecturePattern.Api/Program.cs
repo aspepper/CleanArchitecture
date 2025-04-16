@@ -8,7 +8,7 @@ using AcadesArchitecturePattern.Domain.Interfaces;
 using AcadesArchitecturePattern.Domain.Security;
 using AcadesArchitecturePattern.Infra.Data.SQLite.Contexts;
 using AcadesArchitecturePattern.Infra.Data.SQLite.Services;
-using AcadesArchitecturePattern.Shared;
+using AcadesArchitecturePattern.Shared.Utils;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

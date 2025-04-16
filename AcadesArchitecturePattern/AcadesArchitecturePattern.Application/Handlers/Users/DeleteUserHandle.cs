@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace AcadesArchitecturePattern.Application.Handlers.Users
 {
-    public class DeleteUserHandle(IUserService userService, ILogger<ToDoListEventHandle> logger, IMediator mediator, IToDoListService listService) : IRequestHandler<DeleteUserCommand, GenericCommandResult>
+    public class DeleteUserHandle(IUserService userService, ILogger<UserEventHandle> logger, IMediator mediator, IToDoListService listService) : IRequestHandler<DeleteUserCommand, GenericCommandResult>
     {
         private readonly IUserService userService = userService;
         private readonly IToDoListService listService = listService;
-        private readonly ILogger<ToDoListEventHandle> logger = logger;
+        private readonly ILogger<UserEventHandle> logger = logger;
         private readonly IMediator mediator = mediator;
 
         public async Task<GenericCommandResult> Handle(DeleteUserCommand command, CancellationToken cancellationToken)

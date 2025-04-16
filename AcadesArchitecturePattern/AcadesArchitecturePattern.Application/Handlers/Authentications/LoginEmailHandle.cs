@@ -1,49 +1,56 @@
-﻿using AcadesArchitecturePattern.Domain.Commands.Authentications;
+﻿using AcadesArchitecturePattern.Application.Handlers.Events;
+using AcadesArchitecturePattern.Domain.Events;
 using AcadesArchitecturePattern.Domain.Interfaces;
-using AcadesArchitecturePattern.Shared.Commands;
+using AcadesArchitecturePattern.Domain.Queries.Users;
+using AcadesArchitecturePattern.Shared.Queries;
 using AcadesArchitecturePattern.Shared.Utils;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace AcadesArchitecturePattern.Application.Handlers.Authentications;
 
-public class LoginEmailHandle : IRequestHandler<LoginEmailCommand, GenericCommandResult>
+public class LoginEmailHandle(IUserService userService, ILogger<UserEventHandle> logger, IMediator mediator) : IRequestHandler<SearchUserByEmailQuery, GenericQueryResult>
 {
-    private readonly IUserService _userService;
+    private readonly IUserService userService = userService;
+    private readonly ILogger<UserEventHandle> logger = logger;
+    private readonly IMediator mediator = mediator;
 
-    public LoginEmailHandle(IUserService userService)
-    {
-        _userService = userService;
-    }
-
-    public async Task<GenericCommandResult> Handle(LoginEmailCommand command, CancellationToken cancellationToken)
+    public async Task<GenericQueryResult> Handle(SearchUserByEmailQuery query, CancellationToken cancellationToken)
     {
         try
         {
-            command.Validate();
+            query.Validate();
 
-            if (!command.IsValid)
+            if (!query.IsValid)
             {
-                return await Task.FromResult(new GenericCommandResult(false, "Insira os dados corretamente", command.Notifications));
+                return await Task.FromResult(new GenericQueryResult(false, "Insira corretamente os dados do usuário", query.Notifications));
             }
 
-            var searchedUser = _userService.SearchByEmail(command.Email);
+            var searchedUser = userService.SearchByUserName(query.Email);
 
             if (searchedUser == null)
             {
-                return await Task.FromResult(new GenericCommandResult(false, "E-mail ou senha inválidos", ""));
+                return await Task.FromResult(new GenericQueryResult(false, "Usuário ou Senha inválido", query.Notifications));
             }
 
-            // Descriptografar a senha do usuário encontrado e comparar com a senha fornecida
-            if (!PasswordEncryption.ValidateHashes(command.Password, searchedUser.Password))
+            string encryptedPassword = PasswordEncryption.Encrypt(query.Password);
+
+            if (searchedUser.Password != encryptedPassword)
             {
-                return await Task.FromResult(new GenericCommandResult(false, "E-mail ou senha inválidos", ""));
+                return await Task.FromResult(new GenericQueryResult(false, "Usuário ou Senha inválido", query.Notifications));
             }
 
-            return await Task.FromResult(new GenericCommandResult(true, "Logado com sucesso!", searchedUser));
+            logger.LogInformation("Tarefa Concluída: {CommandName}", query.GetType().Name);
+
+            var userEvent = new UserEvent(searchedUser);
+            await mediator.Publish(userEvent, cancellationToken);
+
+            return await Task.FromResult(new GenericQueryResult(true, "Usuário logado!", searchedUser));
         }
         catch (Exception ex)
         {
-            return await Task.FromResult(new GenericCommandResult(false, "Ocorreu um erro durante o login com e-mail", ex.Message));
+            logger.LogInformation("Tarefa Falhou: {CommandName}", query.GetType().Name);
+            return await Task.FromResult(new GenericQueryResult(false, "Ocorreu um erro ao fazer Login.", ex.Message));
         }
     }
 }

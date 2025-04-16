@@ -10,10 +10,10 @@ using Microsoft.Extensions.Logging;
 
 namespace AcadesArchitecturePattern.Application.Handlers.Users;
 
-public class CreateUserHandle(IUserService userService, ILogger<ToDoListEventHandle> logger, IMediator mediator) : IRequestHandler<CreateUserCommand, GenericCommandResult>
+public class CreateUserHandle(IUserService userService, ILogger<UserEventHandle> logger, IMediator mediator) : IRequestHandler<CreateUserCommand, GenericCommandResult>
 {
     private readonly IUserService userService = userService;
-    private readonly ILogger<ToDoListEventHandle> logger = logger;
+    private readonly ILogger<UserEventHandle> logger = logger;
     private readonly IMediator mediator = mediator;
 
     public async Task<GenericCommandResult> Handle(CreateUserCommand command, CancellationToken cancellationToken)

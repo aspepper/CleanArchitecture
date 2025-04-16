@@ -13,12 +13,12 @@ namespace AcadesArchitecturePattern.Application.Handlers.Users;
 public class SearchUserByIdHandle : IRequestHandler<SearchUserByIdQuery, GenericQueryResult>
 {
     private readonly IUserService userService;
-    private readonly ILogger<ToDoListEventHandle> logger;
+    private readonly ILogger<UserEventHandle> logger;
     private readonly IMediator mediator;
     private readonly HttpClient client;
     private readonly IConfiguration configuration;
 
-    public SearchUserByIdHandle(IUserService userService, ILogger<ToDoListEventHandle> logger, IMediator mediator, IConfiguration config)
+    public SearchUserByIdHandle(IUserService userService, ILogger<UserEventHandle> logger, IMediator mediator, IConfiguration config)
     {
         this.userService = userService;
         this.logger = logger;

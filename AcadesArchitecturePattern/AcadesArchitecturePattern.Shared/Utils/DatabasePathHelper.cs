@@ -1,4 +1,4 @@
-namespace AcadesArchitecturePattern.Shared;
+namespace AcadesArchitecturePattern.Shared.Utils;
 
 public static class DatabasePathHelper
 {

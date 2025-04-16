@@ -1,4 +1,4 @@
-using AcadesArchitecturePattern.Shared;
+using AcadesArchitecturePattern.Shared.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 

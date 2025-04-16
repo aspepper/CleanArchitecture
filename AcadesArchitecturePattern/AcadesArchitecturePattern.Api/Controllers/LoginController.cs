@@ -1,6 +1,5 @@
-﻿using AcadesArchitecturePattern.Application.Services;
-using AcadesArchitecturePattern.Domain.Commands.Authentications;
-using AcadesArchitecturePattern.Domain.Security;
+﻿using AcadesArchitecturePattern.Domain.Commands.Authentications;
+using AcadesArchitecturePattern.Domain.Queries.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,46 +7,31 @@ namespace AcadesArchitecturePattern.Api.Controllers
 {
     [Route("v1/authentications")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class LoginController(IMediator mediator) : ControllerBase
     {
         // Dependency Injection:
 
-        private readonly IMediator mediator;
-        private readonly JwtTokenGenerator tokenGenerator;
-        private readonly AuthenticateTokenMappingService authenticateTokenMappingService;
-
-        public LoginController(IMediator mediator, JwtTokenGenerator tokenGenerator, AuthenticateTokenMappingService authenticateTokenMappingService, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
-        {
-            this.mediator = mediator;
-            this.tokenGenerator = tokenGenerator;
-            this.authenticateTokenMappingService = authenticateTokenMappingService;
-
-            var session = httpContextAccessor.HttpContext?.Session;
-            if (session?.GetString("AdvLinkWebApi") == null)
-            {
-                ConfigurationController config = new(mediator, httpContextAccessor);
-                var apiConfigSystem = configuration["APIConfigSystem"];
-                _ = config.GetConfig(apiConfigSystem == null ? "" : apiConfigSystem.ToString());
-            }
-        }
-
+        private readonly IMediator mediator = mediator;
         // Commands:
 
-        // Login pelo Usuário e Senha
+        // Logon by UserName and Password
         [HttpPost("signIn")]
         public async Task<IActionResult> SignInUserName(LoginUserNameCommand command)
         {
-            var result = await mediator.Send(command);
+            var query = new SearchUserByUserNameQuery { UserName = command.UserName, Password = command.Password };
+            var result = await mediator.Send(query);
 
-            if (result.Success)
-            {
-                var authenticateToken = authenticateTokenMappingService.MapAuthenticateTokenFromResult(result.Data);
-                var token = tokenGenerator.GenerateToken(authenticateToken);
+            return result.Success ? Ok(result.Data) : BadRequest(result.Message);
+        }
 
-                return Ok(new { user = authenticateToken, token });
-            }
+        // Logon by Email and Password
+        [HttpPost("signInEmail")]
+        public async Task<IActionResult> SignInEmail(LoginEmailCommand command)
+        {
+            var query = new SearchUserByEmailQuery { Email = command.Email, Password = command.Password };
+            var result = await mediator.Send(query);
 
-            return BadRequest(result.Message);
+            return result.Success ? Ok(result.Data) : BadRequest(result.Message);
         }
     }
 }

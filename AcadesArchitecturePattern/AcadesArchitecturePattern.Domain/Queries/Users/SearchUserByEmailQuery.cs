@@ -9,6 +9,7 @@ namespace AcadesArchitecturePattern.Domain.Queries.Users
     public class SearchUserByEmailQuery : Notifiable<Notification>, IQuery, IRequest<GenericQueryResult>
     {
         public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
 
         public void Validate()
         {

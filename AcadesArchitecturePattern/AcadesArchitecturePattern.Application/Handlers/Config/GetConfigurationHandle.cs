@@ -27,7 +27,7 @@ namespace AcadesArchitecturePattern.Application.Handlers.Users
             {
                 client = new HttpClient()
                 {
-                    BaseAddress = new Uri($"{configuration["APIConfigProtocol"]}://{configuration["APIConfigServer"]}/{configuration["APIConfigURL"]}/api/{configuration["APIConfigVersion"]}/GetAdvConfig/")
+                    BaseAddress = new Uri($"{configuration["APIConfigProtocol"]}://{configuration["APIConfigServer"]}/{configuration["APIConfigURL"]}/api/{configuration["APIConfigVersion"]}/GetConfig/")
                 };
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             }
